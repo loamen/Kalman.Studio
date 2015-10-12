@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{65FED08B-D2B2-4B49-9257-3DE1954D1675}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kalman</RootNamespace>
+    <AssemblyName>Kalman</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Kalman.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Kalman.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EmitMapper">
+      <HintPath>..\packages\EmitMapper.1.0.0\lib\EmitMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caching\Cache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\CacheItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\CacheItemExpiration\AbsoluteTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\CacheItemExpiration\FileDependency.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\CacheItemExpiration\ICacheItemExpiration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\CacheItemExpiration\NeverExpired.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Caching\CacheItemExpiration\SlidingTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\KeyedList.cs" />
+    <Compile Include="Collections\SynchronizedDictionary.cs" />
+    <Compile Include="Collections\SynchronizedLinkedList.cs" />
+    <Compile Include="Collections\SynchronizedList.cs" />
+    <Compile Include="Collections\SynchronizedQueue.cs" />
+    <Compile Include="Collections\SynchronizedSortedDictionary.cs" />
+    <Compile Include="Collections\SynchronizedSortedList.cs" />
+    <Compile Include="Collections\SynchronizedStack.cs" />
+    <Compile Include="Command\CmdHelper.cs" />
+    <Compile Include="Command\WinrarHelper.cs" />
+    <Compile Include="Config\ConfigBase.cs" />
+    <Compile Include="Config\ConfigHandler.cs" />
+    <Compile Include="Data\Common\DataReaderWrapper.cs" />
+    <Compile Include="Data\DbProvider\DB2\DB2Database.cs" />
+    <Compile Include="Data\DbProvider\Firebird\FirebirdDatabase.cs" />
+    <Compile Include="Data\DbProvider\MySql\MySqlDatabase.cs" />
+    <Compile Include="Data\DbProvider\Odbc\OdbcDatabase.cs" />
+    <Compile Include="Data\DbProvider\OleDb\OleDbDatabase.cs" />
+    <Compile Include="Data\DbProvider\SQLite\SQLiteDatabase.cs" />
+    <Compile Include="Data\DbSchema.cs" />
+    <Compile Include="Data\DbSchemaProvider\DB2Schema.cs" />
+    <Compile Include="Data\DbSchemaProvider\SqlServerSchema.cs" />
+    <Compile Include="Data\DbSchemaProvider\MySqlSchema.cs" />
+    <Compile Include="Data\DbSchemaProvider\SQLiteSchema.cs" />
+    <Compile Include="Data\SchemaObject\SOColumn.cs" />
+    <Compile Include="Data\SchemaObject\SOCommand.cs" />
+    <Compile Include="Data\SchemaObject\SOCommandParameter.cs" />
+    <Compile Include="Data\SchemaObject\SODatabase.cs" />
+    <Compile Include="Data\DbSchemaFactory.cs" />
+    <Compile Include="Data\DbSchemaProvider\OracleSchema.cs" />
+    <Compile Include="Data\SchemaObject\SOBase.cs" />
+    <Compile Include="Data\IDbSchema.cs" />
+    <Compile Include="Data\SchemaObject\SOIndex.cs" />
+    <Compile Include="Data\SchemaObject\SOTable.cs" />
+    <Compile Include="Data\SchemaObject\SOTableViewBase.cs" />
+    <Compile Include="Data\SchemaObject\SOView.cs" />
+    <Compile Include="Extensions\CollectionExt.cs" />
+    <Compile Include="Extensions\DataExt.cs" />
+    <Compile Include="Extensions\StringExtension\StringExt.CodeBuilder.cs" />
+    <Compile Include="IDBuilder.cs" />
+    <Compile Include="IISLogParser\LogParseFilter.cs" />
+    <Compile Include="IISLogParser\LogParser.cs" />
+    <Compile Include="IISLogParser\LogRecord.cs" />
+    <Compile Include="IocContainer\IIoc.cs" />
+    <Compile Include="IocContainer\Ioc.cs" />
+    <Compile Include="IocContainer\IocMemory.cs" />
+    <Compile Include="Logging\Config\FormatterConfig.cs" />
+    <Compile Include="Logging\Config\LoggerConfig.cs" />
+    <Compile Include="Logging\Config\LoggingConfig.cs" />
+    <Compile Include="Logging\Config\TargetConfig.cs" />
+    <Compile Include="Logging\DefaultFormatter.cs" />
+    <Compile Include="Logging\ExceptionEventArgs.cs" />
+    <Compile Include="Logging\Formatters\DateTimeFormatter.cs" />
+    <Compile Include="Logging\Formatters\ExceptionFormatter.cs" />
+    <Compile Include="Logging\Formatters\IPartFormatter.cs" />
+    <Compile Include="Logging\Formatters\LogLevelFormatter.cs" />
+    <Compile Include="Logging\Formatters\MessageFormatter.cs" />
+    <Compile Include="Logging\Formatters\StackTraceFormatter.cs" />
+    <Compile Include="Logging\Formatters\TextFormatter.cs" />
+    <Compile Include="Logging\Formatters\ThreadIdFormatter.cs" />
+    <Compile Include="Logging\IFormatter.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ILogProvider.cs" />
+    <Compile Include="Logging\ITarget.cs" />
+    <Compile Include="Logging\LogEntry.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Logging\LogProvider.cs" />
+    <Compile Include="Logging\MultiLogger.cs" />
+    <Compile Include="Logging\NullLogger.cs" />
+    <Compile Include="Logging\Targets\ConsoleTarget.cs" />
+    <Compile Include="Logging\Targets\DbTarget.cs" />
+    <Compile Include="Logging\Targets\EventLogTarget.cs" />
+    <Compile Include="Logging\Targets\FileTarget.cs" />
+    <Compile Include="Logging\Targets\RemotingTarget.cs" />
+    <Compile Include="Mapping\DataReaderToObjectMapper.cs" />
+    <Compile Include="Mapping\MapExt.cs" />
+    <Compile Include="Mapping\ObjectsChangeTracker.cs" />
+    <Compile Include="Net\FtpClient.cs" />
+    <Compile Include="Net\HttpClient.cs" />
+    <Compile Include="Net\MXLookUp.cs" />
+    <Compile Include="PdmParser\PDColumn.cs" />
+    <Compile Include="PdmParser\PDDbms.cs" />
+    <Compile Include="PdmParser\PDIndex.cs" />
+    <Compile Include="PdmParser\PDKey.cs" />
+    <Compile Include="PdmParser\PDModel.cs" />
+    <Compile Include="PdmParser\PdmReader.cs" />
+    <Compile Include="PdmParser\PDObject.cs" />
+    <Compile Include="PdmParser\PDPackage.cs" />
+    <Compile Include="PdmParser\PDProcedure.cs" />
+    <Compile Include="PdmParser\PDReference.cs" />
+    <Compile Include="PdmParser\PDTable.cs" />
+    <Compile Include="PdmParser\PDUser.cs" />
+    <Compile Include="PdmParser\PDView.cs" />
+    <Compile Include="PdmParser\ReferenceJoin.cs" />
+    <Compile Include="PdmParser\SchemaObjectConverter.cs" />
+    <Compile Include="Remoting\ChannelType.cs" />
+    <Compile Include="Remoting\Client\Host.cs" />
+    <Compile Include="Remoting\Client\HostManager.cs" />
+    <Compile Include="Remoting\Client\RemotingClientHelper.cs" />
+    <Compile Include="Remoting\Config\ClientConfig.cs" />
+    <Compile Include="Remoting\Config\RemotingConfig.cs" />
+    <Compile Include="Remoting\Config\ServerConfig.cs" />
+    <Compile Include="Remoting\Service\HostMonitorService.cs" />
+    <Compile Include="Remoting\IAuthentication.cs" />
+    <Compile Include="Remoting\Service\LoggingService.cs" />
+    <Compile Include="Remoting\RemoteObject.cs" />
+    <Compile Include="Remoting\Client\RemotingClientProxy.cs" />
+    <Compile Include="Remoting\Server\RemotingServerHelper.cs" />
+    <Compile Include="Security\Enums\AsymmetricAlgorithmType.cs" />
+    <Compile Include="Security\HashCryto.cs" />
+    <Compile Include="Security\Enums\SymmetricAlgorithmType.cs" />
+    <Compile Include="Security\SymmetricCryto.cs" />
+    <Compile Include="ServiceModel\ErrorInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\IWcfServiceBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\ServiceHostManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\ServiceUriManage\ServiceUri.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\ServiceUriManage\ServiceUriManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\WcfClientProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\WcfErrorHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\WcfSelfHost.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\WcfServiceBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TimeConst.cs" />
+    <Compile Include="Utilities\CollectionUtil.cs" />
+    <Compile Include="Utilities\ByteUtil.cs" />
+    <Compile Include="Utilities\CheckUtil.cs" />
+    <Compile Include="BindableEntity.cs" />
+    <Compile Include="Data\CachingMechanism.cs" />
+    <Compile Include="Data\DatabaseType.cs" />
+    <Compile Include="Data\DatabaseFactory.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\DbProvider\Oracle\IOraclePackage.cs" />
+    <Compile Include="Data\DbProvider\Oracle\OracleDataReaderWrapper.cs" />
+    <Compile Include="Data\DbProvider\Oracle\OracleDatabase.cs" />
+    <Compile Include="Data\ParameterCache.cs" />
+    <Content Include="Data\config.xml" />
+    <Content Include="IISLogParser\help.txt" />
+    <Content Include="Logging\help.txt" />
+    <Content Include="PdmParser\help.txt" />
+    <Content Include="Remoting\help.txt" />
+    <Content Include="ServiceModel\help.txt" />
+    <Compile Include="Data\DbProvider\Sql\SqlServerDatabase.cs" />
+    <Compile Include="Data\TransactionScopeConnections.cs" />
+    <Compile Include="Data\UpdateBehavior.cs" />
+    <Compile Include="Extensions\ByteExt.cs" />
+    <Compile Include="Extensions\ObjectExt.cs" />
+    <Compile Include="Extensions\StringExtension\StringExt.cs" />
+    <Compile Include="Extensions\StringExtension\StringExt.Format.cs" />
+    <Compile Include="Extensions\StringExtension\StringExt.Html.cs" />
+    <Compile Include="Extensions\TypeExt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexConst.cs" />
+    <Compile Include="RegexValidate.cs" />
+    <Compile Include="Resources\Common.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Data.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\ConvertUtil.cs" />
+    <Compile Include="Utilities\CurrencyUtil.cs" />
+    <Compile Include="DynamicBuilder.cs" />
+    <Compile Include="Security\Enums\HashAlgorithmType.cs" />
+    <Compile Include="ILogable.cs" />
+    <Compile Include="Utilities\DatetimeUtil.cs" />
+    <Compile Include="Utilities\LunarDateUtil.cs" />
+    <Compile Include="Utilities\NetUtil.cs" />
+    <Compile Include="QQWryLocator.cs" />
+    <Compile Include="Utilities\RandomUtil.cs" />
+    <Compile Include="Utilities\ReflectUtil.cs" />
+    <Compile Include="Utilities\SignUtil.cs" />
+    <Compile Include="Utilities\SpellUtil.cs" />
+    <Compile Include="Utilities\StringUtilty\StringUtil.CodeBuilder.cs" />
+    <Compile Include="Utilities\StringUtilty\StringUtil.cs" />
+    <Compile Include="Utilities\StringUtilty\StringUtil.Html.cs" />
+    <Compile Include="Utilities\TypeUtil.cs" />
+    <Compile Include="WebCacher.cs" />
+    <Compile Include="Web\ResponseFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Common.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Data.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Data.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\DbMapping\" />
+    <Folder Include="Enums\" />
+    <Folder Include="ServiceModel\MonitorService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

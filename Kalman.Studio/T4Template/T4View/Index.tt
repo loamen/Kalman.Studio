@@ -1,0 +1,127 @@
+﻿<#@ template language="C#v4.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".cshtml" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+	string tableName  = table.Name.EndsWith("s") ?table.Name.TrimEnd('s') : table.Name.Trim();
+	
+	int length = tableName.Length;
+	string controllerName = tableName + "Controller";
+	string lowerTableName = tableName.Substring(0, 1).ToLower() + tableName.Substring(1, length - 1);
+	string serviceName = "_" + lowerTableName + "Service";
+#>
+@model IPagedList<Ebboy.Core.Domain.<#=tableName#>>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content">
+    <!-- row -->
+    <div class="row">
+        <!-- col -->
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-home"></i>
+                首页
+                <span>
+                    >
+                    @ViewBag.Title
+                </span>
+            </h1>
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-<#=tableName#>-index"
+                     data-widget-editbutton="false"
+                     data-widget-colorbutton="false"
+                     data-widget-togglebutton="false"
+                     data-widget-fullscreenbutton="false"
+                     data-widget-deletebutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-user-md"></i> </span>
+                        <h2>@ViewBag.Title </h2>
+                        <div class="widget-toolbar">
+                            <!-- add: non-hidden - to disable auto hide -->
+                            <div class="btn-group">
+                                @Html.ActionLink("添加", "Create", "<#=tableName#>", null, new {@class="btn btn-success" })
+                            </div>
+                        </div>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <table id="datatable_fixed_column" class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <# foreach (SOColumn c in list)
+                                    { #>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.<#= c.Name #>)
+                                    </th>
+                                    <# } #>
+                                    <th></th>
+                                </tr>
+								</thead>
+                                <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <# foreach (SOColumn c in list)
+                                        { #>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.<#= c.Name #>)
+                                        </td>
+                                        <# } #>
+                                        <td>
+                                            @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("详细", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                                            @Html.ActionLink("删除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                        </td>
+                                    </tr>
+                                }
+                                 </tbody>
+                            </table>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+        <!-- row -->
+        <div class="row">
+            <!-- a blank row to get started -->
+            <div class="col-sm-12">
+                <!-- your contents here -->
+            </div>
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+</div>
+@section endscripts{
+   @Scripts.Render("~/scripts/filter-datatables")
+}

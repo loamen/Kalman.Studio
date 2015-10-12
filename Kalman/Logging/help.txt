@@ -1,0 +1,144 @@
+﻿配置示例
+
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<configSections>
+		<sectionGroup name="kalman">
+			<section name="logging" type="Kalman.ConfigHandler,Kalman"/>
+		</sectionGroup>
+	</configSections>
+	<connectionStrings>
+		<add name="Northwind_Local" connectionString="Data Source=.;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Northwind;"/>
+	</connectionStrings>
+	<kalman>
+		<logging>
+			<formatters>
+				<formatter name="DefaultFormatter" type="DefaultFormatter"/>
+				<formatter name="DatetimeFormatter" type="DefaultFormatter" format="{DateTime:yyyy-MM-dd HH:mm:ss.ffff} {ThreadId} {StackTrace:3,40} {Message}"/>
+				<formatter name="EventLogFormatter" type="DefaultFormatter" format="{ThreadId} {StackTrace:3,40} {Message}"/>
+			</formatters>
+			<targets>
+				<target name="File" type="FileTarget" formatter="DatetimeFormatter">
+					<baseDirectory>d:\log</baseDirectory>
+				</target>
+				<target name="Console" type="ConsoleTarget" formatter="DatetimeFormatter">
+					<errorColor>red</errorColor>
+				</target>
+				<target name="Database" type="DbTarget" formatter="DatetimeFormatter">
+					<connectionStringName>Northwind_Local</connectionStringName>
+					<commandText>
+						INSERT INTO Log (Logger,LogLevel,ThreadID,CreateDate,LogText) VALUES (@Logger, @Level, @ThreadID, @CreatedAt, @LogText)
+					</commandText>
+				</target>
+				<target name="EventLog" type="EventLogTarget" formatter="EventLogFormatter">
+					<eventLogName>Kalman.Logging</eventLogName>
+					<maxSize>1024</maxSize>
+				</target>
+				<target name="Remoting" type="RemotingTarget" formatter="DefaultFormatter">
+					<clientName></clientName>
+					<appName>HR.Recurit</appName>
+				</target>
+			</targets>
+			<loggers>
+				<logger name="Default" namespace="Kalman.*" targets="File,Console" minLevel="Info"/>
+				<logger name="dblogger" namespace="*" targets="Database" minLevel="Error"/>
+			</loggers>
+		</logging>
+	</kalman>
+</configuration>
+
+若日志组件没有配置，则默认调用NullLogger，不会写任何日志
+
+Formatter
+
+name			格式化器的名称
+type			格式化器类型名称，可以指定自定义的格式化器
+format			组件提供默认格式化器DefaultFormatter，可以自定义format字符串来限制日志消息的输出格式，如：
+				format="{DateTime:yyyy-MM-dd HH:mm:ss.ffff} {ThreadId} {StackTrace:3,40} {Message}
+				格式说明
+				日志实体成员定义用一对大括号限定，格式为{日志实体成员名称:格式字符串或值列表}
+				{DateTime:yyyy-MM-dd HH:mm:ss.ffff}		冒号后面跟的是日期的格式化字符串
+				{StackTrace:3,40}						冒号后面格式为[帧数,填充字符的长度,跳过的帧数]
+				{LogLevel}								日志级别
+				{Message}								日志消息内容
+				{ThreadID}								线程ID
+
+			
+Target
+
+name			Target名称
+type			Target类型名称，可以指定自定义的Target
+formatter		指定Target所使用的格式化器名称
+
+				Target下面可以声明一系列子元素，用来设置其成员变量的值
+				ConsoleTarget
+					可以指定Console显示不同级别日志消息的颜色，如：<errorColor>Red</errorColor>
+					Console颜色枚举请参考ConsoleColor
+					
+				FileTarget
+						<daysToKeep>7</daysToKeep>							<!-- 日志保留的天数，0表示永久保留（目前没有启用这个参数） -->
+						<writeDirectly>true</writeDirectly>					<!-- 是否直接写日志，不考虑并发的情况 -->
+						<baseDirectory>d:\log</baseDirectory>				<!-- 日志写入的基础目录，在这里指定写日志的根目录 -->
+						
+						<yearInPath>false</yearInPath>						<!-- 年份作为写日志路径的一部分(yyyy) -->
+						<monthInPath>true</monthInPath>						<!-- 月份作为写日志路径的一部分(yyyyMM)，默认true -->
+						<dayInPath>false</dayInPath>						<!-- 日期作为写日志路径的一部分(yyyyMMdd) -->
+						<loggerNameInPath>false</loggerNameInPath>			<!-- 是否将日志记录器名称作为路径的一部分 -->
+						<logLevelInPath>false</logLevelInPath>				<!-- 是否将日志级别作为写日志路径的一部分 -->
+						
+						<fileName>app.log</fileName>						<!-- 获取或设置日志文件名，如果配置了这个参数，则文件名规则失效 -->
+						
+						<writePerYear>false</writePerYear>					<!-- 每年写一个日志文件，文件名包含年份(yyyy) -->
+						<writePerMonth>false</writePerMonth>				<!-- 每月写一个日志文件，文件名包含月份(yyyyMM) -->
+						<writePerDay>true</writePerDay>						<!-- 每天写一个日志文件，文件名包含日期(yyyyMMdd)，默认true -->
+						<writePerHour>false</writePerHour>					<!-- 每小时写一个日志文件，文件名包含小时(yyyyMMdd_HH) -->
+						<loggerNameInFilename>false</loggerNameInFilename>	<!-- 是否将日志记录器名称作为日志文件名的一部分，文件名包含日志记录器名称-->
+						<logLevelInFilename>false</logLevelInFilename>		<!-- 是否将日志级别作为日志文件名的一部分，文件名包含日志级别-->
+						
+						写日志路径格式
+						BaseDirectory + Date[format:yyyyMM]+[LoggerName]，例如：D:\...\log\201007\[LoggerName]\[LogLevel]
+						日志文件名格式
+						yyyy-MM-dd.log	yyyy-MM-dd[HH].log
+				
+				DbTarget
+					<connectionStringName>Northwind_Local</connectionStringName>	连接字符串名称
+					<commandText>
+						INSERT INTO Log (Logger,LogLevel,ThreadID,CreateDate,LogText) VALUES (@Logger, @Level, @ThreadID, @CreatedAt, @LogText)
+					</commandText>
+					每个日志表的字符对应一个日志属性参数[创建日志表时可选几个必须参数作为字段]，可用参数列表说明如下：
+					@Level			数据类型[varchar(10)]			日志级别
+					@Message		数据类型[varchar(1000)]			日志消息
+					@CreatedAt		数据类型[datetime]				创建时间
+					@ThreadID		数据类型[int]					线程ID
+					@StackFrames	数据类型[varchar(200)]			堆栈帧集合（描述方法的调用关系）
+					@Exception		数据类型[varchar(2000)]			异常信息，暂时只记录堆栈跟踪信息
+					@LogText		数据类型[varchar(2000)]			使用格式化器格式化后的日志文本
+					@Logger			数据类型[varchar(50)]			日志记录器名称
+					
+				EventLogTarget
+					<eventLogName>Kalman.Logging</eventLogName>		事件日志名称
+					<maxSize>1024</maxSize>							事件日志文件最大尺寸[kb]，默认1024
+				
+Logger
+
+name			日志记录器的名称
+namespace		日志记录器的所作用的命名空间，可以在指定的命名空间内使用这个日志记录器，可以使用通配符*，比如
+				Kalman.*			表示在命名空间Kalman下的所有类都可以使用这个日志记录器
+				Kalman.Remoting	表示只能在命名空间Kalman.Remoting下使用这个日志记录器
+				若namespace属性没配置，则默认为“*”，表示该Logger可以在任意地方写日志
+targets			Target名称字符串，多个Target用逗号隔开，表示日志记录器可以将日志输出到多个Target
+minLevel		记录日志的最小级别，低于这个级别不予记录，日志级别从低到高如下：Trace,Debug,Info,Warning,Error,Fatal
+
+日志调用方法
+
+1、使用当前类的Logger实例写日志，通过配置限制指定命名空间下的类的写日志行为
+ILogger logger = LogManager.GetCurrentClassLogger();
+logger.Info("log message");
+logger.Error("log message",ex);
+
+2、使用指定名称的Logger实例写日志，不受配置的命名空间限制
+ILogger logger = LogManager.GetLogger("DbLogger");
+logger.Info("test data");
+logger.Error("test data",ex);
+
+			

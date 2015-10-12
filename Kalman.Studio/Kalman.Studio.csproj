@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F3959EA-16FB-4232-827E-E557E0426104}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kalman.Studio</RootNamespace>
+    <AssemblyName>Kalman.Studio</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>App.ICO</ApplicationIcon>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=3.9.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="DDTek.Oracle">
+      <HintPath>lib\DDTek.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=5.0.8.1, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.3.1.24483, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Random.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Random.Designer.cs">
+      <DependentUpon>String_Random.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_SymmetricAlgorithm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_SymmetricAlgorithm.Designer.cs">
+      <DependentUpon>String_SymmetricAlgorithm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Guid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Guid.Designer.cs">
+      <DependentUpon>String_Guid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\ImportPostParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\ImportPostParams.Designer.cs">
+      <DependentUpon>ImportPostParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\DbSchemaHelper.cs" />
+    <Compile Include="Library\Export.cs" />
+    <Compile Include="Library\Utils.cs" />
+    <Compile Include="Library\VariXFolding.cs" />
+    <Compile Include="CodeBuilder\BatchBuildCustomCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildCustomCode.designer.cs">
+      <DependentUpon>BatchBuildCustomCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildDALCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildDALCode.designer.cs">
+      <DependentUpon>BatchBuildDALCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildEntityCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildEntityCode.designer.cs">
+      <DependentUpon>BatchBuildEntityCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildCode.designer.cs">
+      <DependentUpon>BatchBuildCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\CodeBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\CodeBuilder.designer.cs">
+      <DependentUpon>CodeBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\PreviewFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\PreviewFile.designer.cs">
+      <DependentUpon>PreviewFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\CodeExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\CodeExplorer.designer.cs">
+      <DependentUpon>CodeExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmExplorer.designer.cs">
+      <DependentUpon>PdmExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmColumnsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmColumnsViewer.designer.cs">
+      <DependentUpon>PdmColumnsViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmModelViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmModelViewer.designer.cs">
+      <DependentUpon>PdmModelViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmTableViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmTableViewer.designer.cs">
+      <DependentUpon>PdmTableViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\TemplateExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\TemplateExplorer.designer.cs">
+      <DependentUpon>TemplateExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\TestDataGenerator\TestDataGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\TestDataGenerator\TestDataGenerator.Designer.cs">
+      <DependentUpon>TestDataGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertorBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertorBase.Designer.cs">
+      <DependentUpon>StringConvertorBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Replace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Replace.Designer.cs">
+      <DependentUpon>String_Replace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Filter.Designer.cs">
+      <DependentUpon>String_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Hash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Hash.Designer.cs">
+      <DependentUpon>String_Hash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Convert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Convert.Designer.cs">
+      <DependentUpon>String_Convert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="T4TemplateEngineHost\DefaultHost.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="T4TemplateEngineHost\HostBase.cs" />
+    <Compile Include="ToolForm\DbObjectViewer\DbObjectViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbObjectViewer.designer.cs">
+      <DependentUpon>DbObjectViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseExplorer.Designer.cs">
+      <DependentUpon>DatabaseExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockableFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockableFrom.Designer.cs">
+      <DependentUpon>DockableFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockFormBase.Designer.cs">
+      <DependentUpon>DockFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockDocument.designer.cs">
+      <DependentUpon>DockDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockExplorer.Designer.cs">
+      <DependentUpon>DockExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorInfo.designer.cs">
+      <DependentUpon>ErrorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IDockDocument.cs" />
+    <Compile Include="MainForm\Main.Common.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\Output.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\Output.designer.cs">
+      <DependentUpon>Output.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildCustomCode.resx">
+      <DependentUpon>BatchBuildCustomCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildDALCode.resx">
+      <DependentUpon>BatchBuildDALCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildEntityCode.resx">
+      <DependentUpon>BatchBuildEntityCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildCode.resx">
+      <DependentUpon>BatchBuildCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\CodeBuilder.resx">
+      <DependentUpon>CodeBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\PreviewFile.resx">
+      <DependentUpon>PreviewFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\CodeExplorer.resx">
+      <DependentUpon>CodeExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmExplorer.resx">
+      <DependentUpon>PdmExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmColumnsViewer.resx">
+      <DependentUpon>PdmColumnsViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmModelViewer.resx">
+      <DependentUpon>PdmModelViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmTableViewer.resx">
+      <DependentUpon>PdmTableViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\TemplateExplorer.resx">
+      <DependentUpon>TemplateExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Guid.resx">
+      <DependentUpon>String_Guid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Hash.resx">
+      <DependentUpon>String_Hash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Random.resx">
+      <DependentUpon>String_Random.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Replace.resx">
+      <DependentUpon>String_Replace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_SymmetricAlgorithm.resx">
+      <DependentUpon>String_SymmetricAlgorithm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\TestDataGenerator\TestDataGenerator.resx">
+      <DependentUpon>TestDataGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\StringConvertorBase.resx">
+      <DependentUpon>StringConvertorBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbObjectViewer.resx">
+      <DependentUpon>DbObjectViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\DatabaseExplorer.resx">
+      <DependentUpon>DatabaseExplorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForm\DockableFrom.resx">
+      <DependentUpon>DockableFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForm\DockDocument.resx">
+      <DependentUpon>DockDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForm\DockFormBase.resx">
+      <DependentUpon>DockFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorInfo.resx">
+      <DependentUpon>ErrorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\Output.resx">
+      <DependentUpon>Output.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbSPViewer.resx">
+      <DependentUpon>DbSPViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbTableViewer.resx">
+      <DependentUpon>DbTableViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbViewViewer.resx">
+      <DependentUpon>DbViewViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\QueryAnalyzer.resx">
+      <DependentUpon>QueryAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\IISLogParser\IISLogExportToDB.resx">
+      <DependentUpon>IISLogExportToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\IISLogParser\IISLogParseCondition.resx">
+      <DependentUpon>IISLogParseCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\IISLogParser\IISLogParser.resx">
+      <DependentUpon>IISLogParser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConnector.resx">
+      <DependentUpon>StringConnector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbDocBuilder.resx">
+      <DependentUpon>DbDocBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbSchemaViewer.resx">
+      <DependentUpon>DbSchemaViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\StringConvertor.resx">
+      <DependentUpon>StringConvertor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Convert.resx">
+      <DependentUpon>String_Convert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\WebSubmitter\ImportPostParams.resx">
+      <DependentUpon>ImportPostParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\WebSubmitter\WebSubmitter.resx">
+      <DependentUpon>WebSubmitter.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="config\iislog\UserAgentAlias.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\QQWry.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SQL\IISLogData.sql" />
+    <None Include="T4Template\Entity\Default.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="T4Template\Entity\Normal.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="T4Template\T4Controller\Controller.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Controller.cs</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4Service\IService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IService.cs</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4Service\Service.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Service.cs</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4View\Create.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Create.cshtml</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4View\Delete.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Delete.cshtml</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4View\Details.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Details.cshtml</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4View\Edit.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Edit.cshtml</LastGenOutput>
+    </None>
+    <None Include="T4Template\T4View\Index.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index.cshtml</LastGenOutput>
+    </None>
+    <None Include="Template\template.php">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\template.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Library\CodeType.cs" />
+    <Compile Include="Library\DockHelper.cs" />
+    <Compile Include="Library\Win32Shell.cs" />
+    <Compile Include="ToolForm\DbObjectViewer\DbSPViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbSPViewer.designer.cs">
+      <DependentUpon>DbSPViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbTableViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbTableViewer.designer.cs">
+      <DependentUpon>DbTableViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbViewViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbViewViewer.designer.cs">
+      <DependentUpon>DbViewViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\QueryAnalyzer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\QueryAnalyzer.designer.cs">
+      <DependentUpon>QueryAnalyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="T4TemplateEngineHost\DatabaseHost.cs" />
+    <Compile Include="T4TemplateEngineHost\CommandHost.cs" />
+    <Compile Include="T4TemplateEngineHost\TableHost.cs" />
+    <Compile Include="T4TemplateEngineHost\ViewHost.cs" />
+    <Compile Include="ToolForm\IISLogParser\IISLogExportToDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogExportToDB.designer.cs">
+      <DependentUpon>IISLogExportToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParseCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParseCondition.designer.cs">
+      <DependentUpon>IISLogParseCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParser.designer.cs">
+      <DependentUpon>IISLogParser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConnector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConnector.Designer.cs">
+      <DependentUpon>StringConnector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\template.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ToolForm\DbDocBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbDocBuilder.designer.cs">
+      <DependentUpon>DbDocBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\DbSchemaViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbSchemaViewer.designer.cs">
+      <DependentUpon>DbSchemaViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertor.Designer.cs">
+      <DependentUpon>StringConvertor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\WebSubmitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\WebSubmitter.Designer.cs">
+      <DependentUpon>WebSubmitter.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ICO" />
+    <Content Include="CodeLib\readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.java">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kalman\Kalman.csproj">
+      <Project>{65fed08b-d2b2-4b49-9257-3de1954d1675}</Project>
+      <Name>Kalman</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

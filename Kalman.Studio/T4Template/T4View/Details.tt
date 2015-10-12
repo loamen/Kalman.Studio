@@ -1,0 +1,120 @@
+﻿<#@ template language="C#v4.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".cshtml" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+	string tableName  = table.Name.EndsWith("s") ?table.Name.TrimEnd('s') : table.Name.Trim();
+	
+	int length = tableName.Length;
+	string controllerName = tableName + "Controller";
+	string lowerTableName = tableName.Substring(0, 1).ToLower() + tableName.Substring(1, length - 1);
+	string serviceName = "_" + lowerTableName + "Service";
+#>
+@model Ebboy.Core.Domain.<#=tableName#>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content">
+    <!-- row -->
+    <div class="row">
+        <!-- col -->
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-home"></i>
+                首页
+                <span>
+                    >
+                    @ViewBag.Title
+                </span>
+            </h1>
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-<#=tableName#>-details"
+                     data-widget-editbutton="false"
+                     data-widget-colorbutton="false"
+                     data-widget-togglebutton="false"
+                     data-widget-fullscreenbutton="false"
+                     data-widget-deletebutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
+                        <h2></h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            @using (Html.BeginForm("Details", "<#=tableName#>", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <fieldset>
+                                    <legend>详细信息如下:</legend>
+                                    <table class="table table-bordered">
+                                       		<# foreach (SOColumn c in list)
+                                    		{ #>
+                                            <tr>
+                                                <td class="col-xs-5 col-sm-5 col-md-4 col-lg-3 text-right">
+                                                   <strong>@Html.DisplayNameFor(model => model.<#= c.Name #>)：</strong>
+                                                </td>
+                                                <td class="text-left">
+                                                    @Html.DisplayFor(model => model.<#= c.Name #>)
+                                                </td>
+                                            </tr>
+                                            <# } #>
+                                    </table>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-md-offset-3">
+                                            <div id="messages" class="has-error">
+                                                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="fullName" data-bv-result="INVALID" style="">@Html.ValidationSummary(true)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.ActionLink("返回", "Index", "<#=tableName#>", null, new { @class = "btn btn-default" })
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+        </div>
+        <!-- end row -->
+        <!-- row -->
+        <div class="row">
+            <!-- a blank row to get started -->
+            <div class="col-sm-12">
+                <!-- your contents here -->
+            </div>
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+</div>

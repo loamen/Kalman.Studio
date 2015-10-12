@@ -1,0 +1,41 @@
+<#@ template language="C#v3.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".cs" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+#>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+
+namespace <#= nameSpace #>
+{
+	/// <summary>
+    /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>
+    /// </summary>
+	[Serializable]
+	public partial class <#= className #>
+	{
+		<# foreach (SOColumn c in list)
+		{ 
+			string cname = c.Name;
+		#>private <#= TypeUtil.DbType2TypeString(c.DataType) #> <#= "_"+cname #>;
+		
+		/// <summary>
+        /// <#= c.Comment == "" ? c.Name : c.Comment.Replace("\r\n"," ") #>
+        /// </summary>
+		public <#= TypeUtil.DbType2TypeString(c.DataType) #> <#= cname #> 
+		{ 
+			get{ return <#= "_"+cname #>;}
+			set{ <#= "_"+cname #> = value;} 
+		}
+		
+		<# } #>	
+	}
+}

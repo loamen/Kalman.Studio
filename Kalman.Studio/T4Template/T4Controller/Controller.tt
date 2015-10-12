@@ -1,0 +1,198 @@
+﻿<#@ template language="C#v4.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".cs" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+	string tableName  = table.Name.EndsWith("s") ?table.Name.TrimEnd('s') : table.Name.Trim();
+	
+	int length = tableName.Length;
+	string controllerName = tableName + "Controller";
+	string lowerTableName = tableName.Substring(0, 1).ToLower() + tableName.Substring(1, length - 1);
+	string serviceName = "_" + lowerTableName + "Service";
+#>
+using Ebboy.Core;
+using Ebboy.Core.Domain;
+using Ebboy.Core.PagedList;
+using Ebboy.Services.Servers;
+using Ebboy.Services.Users;
+using Ebboy.Web.Framework.Controllers;
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using Xipu.Web.Controllers;
+
+namespace <#= nameSpace #>
+{
+	/// <summary>
+    /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>
+    /// </summary>
+	public class <#= controllerName #>: UserBaseController
+	{
+		#region Fileds
+        private readonly IMemberService _userService;
+        private readonly IWorkContext _workContext;
+        private readonly I<#=tableName#>Service <#=serviceName#>;
+        #endregion
+
+        #region Ctor
+        public <#= controllerName #>(
+            IMemberService userService,
+            IWorkContext workContext,
+            I<#=tableName#>Service <#=lowerTableName#>Service)
+        {
+            _userService = userService;
+            _workContext = workContext;
+            <#=serviceName#> = <#=lowerTableName#>Service;
+        }
+        #endregion
+
+        #region Action
+        /// <summary>
+        /// 首页列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult Index(int page = 1)
+        {
+            var pageOption = new PageOption() { PageIndex = page < 1 ? 1 : page };
+
+            var list = <#=serviceName#>.GetAllList();
+
+            var pageList = new PagedList<<#=tableName#>>(list, pageOption);
+
+            return View(pageList);
+        }
+
+        /// <summary>
+        /// 详细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Details(int id)
+        {
+            var model = <#=serviceName#>.GetById(id);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 提交添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Create(<#=tableName#> model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError("", "实体参数错误!");
+                    return View(model);
+                }
+
+                <#=serviceName#>.Insert(model);
+                this.Tips("添加成功！");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(model);
+            }
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int id)
+        {
+            var model = <#=serviceName#>.GetById(id);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Edit(<#=tableName#> model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError("", "实体参数错误!");
+                    return View(model);
+                }
+                var entity = <#=serviceName#>.GetById(model.Id);
+                <# foreach (SOColumn c in list)
+				{ #>
+				entity.<#= c.Name #> = model.<#= c.Name #>;
+				<# } #>
+                <#=serviceName#>.Update(entity);
+                
+                this.Tips("修改成功！");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(model);
+            }
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(int id)
+        {
+            var model = <#=serviceName#>.GetById(id);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 提交删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id,<#=tableName#> model)
+        {
+            try
+            {
+                <#=serviceName#>.Delete(id);
+                this.Tips("删除成功！");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                this.Tips(ex.Message);
+                return RedirectToAction("Index");
+            }
+        }
+        #endregion
+
+        #region Utilities
+        #endregion
+	}
+}

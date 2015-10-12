@@ -1,0 +1,52 @@
+﻿<#@ template language="C#v4.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".cs" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+	string tableName  = table.Name.EndsWith("s") ?table.Name.TrimEnd('s') : table.Name.Trim();
+#>
+using Ebboy.Core.Domain;
+using System.Linq;
+
+namespace <#= nameSpace #>
+{
+	/// <summary>
+    /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>
+    /// </summary>
+	public partial interface I<#= tableName #>Service
+	{
+		#region Interface
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="model"></param>
+        void Insert(<#=tableName#> model);
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="model"></param>
+        void Update(<#=tableName#> model);
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        void Delete(int id);
+        /// <summary>
+        /// 获取实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        <#= tableName #> GetById(int id);
+        /// <summary>
+        /// 获取所有列表
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<<#=tableName#>> GetAllList();
+        #endregion
+	}
+}
