@@ -3,7 +3,7 @@
 
 作者博客：http://www.cnblogs.com/lingyun_k
 
-软件主要功能如下：
+## 软件主要功能如下：
 
 	1、基于T4的代码生成工具，根据数据库元数据信息生成代码，支持多数据库，支持批量代码生成；
 	2、支持根据PowerDesigner物理模型文件来生成代码；
@@ -13,7 +13,7 @@
 	6、IIS日志解析器，小网站可以用用；
 	7、其他工具，字符串相关操作等。
 
-一、配置编译
+## 一、配置编译
 
 	代码由Visual Studio 2013编译通过。Nuget配置：
 ![Nuget配置](https://raw.githubusercontent.com/don59/Kalman.Studio/master/Documents/Images/readme_1.jpg)
