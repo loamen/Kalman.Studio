@@ -1,7 +1,9 @@
 # Kalman.Studio
 开发辅助工具，内置基于T4的代码生成器。
 
-作者博客：<a href="http://www.cnblogs.com/lingyun_k" target="_blank">http://www.cnblogs.com/lingyun_k</a>
+作者博客：
+[作者博客](http://www.cnblogs.com/lingyun_k){:target="_blank"}
+<a href="http://www.cnblogs.com/lingyun_k" target="_blank">http://www.cnblogs.com/lingyun_k</a>
 
 软件主要功能如下：
 
