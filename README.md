@@ -1,7 +1,7 @@
 # Kalman.Studio
 开发辅助工具，内置基于T4的代码生成器。
 
-作者博客：[http://www.cnblogs.com/lingyun_k](http://www.cnblogs.com/lingyun_k "Kalman.Studio作者博客")
+作者博客：[http://www.cnblogs.com/lingyun_k](http://www.cnblogs.com/lingyun_k "Kalman.Studio作者博客"){:target="_blank"}
 
 软件主要功能如下：
 
@@ -17,4 +17,5 @@
 
 	代码由Visual Studio 2013编译通过。Nuget配置：
 ![Nuget配置](https://raw.githubusercontent.com/don59/Kalman.Studio/master/Documents/Images/readme_1.jpg)
+
 ![Nuget配置](https://raw.githubusercontent.com/don59/Kalman.Studio/master/Documents/Images/readme_2.jpg)
