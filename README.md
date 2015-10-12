@@ -16,4 +16,4 @@
 一、配置编译
 
 	代码由Visual Studio 2013编译通过。Nuget配置：
-	![Nuget配置](https://raw.githubusercontent.com/don59/Kalman.Studio/master/Documents/Images/readme_1.jpg)
+![Nuget配置](https://raw.githubusercontent.com/don59/Kalman.Studio/master/Documents/Images/readme_1.jpg)
