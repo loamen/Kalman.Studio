@@ -414,7 +414,14 @@ namespace Kalman.Studio
 
         #endregion
 
-        
+        /// <summary>
+        /// 添加数据库连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsbAddDbConnect_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

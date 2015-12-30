@@ -6,6 +6,9 @@ using System.Configuration;
 using Kalman.Data.DbProvider;
 using Kalman.Utilities;
 using System.Data.Common;
+using System.Data;
+using System.Data.OleDb;
+using System.Reflection;
 
 namespace Kalman.Data
 {
@@ -33,8 +36,15 @@ namespace Kalman.Data
 
             if(string.IsNullOrEmpty(providerName))return db;
 
-            providerFactory = DbProviderFactories.GetFactory(css.ProviderName);
-            if (providerFactory == null) throw new Exception(string.Format(Resources.Data.DataProviderNotFound, css.ProviderName));
+            //if (css.ProviderName == "System.Data.OleDb")
+            //{
+            //    providerFactory = OleDbFactory.Instance;
+            //}
+            //else
+            //{
+            //    providerFactory = DbProviderFactories.GetFactory(css.ProviderName);
+            //}
+            //if (providerFactory == null) throw new Exception(string.Format(Resources.Data.DataProviderNotFound, css.ProviderName));
 
             switch (providerName)
             {
@@ -49,16 +59,25 @@ namespace Kalman.Data
                 case "System.Data.OracleClient":
                     db = new OracleDatabase(connectionString);
                     break;
+                case "Devart.Data.Oracle": //http://evget.com/zh-CN/product/954/feature.aspx  http://www.devart.com/ 
+                case "DDTek.Oracle": //http://www.datadirect.com/index.html
+                    providerFactory = DbProviderFactories.GetFactory(providerName);
+                    db = new OracleDatabase(connectionString, providerFactory);
+                    break;
                 case "System.Data.SQLite":
+                    providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new SQLiteDatabase(connectionString, providerFactory);
                     break;
                 case "MySql.Data.MySqlClient":
+                    providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new MySqlDatabase(connectionString, providerFactory);
                     break;
                 case "IBM.Data.DB2":
+                    providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new DB2Database(connectionString, providerFactory);
                     break;
                 case "FirebirdSql.Data.FirebirdClient":
+                    providerFactory = DbProviderFactories.GetFactory(providerName);
                     db = new FirebirdDatabase(connectionString, providerFactory);
                     break;
                 default:

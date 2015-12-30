@@ -44,6 +44,11 @@ namespace Kalman.Data.DbProvider
         //    }
         //}
 
+        public OracleDatabase(string connectionString,DbProviderFactory dbProviderFactory)
+            : base(connectionString, dbProviderFactory)
+        {
+        }
+
 		public OracleDatabase(string connectionString, IList<IOraclePackage> packages)
 			: base(connectionString, OracleClientFactory.Instance)
 		{

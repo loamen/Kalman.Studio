@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Globalization;
 using System.Transactions;
 using Kalman.Utilities;
@@ -280,7 +281,7 @@ namespace Kalman.Data
                 //instrumentationProvider.FireCommandExecutedEvent(startTime);
                 return rowsAffected;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //instrumentationProvider.FireCommandFailedEvent(command.CommandText, ConnectionStringNoCredentials, e);
                 throw;
@@ -296,7 +297,7 @@ namespace Kalman.Data
                 //instrumentationProvider.FireCommandExecutedEvent(startTime);
                 return reader;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //instrumentationProvider.FireCommandFailedEvent(command.CommandText, ConnectionStringNoCredentials, e);
                 throw;
@@ -312,7 +313,7 @@ namespace Kalman.Data
                 //instrumentationProvider.FireCommandExecutedEvent(startTime);
                 return returnValue;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //instrumentationProvider.FireCommandFailedEvent(command.CommandText, ConnectionStringNoCredentials, e);
                 throw;
@@ -348,7 +349,7 @@ namespace Kalman.Data
                     //instrumentationProvider.FireCommandExecutedEvent(startTime);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //instrumentationProvider.FireCommandFailedEvent(command.CommandText, ConnectionStringNoCredentials, e);
                 throw;
@@ -399,7 +400,7 @@ namespace Kalman.Data
                     //instrumentationProvider.FireCommandExecutedEvent(startTime);
                     return rows;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //instrumentationProvider.FireCommandFailedEvent("DbDataAdapter.Update() " + tableName, ConnectionStringNoCredentials, e);
                     throw;
@@ -801,9 +802,12 @@ namespace Kalman.Data
                     connection = CreateConnection();
                     connection.Open();
 
-                    if (string.IsNullOrEmpty(CurrentDatabaseName) == false) connection.ChangeDatabase(this.CurrentDatabaseName);
+                    if (string.IsNullOrEmpty(CurrentDatabaseName) == false && !connection.GetType().Name.ToLower().Contains("oracle"))
+                    {
+                        connection.ChangeDatabase(this.CurrentDatabaseName);
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //instrumentationProvider.FireConnectionFailedEvent(ConnectionStringNoCredentials, ex);
                     throw;

@@ -107,6 +107,25 @@ namespace Kalman.Utilities
             return s;
         }
 
+        public static string ToPascalName(string s, string separator)
+        {
+            string[] ss = s.Split(separator.ToCharArray());
+            StringBuilder sb = new StringBuilder();
+            foreach (string item in ss)
+            {
+                if (item.Length > 2)
+                {
+                    sb.Append(item.Substring(0, 1).ToUpper() + item.Substring(1).ToLower());
+                }
+                else
+                {
+                    sb.Append(item.ToUpper());
+                }
+            }
+            return sb.ToString();
+        }
+
+
 
         #endregion
     }

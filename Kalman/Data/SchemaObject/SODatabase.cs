@@ -49,12 +49,9 @@ namespace Kalman.Data.SchemaObject
             {
                 if (_TableList == null && Parent != null)
                 {
-                    return Parent == null ? null : Parent.GetTableList(this);
+                    _TableList = Parent == null ? null : Parent.GetTableList(this);
                 }
-                else
-                {
-                    return _TableList;
-                }
+                return _TableList;
             }
             set
             {
@@ -73,12 +70,9 @@ namespace Kalman.Data.SchemaObject
             {
                 if (_ViewList == null && Parent != null)
                 {
-                    return Parent == null ? null : Parent.GetViewList(this);
+                    _ViewList = Parent == null ? null : Parent.GetViewList(this);
                 }
-                else
-                {
-                    return _ViewList;
-                }
+                return _ViewList;
             }
             set
             {
@@ -97,12 +91,9 @@ namespace Kalman.Data.SchemaObject
             {
                 if (_CommandList == null && Parent != null)
                 {
-                    return Parent == null ? null : Parent.GetCommandList(this);
+                    _CommandList = Parent == null ? null : Parent.GetCommandList(this);
                 }
-                else
-                {
-                    return _CommandList;
-                }
+                return _CommandList;
             }
             set
             {
@@ -160,5 +151,6 @@ namespace Kalman.Data.SchemaObject
 
             return sp;
         }
+
     }
 }

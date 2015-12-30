@@ -1,27 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Security.Cryptography;
-using System.Text;
+﻿using Kalman.Data.SchemaObject;
 using Kalman.Security;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Kalman.Utilities
 {
     public static partial class StringUtil
     {
-        /// <summary>
-        /// 将字符串首字母转成大写
-        /// </summary>
-        //public static string InitialToUpper(string s)
-        //{
-        //    if (string.IsNullOrEmpty(s)) return s;
-
-        //    string s0 = s.Substring(0, 1);
-        //    string s1 = s.Substring(1, s.Length - 1);
-
-        //    return s0.ToUpper() + s1;
-        //}
-
         /// <summary>
         /// 转全角(SBC case)
         /// </summary>

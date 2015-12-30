@@ -34,7 +34,6 @@ namespace Kalman.Data
             switch (db.DatabaseType)
             {
                 case DatabaseType.SqlServer:
-                    //schema = new SqlServerSchema(db);
                     schema = new SqlServerSchema(db);
                     break;
                 case DatabaseType.Oracle:
@@ -48,6 +47,9 @@ namespace Kalman.Data
                     break;
                 case DatabaseType.SQLite:
                     schema = new SQLiteSchema(db);
+                    break;
+                case DatabaseType.OleDb:
+                    schema = new OleDbSchema(db);
                     break;
                 default:
                     break;

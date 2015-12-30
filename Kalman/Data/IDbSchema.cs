@@ -121,5 +121,20 @@ namespace Kalman.Data
         /// <param name="nativeType"></param>
         /// <returns></returns>
         DbType GetDbType(string nativeType);
+
+        /// <summary>
+        /// 以正确的目录大小写给定一个不带引号的标识符，返回该标识符的带引号的正确形式，包括正确转义该标识符中嵌入的任何引号。
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        string QuoteIdentifier(string name);
+
+        /// <summary>
+        /// 在指定数据库上执行一个查询，返回一个结果集
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="cmdText"></param>
+        /// <returns></returns>
+        DataSet ExecuteQuery(SODatabase db, string cmdText);
     }
 }

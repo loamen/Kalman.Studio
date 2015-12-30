@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Common;
+using System.Data;
+using Kalman.Extensions;
 
 namespace Kalman.Data.SchemaObject
 {
@@ -12,6 +14,26 @@ namespace Kalman.Data.SchemaObject
     [Serializable]
     public class SOTable : SOTableViewBase
     {
+        public SOTable()
+        {
+
+        }
+
+        /// <summary>
+        /// 以视图对象为原型创建一个表对象实例
+        /// </summary>
+        /// <param name="view"></param>
+        public SOTable(SOView view)
+        {
+            this.ColumnList = view.ColumnList;
+            this.Comment = view.Comment ?? string.Empty;
+            this.Name = view.Name;
+            this.Owner = view.Owner;
+            this.Parent = view.Parent;
+            this.SchemaName = view.SchemaName;
+            this.SqlText = view.SqlText;
+        }
+
         /// <summary>
         /// 获取完整名称
         /// </summary>
@@ -52,12 +74,9 @@ namespace Kalman.Data.SchemaObject
             {
                 if (_ColumnList == null && Parent != null && Parent.Parent != null)
                 {
-                    return Parent.Parent.GetTableColumnList(this);
+                    _ColumnList = Parent.Parent.GetTableColumnList(this);
                 }
-                else
-                {
-                    return _ColumnList;
-                }
+                return _ColumnList;
             }
             set { _ColumnList = value; }
         }
@@ -72,12 +91,9 @@ namespace Kalman.Data.SchemaObject
             {
                 if (_IndexList == null && Parent != null && Parent.Parent != null)
                 {
-                    return Parent.Parent.GetTableIndexList(this);
+                    _IndexList = Parent.Parent.GetTableIndexList(this);
                 }
-                else
-                {
-                    return _IndexList;
-                }
+                return _IndexList;
             }
             set { _IndexList = value; }
         }
@@ -92,12 +108,9 @@ namespace Kalman.Data.SchemaObject
             {
                 if (string.IsNullOrEmpty(_SqlText) && Parent != null && Parent.Parent != null)
                 {
-                    return Parent.Parent.GetTableSqlText(this);
+                    _SqlText = Parent.Parent.GetTableSqlText(this);
                 }
-                else
-                {
-                    return _SqlText;
-                }
+                return _SqlText;
             }
             set { _SqlText = value; }
         }
@@ -116,7 +129,10 @@ namespace Kalman.Data.SchemaObject
                     List<SOColumn> list = this.ColumnList;
                     foreach (var item in list)
                     {
-                        if (item.PrimaryKey) _PrimaryKeys.Add(item);
+                        if (item.PrimaryKey && !_PrimaryKeys.Contains(item))
+                        {
+                            _PrimaryKeys.Add(item);
+                        }
                     }
                 }
 
@@ -128,5 +144,72 @@ namespace Kalman.Data.SchemaObject
             }
         }
 
+        public SOColumn PrimaryKey
+        {
+            get
+            {
+                if (PrimaryKeys == null || PrimaryKeys.Count == 0) return null;
+                return PrimaryKeys[0];
+            }
+        }
+
+        /// <summary>
+        /// 索引器
+        /// </summary>
+        /// <param name="columnName">列名</param>
+        /// <returns></returns>
+        public SOColumn this[string columnName]
+        {
+            get
+            {
+                var col = ColumnList.Find(p => p.Name == columnName);
+                return col;
+            }
+        }
+
+        /// <summary>
+        /// 是否存在列
+        /// </summary>
+        /// <param name="columnName">列名</param>
+        /// <returns>存在返回true，否则返回false</returns>
+        public bool IsExistColumn(string columnName)
+        {
+            var col = this.ColumnList.Find(p => p.Name == columnName);
+            return col != null;
+        }
+
+        /// <summary>
+        /// 主键字段是否是自增列（主键字段为一个的情况下），暂时不支持oracle
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAutoID()
+        {
+            if (PrimaryKeys.Count != 1) return false;
+
+            return PrimaryKeys[0].Identify;
+        }
+
+        public DataTable Query(List<string> columnList, string where = "")
+        {
+            string cmdText = string.Empty;
+            IDbSchema dbSchema = this.Database.Parent;
+            StringBuilder sb = new StringBuilder();
+
+            columnList.ForEach(s => sb.AppendFormat("{0},", dbSchema.QuoteIdentifier(s)));
+
+            if (!string.IsNullOrEmpty(where))
+            {
+                cmdText = string.Format("SELECT {0} FROM {0} WHERE {2}", sb.ToString().TrimEnd(','), this.Name, where);
+            }
+            else
+            {
+                cmdText = string.Format("SELECT {0} FROM {0}", sb.ToString().TrimEnd(','), this.Name);
+            }
+
+            DataTable dt = dbSchema.ExecuteQuery(this.Database, cmdText).Tables[0];
+            return dt;
+        }
+
+       
     }
 }

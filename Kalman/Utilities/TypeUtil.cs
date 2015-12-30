@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Kalman.Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class TypeUtil
     {
         /// <summary>
@@ -104,6 +108,68 @@ namespace Kalman.Utilities
             return result;
         }
 
+        public static DbType OleDbADataType2DbType(string nativeType)
+        {
+            switch (nativeType.ToLower())
+            {
+                case "11":
+                    return DbType.Boolean;
+
+                case "16":
+                case "17":
+                    return DbType.Byte;
+
+                case "128":
+                    return DbType.Binary;
+
+                case "6":
+                case "14":
+                case "131":
+                    return DbType.Decimal;
+
+                case "7":
+                case "133":
+                case "134":
+                case "135":
+                case "64":
+                    return DbType.DateTime;
+
+                case "5":
+                    return DbType.Double;
+
+                case "72":
+                    return DbType.Guid;
+
+                case "9":
+                case "13":
+                case "138":
+                case "12":
+                    return DbType.Object;
+
+                case "2":
+                    return DbType.Int16;
+
+                case "18":
+                    return DbType.UInt16;
+
+                case "3":
+                    return DbType.Int32;
+
+                case "19":
+                    return DbType.UInt32;
+
+                case "20":
+                    return DbType.Int64;
+
+                case "21":
+                    return DbType.UInt64;
+
+                case "4":
+                    return DbType.Single;
+            }
+            return DbType.String;
+        }
+
         /// <summary>
         /// 将System.Data.DbType类型转换为对应System.Type类型字符串
         /// </summary>
@@ -117,25 +183,25 @@ namespace Kalman.Utilities
                 case DbType.AnsiStringFixedLength:
                 case DbType.String:
                 case DbType.StringFixedLength:
-                    return "string";
+                    return "String";
                 case DbType.Binary:
                     return "byte[]";
                 case DbType.Boolean:
-                    return "bool";
+                    return "Boolean";
                 case DbType.Byte://?
                     return "int";
                 case DbType.Currency:
                     return "double";
                 case DbType.Date:
-                    return "DateTime";
+                    return "Timestamp";
                 case DbType.DateTime:
-                    return "DateTime";
+                    return "Timestamp";
                 case DbType.DateTime2:
-                    return "DateTime";
+                    return "Timestamp";
                 //case DbType.DateTimeOffset:
                 //    return "DateTime";
                 case DbType.Decimal:
-                    return "decimal";
+                    return "BigDecimal";
                 case DbType.Double:
                     return "double";
                 case DbType.Guid:
@@ -153,7 +219,7 @@ namespace Kalman.Utilities
                 case DbType.Single:
                     return "Single";
                 case DbType.Time:
-                    return "DateTime";
+                    return "Timestamp";
                 case DbType.UInt16:
                     return "UInt16";
                 case DbType.UInt32:
@@ -161,11 +227,11 @@ namespace Kalman.Utilities
                 case DbType.UInt64:
                     return "UInt64";
                 case DbType.VarNumeric:
-                    return "decimal";
+                    return "BigDecimal";
                 case DbType.Xml:
-                    return "string";
+                    return "String";
                 default:
-                    return "string";
+                    return "String";
             }
         }
 
@@ -373,8 +439,31 @@ namespace Kalman.Utilities
         /// </summary>
         /// <param name="nativeType">数据库原生类型</param>
         /// <returns></returns>
-        public static DbType OracleDataType2DbType(string nativeType)
+        public static DbType OracleDataType2DbType(string nativeType, int precision = 0, int scale = 0)
         {
+            string type = nativeType.ToUpper();
+            if (nativeType.IndexOf('(') != -1)
+            {
+                type = type.Split(new char[] { '(' })[0];
+            }
+            switch (type)
+            {
+                case "INTEGER":
+                    return DbType.Int32;
+
+                case "NUMBER":
+                    return DbType.Decimal;
+                case "LOG":
+                case "BFILE":
+                case "LONG RAW":
+                case "RAW":
+                case "BLOB":
+                    return DbType.Binary;
+
+                case "DATE":
+                case "TIMESTAMP":
+                    return DbType.DateTime;
+            }
             return DbType.String;
         }
 

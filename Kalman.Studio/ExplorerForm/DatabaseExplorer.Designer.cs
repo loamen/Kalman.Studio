@@ -49,11 +49,14 @@
             this.menuItemViewDB = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemBatchBuildCode = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemBuildDBDoc = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbAddDbConnect = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.cmsTable.SuspendLayout();
             this.cmsSp.SuspendLayout();
             this.cmsView.SuspendLayout();
             this.cmsDatabase.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -203,7 +206,7 @@
             this.menuItemBuildDBDoc,
             this.menuItemRefreshDB});
             this.cmsDatabase.Name = "cmsDatabase";
-            this.cmsDatabase.Size = new System.Drawing.Size(161, 136);
+            this.cmsDatabase.Size = new System.Drawing.Size(161, 114);
             // 
             // menuItemViewDB
             // 
@@ -226,12 +229,34 @@
             this.menuItemBuildDBDoc.Text = "生成数据库文档";
             this.menuItemBuildDBDoc.Click += new System.EventHandler(this.menuItemBuildDBDoc_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbAddDbConnect});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(290, 25);
+            this.toolStrip1.TabIndex = 4;
+            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Visible = false;
+            // 
+            // tsbAddDbConnect
+            // 
+            this.tsbAddDbConnect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAddDbConnect.Image = ((System.Drawing.Image)(resources.GetObject("tsbAddDbConnect.Image")));
+            this.tsbAddDbConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddDbConnect.Name = "tsbAddDbConnect";
+            this.tsbAddDbConnect.Size = new System.Drawing.Size(23, 22);
+            this.tsbAddDbConnect.Text = "添加数据库连接";
+            this.tsbAddDbConnect.Click += new System.EventHandler(this.tsbAddDbConnect_Click);
+            // 
             // DatabaseExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(290, 429);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.toolStrip1);
             this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft;
             this.HideOnClose = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -244,7 +269,10 @@
             this.cmsSp.ResumeLayout(false);
             this.cmsView.ResumeLayout(false);
             this.cmsDatabase.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -269,7 +297,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemBatchBuildCode;
         private System.Windows.Forms.ToolStripMenuItem menuItemBuildDBDoc;
         private System.Windows.Forms.ToolStripMenuItem menuItemBuildTestDataForTable;
-
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbAddDbConnect;
 
     }
 }

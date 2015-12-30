@@ -32,6 +32,16 @@ namespace Kalman.Data.SchemaObject
         public bool IsUnique { get; set; }
 
         /// <summary>
+        /// 该索引列是否标识列（目前只有Access（OleDb）用到）
+        /// </summary>
+        public bool IsIdentity { get; set; }
+
+        /// <summary>
+        /// 索引列表（目前只有Access（OleDb）用到）
+        /// </summary>
+        public string IndexColumnName { get; set; }
+
+        /// <summary>
         /// 是否全文索引（MySQL专用）
         /// </summary>
         public bool IsFullText { get; set; }

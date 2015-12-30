@@ -68,6 +68,28 @@ namespace Kalman.Data.SchemaObject
         public int Length { get; set; }
 
         /// <summary>
+        /// .net framework 类型
+        /// </summary>
+        public Type Type
+        {
+            get
+            {
+                return Kalman.Utilities.TypeUtil.DbType2Type(DataType);
+            }
+        }
+        
+        /// <summary>
+        /// .net framework 类型的字符串表示，如"int"、"long"
+        /// </summary>
+        public string TypeString
+        {
+            get
+            {
+                return Kalman.Utilities.TypeUtil.DbType2TypeString(DataType);
+            }
+        }
+
+        /// <summary>
         /// 获取所属数据库对象
         /// </summary>
         public override SODatabase Database
@@ -92,6 +114,44 @@ namespace Kalman.Data.SchemaObject
                 this.DataType == DbType.Double ||
                 this.DataType == DbType.SByte ||
                 this.DataType == DbType.Byte ||
+                this.DataType == DbType.Currency ||
+                this.DataType == DbType.Single
+              )
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// 判断当前列是否整数类型
+        /// </summary>
+        /// <returns></returns>
+        public bool IsInt()
+        {
+            if (
+                this.DataType == DbType.Int16 ||
+                this.DataType == DbType.Int32 ||
+                this.DataType == DbType.Int64 ||
+                this.DataType == DbType.UInt16 ||
+                this.DataType == DbType.UInt32 ||
+                this.DataType == DbType.UInt64 ||
+                this.DataType == DbType.SByte ||
+                this.DataType == DbType.Byte
+              )
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// 判断当前列是否小数类型
+        /// </summary>
+        /// <returns></returns>
+        public bool IsDecimal()
+        {
+            if (
+                this.DataType == DbType.Decimal ||
+                this.DataType == DbType.Double ||
                 this.DataType == DbType.Currency ||
                 this.DataType == DbType.Single
               )

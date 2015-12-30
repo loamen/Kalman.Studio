@@ -107,6 +107,12 @@ namespace Kalman.Data
             return list;
         }
 
+        public virtual SODatabase GetDatabase(string dbName)
+        {
+            var db = GetDatabaseList().Find(p=>p.Name == dbName);
+            return db;
+        }
+
         /// <summary>
         /// 获取表列表
         /// </summary>
@@ -131,6 +137,41 @@ namespace Kalman.Data
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbName"></param>
+        /// <returns></returns>
+        public virtual List<SOTable> GetTableList(string dbName)
+        {
+            SODatabase db = GetDatabase(dbName);
+            return GetTableList(db);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbName"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public virtual SOTable GetTable(string dbName, string tableName)
+        {
+            var table = GetTableList(dbName).Find(p => p.Name == tableName);
+            return table;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public virtual SOTable GetTable(SODatabase db, string tableName)
+        {
+            var table = GetTableList(db).Find(p => p.Name == tableName);
+            return table;
         }
 
         /// <summary>
@@ -175,7 +216,31 @@ namespace Kalman.Data
         /// <returns></returns>
         public virtual List<SOIndex> GetTableIndexList(SOTable table)
         {
-            throw new NotImplementedException();
+            List<SOIndex> list = new List<SOIndex>();
+
+            string[] restrictions = new string[4];
+            restrictions[0] = table.Database.Name;
+            //restrictions[4] = table.Name;
+            DataTable dt = GetSchema(MetaDataCollectionName_Indexes, restrictions);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (dr["TABLE_NAME"].ToString() != table.Name) continue;
+
+                SOIndex index = new SOIndex();
+                index.Name = dr["INDEX_NAME"].ToString();
+                index.IndexColumnName = dr["COLUMN_NAME"].ToString();
+                index.IsPrimaryKey = dr["PRIMARY_KEY"].ToString().ToLower() == "true" ? true : false;
+                index.IsUnique = dr["UNIQUE"].ToString().ToLower() == "true" ? true : false;
+                index.IsCluster = dr["CLUSTERED"].ToString().ToLower() == "true" ? true : false;
+                index.IsIdentity = dr["NULLS"].ToString() == "1" ? true : false;    //这里判断自增列默认情况下是没问题的
+                index.Comment = index.Name;
+                index.Parent = table;
+
+                list.Add(index);
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -202,6 +267,24 @@ namespace Kalman.Data
             }
 
             return list;
+        }
+
+        public virtual List<SOView> GetViewList(string dbName)
+        {
+            SODatabase db = GetDatabase(dbName);
+            return GetViewList(db);
+        }
+
+        public virtual SOView GetView(SODatabase db, string viewName)
+        {
+            var view = GetViewList(db).Find(p => p.Name == viewName);
+            return view;
+        }
+
+        public virtual SOView GetView(string dbName, string viewName)
+        {
+            var view = GetViewList(dbName).Find(p => p.Name == viewName);
+            return view;
         }
 
         /// <summary>
@@ -250,6 +333,24 @@ namespace Kalman.Data
             return list;
         }
 
+        public virtual List<SOCommand> GetCommandList(string dbName)
+        {
+            SODatabase db = GetDatabase(dbName);
+            return GetCommandList(db);
+        }
+
+        public virtual SOCommand GetCommand(SODatabase db, string spName)
+        {
+            var sp = GetCommandList(db).Find(p => p.Name == spName);
+            return sp;
+        }
+
+        public virtual SOCommand GetCommand(string dbName, string spName)
+        {
+            var sp = GetCommandList(dbName).Find(p => p.Name == spName);
+            return sp;
+        }
+
         /// <summary>
         /// 获取存储过程参数列表
         /// </summary>
@@ -264,7 +365,7 @@ namespace Kalman.Data
             restrictions[2] = command.Name;
             DataTable dt = GetSchema(MetaDataCollectionName_Parameters, restrictions);
 
-            ///todo:转换数据
+            //todo:转换数据
 
             return list;
         }
@@ -340,11 +441,11 @@ namespace Kalman.Data
             return dt;
         }
 
-        /// <summary>
-        /// 获取数据库原生类型，这里可能存在一对多的关系，只取一个默认原生类型
-        /// </summary>
-        /// <param name="dbType"></param>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 获取数据库原生类型，这里可能存在一对多的关系，只取一个默认原生类型
+        ///// </summary>
+        ///// <param name="dbType"></param>
+        ///// <returns></returns>
         //public abstract string GetNativeType(System.Data.DbType dbType);
 
         /// <summary>

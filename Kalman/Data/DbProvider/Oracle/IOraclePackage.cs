@@ -7,7 +7,6 @@
 	/// <see cref="IOraclePackage"/> is used to specify how to transform store procedure names 
 	/// into package qualified Oracle stored procedure names.
 	/// </remarks>
-	/// <seealso cref="OracleDbProvider"/>
 	public interface IOraclePackage
 	{
 		/// <summary>
