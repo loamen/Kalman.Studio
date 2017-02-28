@@ -1,4 +1,4 @@
-<#@ template language="C#v3.5" hostSpecific="true" debug="true" #>
+<#@ template language="C#" hostSpecific="true" debug="false" #>
 <#@ output extension=".cs" #>
 <# 
 	TableHost host = (TableHost)(Host); 

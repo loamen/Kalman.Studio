@@ -478,7 +478,7 @@ namespace Kalman.Studio
             if(Directory.Exists(dicName) == false)Directory.CreateDirectory(dicName);
 
             string fileName = Path.Combine(dicName, string.Format("{0}.xls", Guid.NewGuid().ToString()));
-            wb.Save(fileName, FileFormatType.Excel2003);
+            wb.Save(fileName, SaveFormat.Excel97To2003);
             RunExcel(fileName);
         }
 
