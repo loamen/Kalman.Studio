@@ -34,6 +34,7 @@
             this.cbConnectionStrings = new System.Windows.Forms.ComboBox();
             this.tvDatabase = new System.Windows.Forms.TreeView();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this.btnSetConnectString = new System.Windows.Forms.Button();
             this.cmsTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItemPreviewTableData = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemBuildCodeForTable = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,10 +62,12 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel1.Controls.Add(this.cbConnectionStrings, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tvDatabase, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnSetConnectString, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -81,12 +84,13 @@
             this.cbConnectionStrings.FormattingEnabled = true;
             this.cbConnectionStrings.Location = new System.Drawing.Point(3, 3);
             this.cbConnectionStrings.Name = "cbConnectionStrings";
-            this.cbConnectionStrings.Size = new System.Drawing.Size(284, 20);
+            this.cbConnectionStrings.Size = new System.Drawing.Size(200, 20);
             this.cbConnectionStrings.TabIndex = 0;
             this.cbConnectionStrings.SelectedIndexChanged += new System.EventHandler(this.cbConnectionStrings_SelectedIndexChanged);
             // 
             // tvDatabase
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.tvDatabase, 2);
             this.tvDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvDatabase.HotTracking = true;
             this.tvDatabase.ImageIndex = 0;
@@ -116,6 +120,16 @@
             this.imgList.Images.SetKeyName(8, "index.ICO");
             this.imgList.Images.SetKeyName(9, "trigger.ICO");
             this.imgList.Images.SetKeyName(10, "check.ICO");
+            // 
+            // btnSetConnectString
+            // 
+            this.btnSetConnectString.Location = new System.Drawing.Point(209, 3);
+            this.btnSetConnectString.Name = "btnSetConnectString";
+            this.btnSetConnectString.Size = new System.Drawing.Size(75, 19);
+            this.btnSetConnectString.TabIndex = 2;
+            this.btnSetConnectString.Text = "设置服务器";
+            this.btnSetConnectString.UseVisualStyleBackColor = true;
+            this.btnSetConnectString.Click += new System.EventHandler(this.btnSetConnectString_Click);
             // 
             // cmsTable
             // 
@@ -299,6 +313,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemBuildTestDataForTable;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbAddDbConnect;
-
+        private System.Windows.Forms.Button btnSetConnectString;
     }
 }

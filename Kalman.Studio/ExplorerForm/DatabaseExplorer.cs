@@ -24,10 +24,7 @@ namespace Kalman.Studio
 
         private void DatabaseExplorer_Load(object sender, EventArgs e)
         {
-            foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
-            {
-                cbConnectionStrings.Items.Add(css.Name);
-            }
+            RefreshDatabase();
             //menuItemBuildSqlForTable.Visible = false;
             this.DockPanel.DockLeftPortion = 300;
         }
@@ -422,6 +419,26 @@ namespace Kalman.Studio
         private void tsbAddDbConnect_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSetConnectString_Click(object sender, EventArgs e)
+        {
+            var dbSettingForm = new DatabaseSettingForm();
+            if(dbSettingForm.ShowDialog() == DialogResult.Yes)
+            {
+                RefreshDatabase();
+            }
+        }
+
+        private void RefreshDatabase()
+        {
+            cbConnectionStrings.Items.Clear();
+            tvDatabase.Nodes.Clear();
+
+            foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
+            {
+                cbConnectionStrings.Items.Add(css.Name);
+            }
         }
     }
 }

@@ -304,6 +304,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ConnectionStringUtil.cs" />
     <Compile Include="Utilities\ConvertUtil.cs" />
     <Compile Include="Utilities\CurrencyUtil.cs" />
     <Compile Include="DynamicBuilder.cs" />

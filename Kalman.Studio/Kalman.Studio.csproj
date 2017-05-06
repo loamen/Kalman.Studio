@@ -75,12 +75,11 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Cells, Version=17.2.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.Cells.17.02.0\lib\net40\Aspose.Cells.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Aspose.Cells, Version=17.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Cells.17.4.0\lib\net40\Aspose.Cells.dll</HintPath>
     </Reference>
     <Reference Include="DDTek.Oracle">
       <HintPath>lib\DDTek.Oracle.dll</HintPath>
@@ -102,9 +101,8 @@
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -134,6 +132,12 @@
     </Compile>
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseSettingForm.Designer.cs">
+      <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForm\StringConvertor\String_Random.cs">
       <SubType>Form</SubType>
@@ -358,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExplorerForm\CodeExplorer.resx">
       <DependentUpon>CodeExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\DatabaseSettingForm.resx">
+      <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmExplorer.resx">
       <DependentUpon>PdmExplorer.cs</DependentUpon>
