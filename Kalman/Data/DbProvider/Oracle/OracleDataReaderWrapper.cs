@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections;
-using System.Data;
-using System.Data.OracleClient;
+using System.Data; 
 using System.Globalization;
 
 namespace Kalman.Data.DbProvider

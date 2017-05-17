@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using Microsoft.VisualStudio.TextTemplating;
 using System.IO;
 using System.Net.Mail;
 using System.Net;
@@ -17,6 +16,7 @@ using Kalman.Extensions;
 using Kalman.Data.SchemaObject;
 using Kalman.Utilities;
 using Kalman.Studio.T4TemplateEngineHost;
+using Microsoft.VisualStudio.TextTemplating;
 
 namespace Kalman.Studio
 {

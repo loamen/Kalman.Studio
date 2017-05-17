@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Data.OracleClient;
+using System.Data.Common; 
 using System.Globalization;
 using Kalman.Data.DbSchemaProvider;
 using Kalman.Data.SchemaObject;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Kalman.Data.DbProvider
 {
@@ -64,7 +64,7 @@ namespace Kalman.Data.DbProvider
 			{
 				object convertedValue = ConvertGuidToByteArray(value);
 
-				AddParameter((OracleCommand)command, name, OracleType.Raw, 16, direction, nullable, precision,
+				AddParameter((OracleCommand)command, name, OracleDbType.Raw, 16, direction, nullable, precision,
 					scale, sourceColumn, sourceVersion, convertedValue);
 
 				RegisterParameterType(command, name, dbType);
@@ -76,12 +76,12 @@ namespace Kalman.Data.DbProvider
 			}
 		}
     
-		public void AddParameter(OracleCommand command, string name, OracleType oracleType, int size,
+		public void AddParameter(OracleCommand command, string name, OracleDbType oracleType, int size,
 			ParameterDirection direction, bool nullable, byte precision, byte scale, string sourceColumn,
 			DataRowVersion sourceVersion, object value)
 		{
 			OracleParameter param = CreateParameter(name, DbType.AnsiString, size, direction, nullable, precision, scale, sourceColumn, sourceVersion, value) as OracleParameter;
-			param.OracleType = oracleType;
+			param.OracleDbType = oracleType;
 			command.Parameters.Add(param);
 		}
 
@@ -191,7 +191,7 @@ namespace Kalman.Data.DbProvider
 				// of "cur_OUT"
 				if (QueryProcedureNeedsCursorParameter(command))
 				{
-					AddParameter(command as OracleCommand, RefCursorName, OracleType.Cursor, 0, ParameterDirection.Output, true, 0, 0, String.Empty, DataRowVersion.Default, Convert.DBNull);
+					AddParameter(command as OracleCommand, RefCursorName, OracleDbType.RefCursor, 0, ParameterDirection.Output, true, 0, 0, String.Empty, DataRowVersion.Default, Convert.DBNull);
 				}
 			}
 		}
@@ -238,7 +238,7 @@ namespace Kalman.Data.DbProvider
 		{
 			foreach (OracleParameter parameter in command.Parameters)
 			{
-				if (parameter.OracleType == OracleType.Cursor)
+                if (parameter.OracleDbType == OracleDbType.RefCursor)
 				{
 					return false;
 				}

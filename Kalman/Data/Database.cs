@@ -351,8 +351,8 @@ namespace Kalman.Data
             }
             catch (Exception)
             {
-                //instrumentationProvider.FireCommandFailedEvent(command.CommandText, ConnectionStringNoCredentials, e);
                 throw;
+                //instrumentationProvider.FireCommandFailedEvent(command.CommandText, ConnectionStringNoCredentials, e); 
             }
         }
 
@@ -664,7 +664,7 @@ namespace Kalman.Data
         #endregion
 
         #region ExecuteList<T>
-        public virtual List<T> ExecuteList<T>(DbCommand command) 
+        public virtual List<T> ExecuteList<T>(DbCommand command)
         {
             using (DbDataReader reader = ExecuteReader(command) as DbDataReader)
             {
@@ -730,7 +730,7 @@ namespace Kalman.Data
             }
         }
 
-        public T ExecuteObject<T>(string storedProcedureName, params object[] parameterValues) 
+        public T ExecuteObject<T>(string storedProcedureName, params object[] parameterValues)
         {
             using (DbDataReader reader = ExecuteReader(storedProcedureName, parameterValues) as DbDataReader)
             {
@@ -748,7 +748,7 @@ namespace Kalman.Data
             }
         }
 
-        public T ExecuteObject<T>(CommandType commandType, string commandText) 
+        public T ExecuteObject<T>(CommandType commandType, string commandText)
         {
             using (DbDataReader reader = ExecuteReader(commandType, commandText) as DbDataReader)
             {

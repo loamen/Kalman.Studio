@@ -59,6 +59,9 @@ namespace Kalman.Data
                 case "System.Data.OracleClient":
                     db = new OracleDatabase(connectionString);
                     break;
+                case "Oracle.ManagedDataAccess.Client":
+                    db = new OracleDatabase(connectionString);
+                    break;
                 case "Devart.Data.Oracle": //http://evget.com/zh-CN/product/954/feature.aspx  http://www.devart.com/ 
                 case "DDTek.Oracle": //http://www.datadirect.com/index.html
                     providerFactory = DbProviderFactories.GetFactory(providerName);

@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatabaseSettingForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbConnectStringName = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbProviderName = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtConnectString = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.txtConnectString = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbProviderName = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbConnectStringName = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,32 +57,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库设置";
             // 
-            // label1
+            // btnDelete
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "连接名称：";
+            this.btnDelete.Location = new System.Drawing.Point(219, 21);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(41, 23);
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // cbConnectStringName
+            // txtConnectString
             // 
-            this.cbConnectStringName.FormattingEnabled = true;
-            this.cbConnectStringName.Location = new System.Drawing.Point(92, 23);
-            this.cbConnectStringName.Name = "cbConnectStringName";
-            this.cbConnectStringName.Size = new System.Drawing.Size(121, 20);
-            this.cbConnectStringName.TabIndex = 1;
-            this.cbConnectStringName.SelectedIndexChanged += new System.EventHandler(this.cbConnectStringName_SelectedIndexChanged);
+            this.txtConnectString.Location = new System.Drawing.Point(20, 120);
+            this.txtConnectString.Multiline = true;
+            this.txtConnectString.Name = "txtConnectString";
+            this.txtConnectString.Size = new System.Drawing.Size(240, 83);
+            this.txtConnectString.TabIndex = 5;
             // 
-            // label2
+            // label3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "驱动类型：";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "连接字符串：";
             // 
             // cbProviderName
             // 
@@ -94,38 +94,39 @@
             "System.Data.SQLite",
             "System.Data.OleDb",
             "Devart.Data.Oracle",
-            "System.Data.OracleClient"});
+            "System.Data.OracleClient",
+            "Oracle.ManagedDataAccess.Client"});
             this.cbProviderName.Location = new System.Drawing.Point(92, 56);
             this.cbProviderName.Name = "cbProviderName";
             this.cbProviderName.Size = new System.Drawing.Size(168, 20);
             this.cbProviderName.TabIndex = 3;
             // 
-            // label3
+            // label2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "连接字符串：";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "驱动类型：";
             // 
-            // txtConnectString
+            // cbConnectStringName
             // 
-            this.txtConnectString.Location = new System.Drawing.Point(20, 120);
-            this.txtConnectString.Multiline = true;
-            this.txtConnectString.Name = "txtConnectString";
-            this.txtConnectString.Size = new System.Drawing.Size(240, 83);
-            this.txtConnectString.TabIndex = 5;
+            this.cbConnectStringName.FormattingEnabled = true;
+            this.cbConnectStringName.Location = new System.Drawing.Point(92, 23);
+            this.cbConnectStringName.Name = "cbConnectStringName";
+            this.cbConnectStringName.Size = new System.Drawing.Size(121, 20);
+            this.cbConnectStringName.TabIndex = 1;
+            this.cbConnectStringName.SelectedIndexChanged += new System.EventHandler(this.cbConnectStringName_SelectedIndexChanged);
             // 
-            // btnDelete
+            // label1
             // 
-            this.btnDelete.Location = new System.Drawing.Point(219, 21);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(41, 23);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "连接名称：";
             // 
             // btnSave
             // 

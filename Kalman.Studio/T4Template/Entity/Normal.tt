@@ -20,21 +20,16 @@ namespace <#= nameSpace #>
     /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>
     /// </summary>
 	[Serializable]
-	public partial class <#= className #>
+	public class <#= className #>
 	{
 		<# foreach (SOColumn c in list)
 		{ 
 			string cname = c.Name;
-		#>private <#= TypeUtil.DbType2TypeString(c.DataType) #> <#= "_"+cname #>;
-		
+		#>
 		/// <summary>
         /// <#= c.Comment == "" ? c.Name : c.Comment.Replace("\r\n"," ") #>
         /// </summary>
-		public <#= TypeUtil.DbType2TypeString(c.DataType) #> <#= cname #> 
-		{ 
-			get{ return <#= "_"+cname #>;}
-			set{ <#= "_"+cname #> = value;} 
-		}
+		public <#= TypeUtil.DbType2TypeString(c.DataType) #> <#= cname #> { get;set;}
 		
 		<# } #>	
 	}
