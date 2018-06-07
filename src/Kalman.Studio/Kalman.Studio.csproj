@@ -1,0 +1,888 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F3959EA-16FB-4232-827E-E557E0426104}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kalman.Studio</RootNamespace>
+    <AssemblyName>Kalman.Studio</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>App.ICO</ApplicationIcon>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>E:\我的文档\test\KalmanStudio\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>821BADA723319AB7B38D013A6C9C99A592AD73BF</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Kalman.Studio_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=18.5.1.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Cells.18.5.1\lib\net40\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="EmitMapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmitMapper.1.0.0\lib\EmitMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Esent.Interop, Version=1.9.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedEsent.1.9.4\lib\net40\Esent.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.12.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.12.1\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="IBM.Data.DB2, Version=9.7.4.4, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=AMD64">
+      <HintPath>..\packages\IBM.Data.DB2.10.0.5.5\lib\net451\IBM.Data.DB2.dll</HintPath>
+    </Reference>
+    <Reference Include="IBM.Data.DB2.Entity, Version=9.7.4.4, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=AMD64">
+      <HintPath>..\packages\IBM.Data.DB2.10.0.5.5\lib\net451\IBM.Data.DB2.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.8.2\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.2.8.2\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.2.8.2\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Elfie, Version=0.10.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Elfie.0.10.6\lib\net46\Microsoft.CodeAnalysis.Elfie.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.VisualBasic, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.2.8.2\lib\netstandard1.3\Microsoft.CodeAnalysis.VisualBasic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.2.8.2\lib\netstandard1.3\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.2.8.2\lib\net46\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces.Desktop, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.2.8.2\lib\net46\Microsoft.CodeAnalysis.Workspaces.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.15.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextTemplating.15.0.15.7.27703\lib\net45\Microsoft.VisualStudio.TextTemplating.15.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.10.0.30320\lib\net40\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.11.0.50728\lib\net45\Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.11\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.0\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard1.3\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.AttributedModel.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.Convention.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.Hosting.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.Runtime.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Composition.TypedParts.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.FileVersionInfo.4.3.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.StackTrace.4.3.0\lib\net46\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.6.0\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.0\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Thread.4.3.0\lib\net46\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.4.3.0\lib\net46\System.Xml.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XDocument.4.3.0\lib\net46\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.4.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.4\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseSettingForm.Designer.cs">
+      <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Random.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Random.Designer.cs">
+      <DependentUpon>String_Random.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_SymmetricAlgorithm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_SymmetricAlgorithm.Designer.cs">
+      <DependentUpon>String_SymmetricAlgorithm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Guid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Guid.Designer.cs">
+      <DependentUpon>String_Guid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\ImportPostParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\ImportPostParams.Designer.cs">
+      <DependentUpon>ImportPostParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\DbSchemaHelper.cs" />
+    <Compile Include="Library\Export.cs" />
+    <Compile Include="Library\Utils.cs" />
+    <Compile Include="Library\VariXFolding.cs" />
+    <Compile Include="CodeBuilder\BatchBuildCustomCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildCustomCode.designer.cs">
+      <DependentUpon>BatchBuildCustomCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildDALCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildDALCode.designer.cs">
+      <DependentUpon>BatchBuildDALCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildEntityCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildEntityCode.designer.cs">
+      <DependentUpon>BatchBuildEntityCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\BatchBuildCode.designer.cs">
+      <DependentUpon>BatchBuildCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\CodeBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\CodeBuilder.designer.cs">
+      <DependentUpon>CodeBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeBuilder\PreviewFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\PreviewFile.designer.cs">
+      <DependentUpon>PreviewFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\CodeExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\CodeExplorer.designer.cs">
+      <DependentUpon>CodeExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmExplorer.designer.cs">
+      <DependentUpon>PdmExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmColumnsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmColumnsViewer.designer.cs">
+      <DependentUpon>PdmColumnsViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmModelViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmModelViewer.designer.cs">
+      <DependentUpon>PdmModelViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmTableViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\PdmExplorer\PdmTableViewer.designer.cs">
+      <DependentUpon>PdmTableViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\TemplateExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\TemplateExplorer.designer.cs">
+      <DependentUpon>TemplateExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\TestDataGenerator\TestDataGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\TestDataGenerator\TestDataGenerator.Designer.cs">
+      <DependentUpon>TestDataGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertorBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertorBase.Designer.cs">
+      <DependentUpon>StringConvertorBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Replace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Replace.Designer.cs">
+      <DependentUpon>String_Replace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Filter.Designer.cs">
+      <DependentUpon>String_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Hash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Hash.Designer.cs">
+      <DependentUpon>String_Hash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Convert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\String_Convert.Designer.cs">
+      <DependentUpon>String_Convert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="T4TemplateEngineHost\DefaultHost.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="T4TemplateEngineHost\HostBase.cs" />
+    <Compile Include="ToolForm\DbObjectViewer\DbObjectViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbObjectViewer.designer.cs">
+      <DependentUpon>DbObjectViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\DatabaseExplorer.Designer.cs">
+      <DependentUpon>DatabaseExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockableFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockableFrom.Designer.cs">
+      <DependentUpon>DockableFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockFormBase.Designer.cs">
+      <DependentUpon>DockFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockDocument.designer.cs">
+      <DependentUpon>DockDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForm\DockExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForm\DockExplorer.Designer.cs">
+      <DependentUpon>DockExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorInfo.designer.cs">
+      <DependentUpon>ErrorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IDockDocument.cs" />
+    <Compile Include="MainForm\Main.Common.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExplorerForm\Output.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\Output.designer.cs">
+      <DependentUpon>Output.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildCustomCode.resx">
+      <DependentUpon>BatchBuildCustomCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildDALCode.resx">
+      <DependentUpon>BatchBuildDALCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildEntityCode.resx">
+      <DependentUpon>BatchBuildEntityCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\BatchBuildCode.resx">
+      <DependentUpon>BatchBuildCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\CodeBuilder.resx">
+      <DependentUpon>CodeBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\PreviewFile.resx">
+      <DependentUpon>PreviewFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\CodeExplorer.resx">
+      <DependentUpon>CodeExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\DatabaseSettingForm.resx">
+      <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmExplorer.resx">
+      <DependentUpon>PdmExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmColumnsViewer.resx">
+      <DependentUpon>PdmColumnsViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmModelViewer.resx">
+      <DependentUpon>PdmModelViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\PdmExplorer\PdmTableViewer.resx">
+      <DependentUpon>PdmTableViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\TemplateExplorer.resx">
+      <DependentUpon>TemplateExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Guid.resx">
+      <DependentUpon>String_Guid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Hash.resx">
+      <DependentUpon>String_Hash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Random.resx">
+      <DependentUpon>String_Random.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Replace.resx">
+      <DependentUpon>String_Replace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_SymmetricAlgorithm.resx">
+      <DependentUpon>String_SymmetricAlgorithm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\TestDataGenerator\TestDataGenerator.resx">
+      <DependentUpon>TestDataGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\StringConvertorBase.resx">
+      <DependentUpon>StringConvertorBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbObjectViewer.resx">
+      <DependentUpon>DbObjectViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\DatabaseExplorer.resx">
+      <DependentUpon>DatabaseExplorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForm\DockableFrom.resx">
+      <DependentUpon>DockableFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForm\DockDocument.resx">
+      <DependentUpon>DockDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForm\DockFormBase.resx">
+      <DependentUpon>DockFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorInfo.resx">
+      <DependentUpon>ErrorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\Output.resx">
+      <DependentUpon>Output.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbSPViewer.resx">
+      <DependentUpon>DbSPViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbTableViewer.resx">
+      <DependentUpon>DbTableViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbObjectViewer\DbViewViewer.resx">
+      <DependentUpon>DbViewViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\QueryAnalyzer.resx">
+      <DependentUpon>QueryAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\IISLogParser\IISLogExportToDB.resx">
+      <DependentUpon>IISLogExportToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\IISLogParser\IISLogParseCondition.resx">
+      <DependentUpon>IISLogParseCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\IISLogParser\IISLogParser.resx">
+      <DependentUpon>IISLogParser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConnector.resx">
+      <DependentUpon>StringConnector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbDocBuilder.resx">
+      <DependentUpon>DbDocBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\DbSchemaViewer.resx">
+      <DependentUpon>DbSchemaViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\StringConvertor.resx">
+      <DependentUpon>StringConvertor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\StringConvertor\String_Convert.resx">
+      <DependentUpon>String_Convert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\WebSubmitter\ImportPostParams.resx">
+      <DependentUpon>ImportPostParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\WebSubmitter\WebSubmitter.resx">
+      <DependentUpon>WebSubmitter.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="config\iislog\UserAgentAlias.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\QQWry.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SQL\IISLogData.sql" />
+    <None Include="Template\template.php">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\template.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Library\CodeType.cs" />
+    <Compile Include="Library\DockHelper.cs" />
+    <Compile Include="Library\Win32Shell.cs" />
+    <Compile Include="ToolForm\DbObjectViewer\DbSPViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbSPViewer.designer.cs">
+      <DependentUpon>DbSPViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbTableViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbTableViewer.designer.cs">
+      <DependentUpon>DbTableViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbViewViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbObjectViewer\DbViewViewer.designer.cs">
+      <DependentUpon>DbViewViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\QueryAnalyzer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\QueryAnalyzer.designer.cs">
+      <DependentUpon>QueryAnalyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="T4TemplateEngineHost\DatabaseHost.cs" />
+    <Compile Include="T4TemplateEngineHost\CommandHost.cs" />
+    <Compile Include="T4TemplateEngineHost\TableHost.cs" />
+    <Compile Include="T4TemplateEngineHost\ViewHost.cs" />
+    <Compile Include="ToolForm\IISLogParser\IISLogExportToDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogExportToDB.designer.cs">
+      <DependentUpon>IISLogExportToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParseCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParseCondition.designer.cs">
+      <DependentUpon>IISLogParseCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\IISLogParser\IISLogParser.designer.cs">
+      <DependentUpon>IISLogParser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConnector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConnector.Designer.cs">
+      <DependentUpon>StringConnector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\template.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ToolForm\DbDocBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbDocBuilder.designer.cs">
+      <DependentUpon>DbDocBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\DbSchemaViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\DbSchemaViewer.designer.cs">
+      <DependentUpon>DbSchemaViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\StringConvertor\StringConvertor.Designer.cs">
+      <DependentUpon>StringConvertor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\WebSubmitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\WebSubmitter\WebSubmitter.Designer.cs">
+      <DependentUpon>WebSubmitter.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ICO" />
+    <Content Include="CodeLib\readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\Controller\Controller.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Controller.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\Entity\Default.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Default.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\Entity\Normal.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Normal.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\Service\IService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IService.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\Service\Service.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Service.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\View\Create.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Create.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\View\Delete.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Delete.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\View\Details.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Details.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\View\Edit.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Edit.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Asp.Net\View\Index.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\PHP\Yii\ADPlatform\controller.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>controller.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\PHP\Yii\ADPlatform\model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>model.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\PHP\Yii\ADPlatform\View\index.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>index.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Template\template.cpp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.java">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kalman\Kalman.csproj">
+      <Project>{65fed08b-d2b2-4b49-9257-3de1954d1675}</Project>
+      <Name>Kalman</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,5 @@
+﻿PowerDesigner 物理模型文件解析组件
+
+使用示例
+PdmReader reader = new PdmReader(fileName);
+PDModel m = reader.BuildModel();

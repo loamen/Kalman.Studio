@@ -1,0 +1,160 @@
+<#@ template language="C#v3.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".php" #>
+
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+
+	string _TableName = table.Name.RemovePrefix("_", 1).InitialToUpperMulti();//camel naming
+	string _tableName = _TableName.InitialToLower();//pascal naming
+#>
+
+<?php
+/** 
+ * <#= _TableName #>Controller <#= _TableName #>控制器，负责<#= _TableName #>相关页面的列表展现和增删改操作
+ * @author <#= Environment.MachineName #>
+ * @package application.controllers
+ * @version <#= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") #>
+ * @since 1.0
+ */
+class <#= _TableName #>Controller extends Controller
+{
+	/**
+	 * 获取一个指定的<#= _TableName #>对象
+	 * @return string 返回json格式化的对象  
+	 */
+	public function actionGet()
+	{
+		$model = $this->_loadModel();		
+		echo $this->modeltoJson($model);
+	}
+
+	/**
+	 * 新增<#= _TableName #>
+	 * @return string 返回json格式的成功或错误提示信息
+	 */
+	public function actionCreate()
+	{
+		$model = new <#= _TableName #>();
+		if (isset($_REQUEST['<#= _TableName #>']))
+		{
+			$model->attributes = $_REQUEST['<#= _TableName #>'];
+			if ($model->save())
+			{
+				$this->successJson();
+			}
+			else
+			{
+				$this->errorJson($model);				
+			}
+		}
+	}
+
+	/**
+	 * 更新一个指定的<#= _TableName #>对象
+	 * @param string 返回json格式的成功或错误提示信息
+	 */
+	public function actionUpdate()
+	{
+		$model = $this->_loadModel();
+		if (isset($_REQUEST['<#= _TableName #>']))
+		{
+			$model->attributes = $_REQUEST['<#= _TableName #>'];
+			if ($model->save())
+			{
+				$this->successJson();
+			}
+			else
+			{
+				$this->errorJson($model);
+			}
+		}
+	}
+	
+	/**
+	 * 删除一个指定的<#= _TableName #>对象
+	 * @param string 返回json格式的成功或错误提示信息
+	 */
+	public function actionDelete()
+	{
+		if ($this->_loadModel()->delete())
+		{		
+			$this->successJson();
+		}
+		else
+		{
+			$this->errorJson('删除失败！');
+		}
+	}
+	
+	/**
+	 * 根据查询条件得到查询<#= _TableName #>结果列表
+	 * @return view 显示查询<#= _TableName #>列表页面
+	 */
+	public function actionIndex()
+	{
+		$pageSize = (isset($_REQUEST['pageSize']) ? (int)$_REQUEST['pageSize'] : 10);		
+		$currentPage = (isset($_REQUEST['page']) ? (int)$_REQUEST['page'] - 1 : 0);
+		
+		$criteria = $this->_getCriteria();
+		$count = <#= _TableName #>::model()->count($criteria);
+		
+		$pages = new CPagination($count);
+		$pages->pageSize = $pageSize;
+		$pages->currentPage = $currentPage;
+		$pages->applyLimit($criteria);
+		$result = <#= _TableName #>::model()->findAll($criteria);
+		$this->render('index',array(
+				'list' => $result,
+				'pages' => $pages,
+				'model' => new <#= _TableName #>(),
+				'req' => $_REQUEST,
+		));
+	}
+
+	/**
+	 * 组织查询条件
+	 * @return CDbCriteria 查询条件
+	 */
+	private function _getCriteria()
+	{
+		$criteria = new CDbCriteria();		
+		
+		<# foreach (SOColumn c in list){ if(c.PrimaryKey)continue;#>
+		if (isset($_REQUEST['<#= c.Name #>']))
+		{
+			$criteria->compare('<#= c.Name #>', $_REQUEST['<#= c.Name #>'], true);//非模糊查询请去掉参数true或者另写条件
+		}
+		<#}#>
+
+		return $criteria;
+	}
+
+	/**
+	 * 根据请求中的参数构造一个<#= _TableName #>对象
+	 * @return <#= _TableName #> 返回一个<#= _TableName #>对象
+	 */
+	private function _loadModel()
+	{
+		if (isset($_REQUEST['ID']))
+		{
+			return <#= _TableName #>::model()->findByPk($_REQUEST['ID']);
+		}	
+		if (isset($_REQUEST['<#= _TableName #>']['<#= GetPK() #>']))
+		{
+			return <#= _TableName #>::model()->findByPk($_REQUEST['<#= _TableName #>']['<#= GetPK() #>']);
+		}		
+	}	
+}
+<#+ 
+	public string GetPK()
+	{
+		TableHost host = (TableHost)(Host); 
+		foreach (SOColumn c in host.ColumnList)
+		{ 
+			if(c.PrimaryKey)return c.Name;
+		}
+		return host.Table.Name.RemovePrefix("_", 1)+"_id";
+	}
+#>
