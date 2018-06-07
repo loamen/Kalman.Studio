@@ -1,0 +1,12 @@
+﻿IIS日志文件解析组件
+
+配置别名对照关系（一行对应一条对照关系，中间用空格隔开）
+
+UriStemAlias.config		用户请求资源地址别名对照关系
+配置示例：Index.aspx 主页
+
+RefererAlias.config		引用地址别名对照关系
+配置示例：http://www.baidu.com 百度
+
+UserAgentAlias.config	用户代理别名对照关系
+配置示例：Baiduspider+(+http://www.baidu.com/search/spider.htm) 百度蜘蛛

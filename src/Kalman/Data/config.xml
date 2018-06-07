@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<connectionStrings>
+		<!--连接字符串参考： http://www.connectionstrings.com/ -->
+		<add name="SqlServer" connectionString="Data Source=myServerAddress;Initial Catalog=myDataBase;User Id=myUsername;Password=myPassword;"/>
+		<add name="SqlServer" connectionString="server=127.0.0.1;database=northwind;uid=sa;pwd=;Trusted_Connection=False;"/>
+		<add name="SqlServer" connectionString="Data Source=.;Integrated Security=SSPI;Persist Security Info=False;"/>
+
+		<add name="Odbc_SQL Server Native Client 10.0 OLE DB Provider" connectionString="Driver={SQL Server Native Client 10.0};Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;" providerName="System.Data.Odbc"/>
+		<add name="Odbc_SQL Native Client 9.0 ODBC Driver" connectionString="Driver={SQL Native Client};Server=myServerAddress;Database=myDataBase; Uid=myUsername;Pwd=myPassword;" providerName="System.Data.Odbc"/>
+		<add name="Odbc" connectionString="" providerName="System.Data.Odbc"/>
+
+		<add name="OleDb_SqlServer" connectionString="Provider=SQLNCLI[10];Server=myServerAddress;Database=myDataBase;Uid=myUsername; Pwd=myPassword;" providerName="System.Data.OleDb"/>
+		<add name="OleDb_SqlServer" connectionString="Provider=SQLNCLI10;Server=myServerAddress;Database=myDataBase;Uid=myUsername; Pwd=myPassword;" providerName="System.Data.OleDb"/>
+		<add name="OleDb_Access2007" connectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\myFolder\myAccess2007file.accdb;Persist Security Info=False;" providerName="System.Data.OleDb"/>
+		<add name="OleDb_Access" connectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\mydatabase.mdb;User Id=admin;Password=;" providerName="System.Data.OleDb"/>
+
+		<add name="Oracle" connectionString="Data Source=MyOracleDB;User Id=myUsername;Password=myPassword;Integrated Security=no;" providerName="System.Data.OracleClient"/>
+		<add name="Oracle" connectionString="Data Source=myOracleDB;User Id=myUsername;Password=myPassword;Min Pool Size=10;Connection Lifetime=120;Connection Timeout=60;Incr Pool Size=5;Decr Pool Size=2;" providerName="System.Data.OracleClient"/>
+
+		<add name="SQLite" connectionString="Data Source=filename;Version=3;" providerName="System.Data.SQLite"/>
+		<add name="SQLite_UTF16" connectionString="Data Source=filename;Version=3;UseUTF16Encoding=True;" providerName="System.Data.SQLite"/>
+		<add name="SQLite_Password" connectionString="Data Source=filename;Version=3;Password=myPassword;" providerName="System.Data.SQLite"/>
+		<add name="SQLite_ReadOnly" connectionString="Data Source=filename;Version=3;Read Only=True;" providerName="System.Data.SQLite"/>
+
+		<add name="MySql" connectionString="Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;" providerName="MySql.Data.MySqlClient"/>
+		<add name="MySql_UsingPort" connectionString="Server=myServerAddress;Port=1234;Database=myDataBase;Uid=myUsername;Pwd=myPassword;" providerName="MySql.Data.MySqlClient"/>
+
+		<add name="DB2" connectionString="Server=myAddress:myPortNumber;Database=myDataBase;UID=myUsername;PWD=myPassword;" providerName="IBM.Data.DB2"/>
+		<add name="DB2_Pool" connectionString="Server=myAddress:myPortNumber;Database=myDataBase;UID=myUsername;PWD=myPassword;Max Pool Size=100;Min Pool Size=10;" providerName="IBM.Data.DB2"/>
+
+		<add name="Firebird" connectionString="User=SYSDBA;Password=masterkey;Database=SampleDatabase.fdb;DataSource=localhost; Port=3050;Dialect=3; Charset=NONE;Role=;Connection lifetime=15;Pooling=true; MinPoolSize=0;MaxPoolSize=50;Packet Size=8192;ServerType=0;" providerName="FirebirdSql.Data.FirebirdClient"/>
+	</connectionStrings>
+	<system.data>
+		<DbProviderFactories>
+			<add name="SQLite Data Provider" invariant="System.Data.SQLite" description=".Net Framework Data Provider for SQLite" type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite" />
+			<add name="MySqlClient Data Provider" invariant="MySql.Data.MySqlClient" description=".Net Framework Data Provider for MySql" type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data" />
+			<add name="DB2 Data Provider" invariant="IBM.Data.DB2" description=".Net Framework Data Provider for DB2" type="IBM.Data.DB2.DB2Factory, IBM.Data.DB2" />
+			<add name="Firebird Data Provider" invariant="FirebirdSql.Data.FirebirdClient" description=".Net Framework Data Provider for Firebird" type="FirebirdSql.Data.FirebirdClient.FirebirdClientFactory, FirebirdSql.Data.FirebirdClient" />
+		</DbProviderFactories>
+	</system.data>
+</configuration>

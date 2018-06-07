@@ -1,0 +1,25 @@
+﻿完整配置示例
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<configSections>
+		<sectionGroup name="kalman">
+			<section name="remoting" type="Kalman.ConfigHandler,Kalman"/>
+		</sectionGroup>
+	</configSections>
+	<kalman>
+		<remoting>
+			<client name="" lbEnabled="true" pollingInterval="10">
+				<host default="127.0.0.1">
+					<add name="127.0.0.1" url="tcp://127.0.0.1:8888"/>
+					<add name="10.0.0.111" url="tcp://10.0.0.111:8888"/>
+					<add name="10.0.0.222" url="tcp://10.0.0.111:9999"/>
+				</host>
+				<wellknown>
+					<add objectUri="Kalman.Common.Test" type="Kalman.Common.ITest"/>
+					<add objectUri="RemotingTest.RemoteObjects.TestItem1" type="RemotingTest.Common.ITestItem1"/>
+					<add objectUri="Kalman.Remoting.HostMonitorService" type="Kalman.Remoting.HostMonitorService"/>
+				</wellknown>
+			</client>
+		</remoting>
+	</kalman>
+</configuration>

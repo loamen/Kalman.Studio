@@ -1,0 +1,243 @@
+<#@ template language="C#v3.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".php" #>
+
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+
+	string _TableName = table.Name.RemovePrefix("_", 1).InitialToUpperMulti();//camel naming
+	string _tableName = _TableName.InitialToLower();//pascal naming
+#>
+<div class="top">
+	<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'searchForm',
+	'action'=>$this->createUrl('<#= _tableName #>/index'),
+	'method'=>'get',
+	)); ?>
+		<?php echo CHtml::hiddenField('page', isset($req['page'])? $req['page']: '0');?>
+	    <ul>	    
+	         <li>
+			 <# foreach (SOColumn c in list)
+			{ if(c.PrimaryKey)continue;#>
+			
+				<label>
+	         		<?php echo $model->getAttributeLabel('<#= c.Name #>')?>：	  
+	         		<?php echo CHtml::textField('<#= c.Name #>', isset($req['<#= c.Name #>'])? $req['<#= c.Name #>']: '', array('class'=>'txt'));?>       
+				</label>
+			<# } #>
+			
+	         	<input type="submit"  class="sure" value="查询" onclick='javascript:$("#searchForm input[name=page]").val(0);'>
+	         </li>
+	    </ul>
+	<?php $this->endWidget(); ?>    
+</div>
+<div>  
+<a href="#" class="sure" onclick="javascript:showCreateDialog();">添加</a>
+</div> 
+<div class="title"><i></i><h3>结果列表</h3></div>
+<div>
+	<table class="tab"> 
+		<thead> 
+			<tr>
+			<# foreach (SOColumn c in list){ #>
+				<th><?php echo $model->getAttributeLabel('<#= c.Name #>')?></th>
+				<# } #>
+				<th>操作</th>
+			</tr> 
+		</thead> 
+		<tbody> 
+			<?php foreach($list as $item) {?>    		
+			<tr>
+			<# foreach (SOColumn c in list){ #>
+				<td><?php echo $item-><#= c.Name #>; ?></td> 
+				<# } #>
+				<td class="cgray">
+					<a href="javascript:void(0);" onclick="javascript:showViewDialog('<?php echo $item-><#= GetPK() #>; ?>');">查看</a> | 
+					<a href="javascript:void(0);" onclick="javascript:showUpdateDialog('<?php echo $item-><#= GetPK() #>; ?>');">修改</a> |  
+					<a href="javascript:void(0);" onclick="javascript:deleteItem('<?php echo $item-><#= GetPK() #>; ?>');">删除</a>
+				</td> 
+			</tr>
+			<?php }?>   
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="7">
+					<?php $this->widget('CEventPager',array('pages'=>$pages, 'onclick'=>'javascript:changePage(this);')); ?>					 
+				</td>
+			</tr>
+		</tfoot>
+	</table> 
+</div>
+
+<div id="createDiv" style="display:none">
+	<div>
+		<form id='createForm' action='<?php echo $this->createUrl('<#= _tableName #>/create')?>' method='get'>
+			<table class='fieldtable'>
+			<# foreach (SOColumn c in list){ if(c.PrimaryKey)continue;#>
+				<tr><th><?php echo $model->getAttributeLabel('<#= c.Name #>')?>:</th><td><input type="text" name="<#= string.Format("{0}[{1}]",_TableName,c.Name) #>"/></td></tr>
+			<# } #>
+			</table>
+		</form>
+	</div>
+	<div class="errorMsg"></div>
+</div>	
+<div id="updateDiv" style="display:none">	
+	<div>
+		<form id='updateForm' action='<?php echo $this->createUrl('<#= _tableName #>/update')?>' method='get'>
+			<table class='fieldtable'>
+			<# foreach (SOColumn c in list){ if(c.PrimaryKey){#>
+				<input type="hidden" name="<#= string.Format("{0}[{1}]",_TableName,c.Name) #>"/>
+			<#} else {#>
+				<tr><th><?php echo $model->getAttributeLabel('<#= c.Name #>')?>:</th><td><input type="text" name="<#= string.Format("{0}[{1}]",_TableName,c.Name) #>"/></td></tr>
+			<# }} #>
+			</table>
+		</form>
+	</div>
+	<div class="errorMsg"></div>
+</div>
+<div id="viewDiv" style="display:none">
+	<div>
+		<table class='fieldtable'>
+		<# foreach (SOColumn c in list){ if(c.PrimaryKey)continue;#>
+			<tr><th><?php echo $model->getAttributeLabel('<#= c.Name #>')?>:</th><td><span name="<#= string.Format("{0}[{1}]",_TableName,c.Name) #>"></span></td></tr>
+		<# } #>
+		</table>		
+	</div>
+</div>
+
+<script type="text/javascript">
+function showCreateDialog(){
+	resetForm('createForm');
+	$('#createDiv').dialog('open');
+}
+
+function createItem(){
+	var data = $('#createForm').formSerialize();
+	$.post($('#createForm').attr('action'),
+		  data,
+		  function(json){	 
+			  if(json.success){				  
+				  location.reload();
+			  }else{
+				 $("#createDiv .errorMsg").html(json.message);
+				 $("#createDiv .errorMsg").show();
+			  }
+		  },
+		  'json'
+	);
+}
+function showUpdateDialog(ID){	 
+	 resetForm('updateForm');
+	 $("#updateForm input[name='<#= string.Format("{0}[{1}]",_TableName,GetPK()) #>']").val(ID);	 
+     $.get('<?php echo $this->createUrl('<#= _tableName #>/get')?>',
+             { ID: ID, t: (new Date()).getTime() },
+             function(json) {
+             	$('#updateDiv').dialog('open');      
+				<# foreach (SOColumn c in list){ if(c.PrimaryKey)continue;#>
+             	$("#updateForm input[name='<#= string.Format("{0}[{1}]",_TableName,c.Name) #>']").val(json.<#= c.Name #>);             	
+				<# } #>
+             },
+             "json"
+    ); 
+}
+
+function showViewDialog(ID){	 
+    $.get('<?php echo $this->createUrl('<#= _tableName #>/get')?>',
+            { ID: ID,t: (new Date()).getTime() },
+            function(json) {
+				<# foreach (SOColumn c in list){ if(c.PrimaryKey)continue;#>
+            	$("#viewDiv span[name='<#= string.Format("{0}[{1}]",_TableName,c.Name) #>']").html(json.<#= c.Name #>);            	
+				<# } #>
+                $('#viewDiv').dialog('open');
+            },
+            "json"
+   ); 
+}
+
+function updateItem(){
+	var data = $('#updateForm').formSerialize();
+	$.post($('#updateForm').attr('action'),
+		  data,
+		  function(json){
+			  if(json.success){				  
+				  location.reload();
+			  }else{						
+				  $("#updateDiv .errorMsg").html(json.message);
+				  $("#updateDiv .errorMsg").show();
+			  }
+		  },
+		  'json'
+	);
+}
+
+function deleteItem(ID){
+	if(confirm('确定要删除该记录吗?')){
+		$.post('<?php echo $this->createUrl('<#= _tableName #>/delete')?>',
+			  {ID: ID},
+			  function(json){	 
+				  if(json.success){				  
+					  location.reload();
+				  }else{
+					  alert(json.message);					  
+				  }
+			  },
+			  'json'
+		);
+	}
+}
+
+$(document).ready(function(){
+	$('#createDiv').dialog({
+		title:'新增',
+		autoOpen:false,
+		width:400,
+		modal:true,
+		closeOnEscape:true,
+		buttons:{			
+			'取消': function(){
+				$(this).dialog('close');
+			},	
+			'确定': function(){
+				createItem();
+			}		
+		}
+	});	
+
+	$('#updateDiv').dialog({
+		title:'修改',
+		autoOpen:false,
+		width:400,
+		modal:true,
+		closeOnEscape:true,
+		buttons:{			
+			'取消': function(){
+				$(this).dialog('close');
+			},	
+			'确定': function(){
+				updateItem();
+			}		
+		}
+	});	
+
+	$('#viewDiv').dialog({
+		bgiframe:true,
+		title:'查看',
+		autoOpen:false,
+		width:400,
+		modal:true,
+		closeOnEscape:true		
+	});	
+});
+</script>
+<#+ 
+	public string GetPK()
+	{
+		TableHost host = (TableHost)(Host); 
+		foreach (SOColumn c in host.ColumnList)
+		{ 
+			if(c.PrimaryKey)return c.Name;
+		}
+		return host.Table.Name.RemovePrefix("_", 1)+"_id";
+	}
+#>

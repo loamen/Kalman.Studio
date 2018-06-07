@@ -1,0 +1,83 @@
+<#@ template language="C#v3.5" hostSpecific="true" debug="true" #>
+<#@ output extension=".cs" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string columnPrefix = host.GetString("ColumnPrefix");
+	int prefixLevel = host.GetInt32("PrefixLevel");
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+#>
+<?php
+
+/**
+ *  Active Record实体类"Partner", 对应数据表"ad_partner".
+ *
+ * 字段说明:
+ * @property integer $partner_id
+ * @property string $partner_name
+ * @property string $account
+ * @property string $password
+ * @property string $level
+ * @property string $memo
+*/
+class Partner extends CActiveRecord
+{
+	/**	 
+	 * @return Partner Model对象
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
+	 * @return string 数据表名称
+	 */
+	public function tableName()
+	{
+		return 'ad_partner';
+	}
+
+	/**
+	 * @return array 验证字段有效性规则
+	 */
+	public function rules()
+	{
+		return array(
+			array('partner_name, account, password, level', 'required'),
+			array('partner_name', 'length', 'max'=>64),
+			array('account', 'length', 'max'=>32),
+			array('password', 'length', 'max'=>128),
+			array('level', 'length', 'max'=>8),
+			array('memo', 'length', 'max'=>1024),
+		);
+	}
+
+	/**
+	 * @return array 与其他Active Record实体的关联关系
+	 */
+	public function relations()
+	{
+		return array(
+		);
+	}
+
+	/**
+	 * @return array 字段自定义标签('字段名'=>'标签名称')
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'partner_id' => '编号',
+			'partner_name' => '合作商',
+			'account' => '帐号',
+			'password' => '密码',
+			'level' => '阶级',
+			'memo' => '备注',
+		);
+	}
+}
