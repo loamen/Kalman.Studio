@@ -18,13 +18,11 @@
 using Ebboy.Core;
 using Ebboy.Core.Domain;
 using Ebboy.Core.PagedList;
-using Ebboy.Services.Servers;
 using Ebboy.Services.Users;
 using Ebboy.Web.Framework.Controllers;
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using Loamen.Web.Controllers;
 
 namespace <#= nameSpace #>
 {
@@ -34,14 +32,14 @@ namespace <#= nameSpace #>
 	public class <#= controllerName #>: UserBaseController
 	{
 		#region Fileds
-        private readonly IMemberService _userService;
+        private readonly ISystemUserService _userService;
         private readonly IWorkContext _workContext;
         private readonly I<#=tableName#>Service <#=serviceName#>;
         #endregion
 
         #region Ctor
         public <#= controllerName #>(
-            IMemberService userService,
+            ISystemUserService userService,
             IWorkContext workContext,
             I<#=tableName#>Service <#=lowerTableName#>Service)
         {
@@ -105,7 +103,7 @@ namespace <#= nameSpace #>
                 }
 
                 <#=serviceName#>.Insert(model);
-                this.Tips("添加成功！");
+                //this.Tips("添加成功！");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -148,7 +146,7 @@ namespace <#= nameSpace #>
 				<# } #>
                 <#=serviceName#>.Update(entity);
                 
-                this.Tips("修改成功！");
+                //this.Tips("修改成功！");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -181,7 +179,7 @@ namespace <#= nameSpace #>
             try
             {
                 <#=serviceName#>.Delete(id);
-                this.Tips("删除成功！");
+                //this.Tips("删除成功！");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

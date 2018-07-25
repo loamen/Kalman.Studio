@@ -18,27 +18,25 @@
 @model Ebboy.Core.Domain.<#=tableName#>
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutSubMenu.cshtml";
 }
-<div id="content">
+
+<div id="content" class="same-hight height100 overflow-auto no-padding">
     <!-- row -->
-    <div class="row">
-        <!-- col -->
-        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-home"></i>
-                首页
-                <span>
-                    >
-                    @ViewBag.Title
-                </span>
-            </h1>
-        </div>
-    </div>
+     <section id="sub-menu" class="l custom-scroll">
+        <h4>@ViewBag.Title</h4>
+        <ul class="sub-nav-list">
+            <li class="active">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+			<li class="">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+        </ul>
+    </section>
     <!-- end row -->
     <!-- widget grid -->
-    <section id="widget-grid" class="">
+    <section id="widget-grid" class="r custom-scroll">
         <!-- row -->
         <div class="row">
             <article class="col-sm-12 col-md-12 col-lg-6">
@@ -49,17 +47,8 @@
                      data-widget-togglebutton="false"
                      data-widget-fullscreenbutton="false"
                      data-widget-deletebutton="false">
-                    <header>
-                        <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
-                        <h2></h2>
-                    </header>
                     <!-- widget div-->
                     <div>
-                        <!-- widget edit box -->
-                        <div class="jarviswidget-editbox">
-                            <!-- This area used as dropdown edit box -->
-                        </div>
-                        <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body">
                             @using (Html.BeginForm("Delete", "<#=tableName#>", FormMethod.Post, new { @class = "form-horizontal" }))

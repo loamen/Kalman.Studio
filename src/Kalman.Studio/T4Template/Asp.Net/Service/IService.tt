@@ -13,7 +13,7 @@
 using Ebboy.Core.Domain;
 using System.Linq;
 
-namespace <#= nameSpace #>
+namespace Ebboy.Services.<#= nameSpace #>
 {
 	/// <summary>
     /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>

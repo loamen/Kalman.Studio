@@ -18,27 +18,34 @@
 @model IPagedList<Ebboy.Core.Domain.<#=tableName#>>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutSubMenu.cshtml";
 }
-<div id="content">
+<div id="content" class="same-hight height100 overflow-auto no-padding">
     <!-- row -->
-    <div class="row">
-        <!-- col -->
-        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-home"></i>
-                首页
-                <span>
-                    >
-                    @ViewBag.Title
-                </span>
-            </h1>
-        </div>
-    </div>
+     <section id="sub-menu" class=" l custom-scroll">
+        <h4>@ViewBag.Title</h4>
+        <ul class="sub-nav-list">
+            <li class="active">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+        </ul>
+    </section>
     <!-- end row -->
     <!-- widget grid -->
-    <section id="widget-grid" class="">
+    <section id="widget-grid" class="r custom-scroll">
+         <!-- RIBBON -->
+        <div id="ribbon" class="no-padding">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li>
+                    @ViewBag.Title
+                </li>
+            </ol>
+            <!-- end breadcrumb -->
+            <span class="ribbon-button-alignment pull-right">
+            </span>
+        </div>
+        <!-- END RIBBON -->
         <!-- row -->
         <div class="row">
             <!-- NEW WIDGET START -->
@@ -50,16 +57,6 @@
                      data-widget-togglebutton="false"
                      data-widget-fullscreenbutton="false"
                      data-widget-deletebutton="false">
-                    <header>
-                        <span class="widget-icon"> <i class="fa fa-user-md"></i> </span>
-                        <h2>@ViewBag.Title </h2>
-                        <div class="widget-toolbar">
-                            <!-- add: non-hidden - to disable auto hide -->
-                            <div class="btn-group">
-                                @Html.ActionLink("添加", "Create", "<#=tableName#>", null, new {@class="btn btn-success" })
-                            </div>
-                        </div>
-                    </header>
                     <!-- widget div-->
                     <div>
                         <!-- widget edit box -->
@@ -70,6 +67,42 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body">
+                            <div class="dt-toolbar bg-color-lightgray padding-top-5">
+                                <div class="col-xs-12 col-sm-12">
+
+                                    <div id="datatable_tabletools_filter" class="dataTables_filter">
+                                        <label class="pull-left">
+                                            <span class="input-group-addon width-auto no-bg no-border">
+                                                关键字：
+                                            </span>
+                                            <input type="search" class="form-control txt_search_key" placeholder=""
+                                                   aria-controls="datatable_tabletools">
+                                        </label>
+                                        <label class="pull-left">
+                                            <button class="btn btn-default margin-left-15 btn_search">查询</button>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dt-toolbar">
+                                <div class="col-md-6">
+                                    <a href='@Url.Action("Create","<#=tableName#>")' id="del" class="btn btn-success btn-sm" data-title="add">添加</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dataTables_length">
+                                        <label>
+                                            <select name="dt_basic_length" aria-controls="dt_basic" class="form-control" id="changeSize">
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
                             <table id="datatable_fixed_column" class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -101,6 +134,23 @@
                                 }
                                  </tbody>
                             </table>
+                            <div class="dt-toolbar-footer">
+                                    <div class="col-xs-12 col-sm-3">
+                                        <div class="dataTables_info" id="dt_basic_info" role="status" aria-live="polite">第 <span class="txt-color-darken">@Model.CurrentPageIndex</span> /<span class="txt-color-darken">@Model.TotalPageCount</span>页，共<span class="text-primary">@Model.TotalItemCount</span> 条记录</div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="datatable_tabletools_paginate">
+                                            @Html.Pager(Model, new PagerOptions
+                            {
+                                PageIndexParameterName = "page",
+                                ShowGoButton = false
+                            },
+                                                 new { @id = "bootstrappager", @class = "pagination pagination-sm" })
+                                        </div>
+                                    </div>
+
+
+                                </div>
                         </div>
                         <!-- end widget content -->
                     </div>
@@ -122,6 +172,6 @@
     </section>
     <!-- end widget grid -->
 </div>
-@section endscripts{
+@section scripts{
    @Scripts.Render("~/scripts/filter-datatables")
 }

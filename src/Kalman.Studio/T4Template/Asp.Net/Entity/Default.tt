@@ -8,24 +8,26 @@
 	string className = host.GetString("ClassName");
 	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
 	if(string.IsNullOrEmpty(className))className = table.Name;
+	string tableName  = table.Name.EndsWith("s") ?table.Name.TrimEnd('s') : table.Name.Trim();
 #>
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-namespace <#= nameSpace #>
+namespace Ebboy.Core.Domain
 {
 	/// <summary>
     /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>
     /// </summary>
 	[Serializable]
-	public partial class <#= className #>
+	public partial class <#= tableName #> : BaseEntity
 	{
 		<# foreach (SOColumn c in list)
 		{ #>/// <summary>
         /// <#= c.Comment == "" ? c.Name : c.Comment.Replace("\r\n"," ") #>
         /// </summary>
+        <#=c.Nullable?"":"[Required]"#>
+        [DisplayName("<#= c.Comment == "" ? c.Name : c.Comment.Replace("\r\n"," ") #>")]
 		public <#= TypeUtil.DbType2TypeString(c.DataType) #> <#= c.Name #> { get; set; }
 		
 		<# } #>
