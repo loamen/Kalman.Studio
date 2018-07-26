@@ -1,17 +1,12 @@
-﻿using System;
+﻿using Kalman.Data;
+using Kalman.Data.SchemaObject;
+using Kalman.Database;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
-using System.Data.Odbc;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Configuration;
-using Kalman.Data;
-using Kalman.Data.SchemaObject;
-using System.Diagnostics;
 
 namespace Kalman.Studio
 {
@@ -33,13 +28,14 @@ namespace Kalman.Studio
         private void cbConnectionStrings_SelectedIndexChanged(object sender, EventArgs e)
         {
             tvDatabase.Nodes.Clear();
+            var dal = new DbConnDAL();
+            var model = dal.FindOne(cbConnectionStrings.SelectedItem.ToString());
 
-            ConnectionStringSettings css = ConfigurationManager.ConnectionStrings[cbConnectionStrings.SelectedItem.ToString()];
-            dbSchema = DbSchemaFactory.Create(css.Name);
+            dbSchema = DbSchemaFactory.Create(model.Name);
             DbSchemaHelper.Instance.CurrentSchema = dbSchema;
 
-            TreeNode root = new TreeNode(css.Name, 0, 0);
-            root.ToolTipText = css.ConnectionString;
+            TreeNode root = new TreeNode(model.Name, 0, 0);
+            root.ToolTipText = model.ConnectionString;
             tvDatabase.Nodes.Add(root);
 
             Main m = this.ParentForm as Main;
@@ -437,14 +433,20 @@ namespace Kalman.Studio
             }
         }
 
-        private void RefreshDatabase()
+        public void RefreshDatabase()
         {
             cbConnectionStrings.Items.Clear();
             tvDatabase.Nodes.Clear();
 
-            foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
+            var dal = new DbConnDAL();
+            //dal.InitData();
+
+            var list = dal.FindAll().ToList();
+            
+            foreach (var item in list)
             {
-                cbConnectionStrings.Items.Add(css.Name);
+                if (item.IsActive)
+                    cbConnectionStrings.Items.Add(item.Name);
             }
         }
     }

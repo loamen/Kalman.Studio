@@ -63,7 +63,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(317, 21);
+            this.btnDelete.Location = new System.Drawing.Point(317, 54);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(41, 23);
             this.btnDelete.TabIndex = 6;
@@ -101,19 +101,24 @@
             "System.Data.SqlClient",
             "MySql.Data.MySqlClient",
             "System.Data.SQLite",
+            "System.Data.Odbc",
             "System.Data.OleDb",
-            "Devart.Data.Oracle",
             "System.Data.OracleClient",
-            "Oracle.ManagedDataAccess.Client"});
-            this.cbProviderName.Location = new System.Drawing.Point(92, 56);
+            "Oracle.ManagedDataAccess.Client",
+            "Devart.Data.Oracle",
+            "DDTek.Oracle",
+            "IBM.Data.DB2",
+            "FirebirdSql.Data.FirebirdClient"});
+            this.cbProviderName.Location = new System.Drawing.Point(92, 21);
             this.cbProviderName.Name = "cbProviderName";
             this.cbProviderName.Size = new System.Drawing.Size(266, 20);
             this.cbProviderName.TabIndex = 3;
+            this.cbProviderName.SelectedIndexChanged += new System.EventHandler(this.cbProviderName_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 60);
+            this.label2.Location = new System.Drawing.Point(20, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 2;
@@ -124,7 +129,7 @@
             this.cbConnectStringName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbConnectStringName.FormattingEnabled = true;
-            this.cbConnectStringName.Location = new System.Drawing.Point(92, 23);
+            this.cbConnectStringName.Location = new System.Drawing.Point(92, 56);
             this.cbConnectStringName.Name = "cbConnectStringName";
             this.cbConnectStringName.Size = new System.Drawing.Size(219, 20);
             this.cbConnectStringName.TabIndex = 1;
@@ -133,7 +138,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 27);
+            this.label1.Location = new System.Drawing.Point(20, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;

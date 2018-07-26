@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,15 @@ namespace Kalman.Studio
             get
             {
                 var fm = (Main)Application.OpenForms["Main"];
+                return fm;
+            }
+        }
+
+        public static DatabaseExplorer DatabaseExplorer
+        {
+            get
+            {
+                var fm = (DatabaseExplorer)Application.OpenForms["DatabaseExplorer"];
                 return fm;
             }
         }

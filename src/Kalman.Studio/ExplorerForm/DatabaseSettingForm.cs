@@ -1,18 +1,14 @@
-﻿using Kalman.Utilities;
+﻿using Kalman.Database;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Kalman.Studio
 {
     public partial class DatabaseSettingForm : Form
     {
+        DbConnDAL dal = new DbConnDAL();
+
         public DatabaseSettingForm()
         {
             InitializeComponent();
@@ -44,11 +40,26 @@ namespace Kalman.Studio
 
             try
             {
-                ConnectionStringUtil.UpdateConnectionString(connectName, connectString, providerName);
+                var model = dal.FindOne(connectName);
+                if(model == null)
+                {
+                    model = new DbConn();
+                    model.ConnectionString = connectString;
+                    model.Name = connectName;
+                    model.ProviderName = providerName;
+
+                    dal.Insert(model);
+                }
+                else
+                {
+                    model.ConnectionString = connectString;
+                    model.Name = connectName;
+                    model.ProviderName = providerName;
+                    dal.Update(model);
+                }
 
                 this.DialogResult = DialogResult.Yes;
-                MessageBox.Show("保存成功，程序将重启！");
-                System.Windows.Forms.Application.Restart();
+                MessageBox.Show("保存成功！");
             }
             catch (Exception ex)
             {
@@ -65,12 +76,11 @@ namespace Kalman.Studio
         private void cbConnectStringName_SelectedIndexChanged(object sender, EventArgs e)
         {
             var item = cbConnectStringName.Text;
-            var connectString = ConnectionStringUtil.GetConnectionString(item.ToString());
-
-            txtConnectString.Text = connectString;
-
-            var providerName = ConnectionStringUtil.GetProviderName(item.ToString());
-            cbProviderName.SelectedItem = providerName;
+            var model = dal.FindOne(item.ToString());
+            if(model  != null) {
+                txtConnectString.Text = model.ConnectionString;
+                cbProviderName.SelectedItem = model.ProviderName;
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -79,8 +89,9 @@ namespace Kalman.Studio
 
             if (!string.IsNullOrEmpty(name))
             {
-                ConnectionStringUtil.RemoveConnectionString(name);
-                RefreshDatabase();
+                var result = dal.Delete(name);
+                this.DialogResult = DialogResult.Yes;
+                MessageBox.Show("删除成功！");
             }
         }
 
@@ -88,9 +99,57 @@ namespace Kalman.Studio
         private void RefreshDatabase()
         {
             cbConnectStringName.Items.Clear();
-            foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
+
+            var list = dal.FindAll().ToList();
+            foreach (var item in list)
             {
-                cbConnectStringName.Items.Add(css.Name);
+                if (item.IsActive)
+                    cbConnectStringName.Items.Add(item.Name);
+            }
+        }
+
+        private void cbProviderName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbConnectStringName.Text = string.Empty;
+
+            switch (cbProviderName.Text)
+            {
+                case "System.Data.SqlClient":
+                    txtConnectString.Text = "server=.;database=loamen;uid=sa;pwd=sa;";
+                    break;
+                case "MySql.Data.MySqlClient":
+                    txtConnectString.Text = "server=localhost;user id=root;password=root;persistsecurityinfo=True;port=3306;database=loamen;SslMode=none";
+                    break;
+                case "System.Data.SQLite":
+                    txtConnectString.Text = @"Data Source=D:\data\sqlite3\loamen.s3db;Version=3;";
+                    break;
+                case "System.Data.Odbc":
+                    txtConnectString.Text = @"Driver={SQL Server};Server=(local);Trusted_Connection=Yes;Database=loamen;";
+                    break;
+                case "System.Data.OleDb":
+                    txtConnectString.Text = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=d:\loamnen.mdb;User Id=admin;Password=;";
+                    break;
+                case "Devart.Data.Oracle":
+                    txtConnectString.Text = "Data Source=orcl;User ID=sa;Password=sa;";
+                    break;
+                case "Oracle.ManagedDataAccess.Client":
+                    txtConnectString.Text = "User Id=root ;Password=root;Data Source=loamen";
+                    break;
+                case "System.Data.OracleClient":
+                    txtConnectString.Text = "Data Source=Oracle8i;Integrated Security=yes";
+                    break;
+                case "DDTek.Oracle":
+                    txtConnectString.Text = "Host=127.0.0.1;Port=1521;User ID=root;Password=root;Service Name=loamen";
+                    break;
+                case "IBM.Data.DB2":
+                    txtConnectString.Text = "Server=localhost:8081;Database=loamen;UID=root;PWD=root;";
+                    break;
+                case "FirebirdSql.Data.FirebirdClient":
+                    txtConnectString.Text = "User=SYSDBA;Password=masterkey;Database=SampleDatabase.fdb;DataSource=localhost;Port=3050;Dialect=3;Charset=NONE;Role=;Connection lifetime=15;Pooling=true;MinPoolSize=0;MaxPoolSize=50;Packet Size=8192;ServerType=0;";
+                    break;
+                default:
+                    txtConnectString.Text = "";
+                    break;
             }
         }
     }

@@ -9,6 +9,7 @@ using System.Data.Common;
 using System.Data;
 using System.Data.OleDb;
 using System.Reflection;
+using Kalman.Database;
 
 namespace Kalman.Data
 {
@@ -25,12 +26,14 @@ namespace Kalman.Data
         public static Database Create(string connectionStringName)
         {
             CheckUtil.ArgumentNotNullOrEmpty(connectionStringName, "connectionStringName");
+            DbConnDAL dal = new DbConnDAL();
 
-            ConnectionStringSettings css = ConfigurationManager.ConnectionStrings[connectionStringName];
-            if (css == null) throw new Exception(string.Format(Resources.Data.ConnectionStringNameNotFound, connectionStringName));
+            var model = dal.FindOne(connectionStringName);
+            
+            if (model == null) throw new Exception(string.Format(Resources.Data.ConnectionStringNameNotFound, connectionStringName));
 
-            string connectionString = css.ConnectionString;
-            string providerName = css.ProviderName;
+            string connectionString = model.ConnectionString;
+            string providerName = model.ProviderName;
             Database db = new SqlServerDatabase(connectionString);
             DbProviderFactory providerFactory = null;
 
