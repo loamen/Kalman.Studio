@@ -291,6 +291,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
     <Compile Include="ExplorerForm\DatabaseSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>

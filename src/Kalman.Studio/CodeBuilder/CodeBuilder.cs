@@ -13,6 +13,7 @@ using Microsoft.VisualStudio.TextTemplating;
 using Kalman.Studio.T4TemplateEngineHost;
 using System.CodeDom.Compiler;
 using Kalman.Data.SchemaObject;
+using System.Diagnostics;
 
 namespace Kalman.Studio
 {
@@ -169,6 +170,7 @@ namespace Kalman.Studio
 
         public void DoBuildCode()
         {
+            Config.MainForm.SetStatusText("正在生成代码...");
             textEditorControl1.SaveFile(gbTemplateFile.Text);
 
             TableHost host = new TableHost();
@@ -188,7 +190,9 @@ namespace Kalman.Studio
 
             host.ColumnList = columnList;
             Engine engine = new Engine();
-            string outputContent = engine.ProcessTemplate(File.ReadAllText(host.TemplateFile), host);
+            var sw = new Stopwatch();
+            var content = File.ReadAllText(host.TemplateFile);
+            string outputContent = engine.ProcessTemplate(content, host);
 
             StringBuilder sb = new StringBuilder();
             if (host.ErrorCollection.HasErrors)
@@ -203,6 +207,8 @@ namespace Kalman.Studio
             textEditorControl2.Text = outputContent;
             tabControl1.SelectedTab = tabPage2;
             textEditorControl2.Refresh();
+
+            Config.MainForm.SetStatusText();
         }
 
         #region SetDocumentCodeType
@@ -362,7 +368,7 @@ namespace Kalman.Studio
 
         private void menuItemBuildCode_Click(object sender, EventArgs e)
         {
-            DoBuildCode();
+            DoBuildCode();  
         }
 
         private void CodeBuilder_FormClosing(object sender, FormClosingEventArgs e)

@@ -21,6 +21,7 @@ namespace Kalman.Studio
         CodeExplorer codeExplorer = new CodeExplorer();
         TemplateExplorer templateExplorer = new TemplateExplorer();
         PdmExplorer pdmExplorer = new PdmExplorer();
+        private delegate void DelegateSet(string text);
 
         public Main()
         {
@@ -34,6 +35,8 @@ namespace Kalman.Studio
 
             output.Show(dockPanel);
             dbExplorer.Show(dockPanel);
+
+            Text = Text + @" v" + Application.ProductVersion;
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -365,16 +368,15 @@ namespace Kalman.Studio
         }
         public void ShowOutput()
         {
-            if (menuItemOutput.Checked == false)
+            if (!menuItemOutput.Checked)
             {
-                output.Show(dockPanel);
-                menuItemOutput.Checked = true;
+                output.Show(dockPanel, DockState.DockBottomAutoHide);
             }
             else
             {
                 output.Hide();
-                menuItemOutput.Checked = false;
             }
+            menuItemOutput.Checked = !menuItemOutput.Checked;
         }
         #endregion
 
@@ -472,7 +474,7 @@ namespace Kalman.Studio
 
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
-            //(new About()).ShowDialog();
+            (new About()).ShowDialog();
         }
 
         #endregion
@@ -624,11 +626,41 @@ namespace Kalman.Studio
 
         #endregion
 
-        private void menuItemAbout_Click_1(object sender, EventArgs e)
+        #region 状态栏
+
+        private void tsslStatus_TextChanged(object sender, EventArgs e)
         {
-            (new About()).ShowDialog();
+            tsslLoading.Visible = tsslStatus.Text != "就绪" && !string.IsNullOrEmpty(tsslStatus.Text);
+            tsslStatus.Spring = true;
         }
 
-        
+        /// <summary>
+        ///     设置状态
+        /// </summary>
+        /// <param name="text"></param>
+        public void SetStatusText(string text = null)
+        {
+            DelegateSet set = DelegateSetStatusText;
+            Invoke(set, new object[] { text });
+        }
+
+        /// <summary>
+        ///     显示状态栏文字委托
+        /// </summary>
+        /// <param name="text"></param>
+        private void DelegateSetStatusText(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                text = "就绪";
+            }
+            tsslStatus.Text = text;
+            if (WindowState == FormWindowState.Minimized)
+            {
+                //notifyIconMain.Text = text;
+            }
+        }
+
+        #endregion
     }
 }
