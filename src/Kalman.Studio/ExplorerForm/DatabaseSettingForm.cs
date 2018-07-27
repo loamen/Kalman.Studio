@@ -8,6 +8,7 @@ namespace Kalman.Studio
     public partial class DatabaseSettingForm : Form
     {
         DbConnDAL dal = new DbConnDAL();
+        bool ConnectStringChanged = false;
 
         public DatabaseSettingForm()
         {
@@ -78,6 +79,7 @@ namespace Kalman.Studio
             var item = cbConnectStringName.Text;
             var model = dal.FindOne(item.ToString());
             if(model  != null) {
+                ConnectStringChanged = true;
                 txtConnectString.Text = model.ConnectionString;
                 cbProviderName.SelectedItem = model.ProviderName;
             }
@@ -110,6 +112,12 @@ namespace Kalman.Studio
 
         private void cbProviderName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ConnectStringChanged)
+            {
+                ConnectStringChanged = false;
+                return;
+            }
+
             cbConnectStringName.Text = string.Empty;
 
             switch (cbProviderName.Text)

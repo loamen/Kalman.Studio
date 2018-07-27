@@ -258,7 +258,22 @@ namespace Kalman.Studio
             List<SOColumn> list = dbSchema.GetTableColumnList(table);
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("SELECT TOP (1000) ");
+
+            string databaseType = string.Empty;
+            if (tn.Level == 3)
+            {
+                var tag = (SODatabase)tn.Parent.Parent.Tag;
+                databaseType = tag.Parent.DbProvider.DatabaseType.ToString();
+            }
+
+            if (databaseType == "SqlServer" || databaseType == "OleDb")
+            {
+                sb.AppendLine("SELECT TOP 1000 ");
+            }
+            else
+            {
+                sb.AppendLine("SELECT ");
+            }
             for (int i = 0; i < list.Count; i++)
             {
                 if (i != list.Count - 1)
@@ -268,6 +283,12 @@ namespace Kalman.Studio
             }
             sb.AppendLine("FROM ");
             sb.AppendLine(string.Format("   {1}", sb.ToString().TrimEnd(','), table.FullName));
+
+
+            if (databaseType != "SqlServer" && databaseType != "OleDb")
+            {
+                sb.AppendLine(" limit 1000 ");
+            }
 
             NewQuery(table.Database, sb.ToString());
         }
