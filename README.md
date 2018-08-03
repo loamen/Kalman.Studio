@@ -6,10 +6,10 @@ QQ群：122161138
 
 [![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/phachon/mm-wiki/) 
 [![build](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)](https://travis-ci.org/phachon/mm-wiki)
-[![license](http://img.shields.io/badge/license-LGPL-red.svg?style=flat)](https://raw.githubusercontent.com/phachon/mm-wiki/master/LICENSE)
+[![license](http://img.shields.io/badge/license-LGPL-red.svg?style=flat)](https://raw.githubusercontent.com/loamen/Kalman.Studio/master/LICENSE)
 [![platforms](https://img.shields.io/badge/platform-Windows-yellow.svg?style=flat)]()
-[![download_count](https://img.shields.io/github/downloads/loamen/Kalman.Studio/total.svg?style=plastic)](https://github.com/phachon/mm-wiki/releases) 
-[![release](https://img.shields.io/github/release/loamen/Kalman.Studio.svg?style=flat)](https://github.com/phachon/mm-wiki/releases) 
+[![download_count](https://img.shields.io/github/downloads/loamen/Kalman.Studio/total.svg?style=plastic)](https://github.com/loamen/Kalman.Studio/releases) 
+[![release](https://img.shields.io/github/release/loamen/Kalman.Studio.svg?style=flat)](https://github.com/loamen/Kalman.Studio/releases) 
 
 ## 软件主要功能如下：
 
