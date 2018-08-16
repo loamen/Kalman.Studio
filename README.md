@@ -4,8 +4,8 @@
 作者博客：http://www.cnblogs.com/lingyun_k
 QQ群：122161138
 
-[![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/phachon/mm-wiki/) 
-[![build](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)](https://travis-ci.org/phachon/mm-wiki)
+[![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/loamen/Kalman.Studio/) 
+[![build](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)](https://travis-ci.org/loamen/Kalman.Studio)
 [![license](http://img.shields.io/badge/license-LGPL-red.svg?style=flat)](https://raw.githubusercontent.com/loamen/Kalman.Studio/master/LICENSE)
 [![platforms](https://img.shields.io/badge/platform-Windows-yellow.svg?style=flat)]()
 [![download_count](https://img.shields.io/github/downloads/loamen/Kalman.Studio/total.svg?style=plastic)](https://github.com/loamen/Kalman.Studio/releases) 
