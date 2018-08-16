@@ -11,6 +11,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using WeifenLuo.WinFormsUI.Docking;
 using Kalman.Data;
+using Kalman.Database;
 
 namespace Kalman.Studio
 {
@@ -23,11 +24,17 @@ namespace Kalman.Studio
 
         private void DbSchemaViewer_Load(object sender, EventArgs e)
         {
-            foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
+            var dal = new DbConnDAL();
+            //dal.InitData();
+
+            var list = dal.FindAll().ToList();
+
+            foreach (var item in list)
             {
-                cbConnectionStrings.Items.Add(css.Name);
+                if (item.IsActive)
+                    cbConnectionStrings.Items.Add(item.Name);
             }
-            
+
             cbSchemaName.DataSource = new string[]{
                                                     "MetaDataCollections",
                                                     "Databases",

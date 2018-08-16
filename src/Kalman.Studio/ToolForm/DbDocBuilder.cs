@@ -10,6 +10,7 @@ using System.Configuration;
 using Kalman.Command;
 using Kalman.Data;
 using Kalman.Data.SchemaObject;
+using Kalman.Database;
 
 namespace Kalman.Studio
 {
@@ -33,9 +34,15 @@ namespace Kalman.Studio
 
         private void DbDocBuilder_Load(object sender, EventArgs e)
         {
-            foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
+            var dal = new DbConnDAL();
+            //dal.InitData();
+
+            var list = dal.FindAll().ToList();
+
+            foreach (var item in list)
             {
-                cbConnectionStrings.Items.Add(css.Name);
+                if (item.IsActive)
+                    cbConnectionStrings.Items.Add(item.Name);
             }
 
             if (string.IsNullOrEmpty(CSName) == false)
@@ -50,8 +57,11 @@ namespace Kalman.Studio
         //改变连接
         void ChangeConnection(string csName)
         {
-            ConnectionStringSettings css = ConfigurationManager.ConnectionStrings[csName];
-            currentSchema = DbSchemaFactory.Create(css.Name);
+            DbConnDAL dal = new DbConnDAL();
+
+            var model = dal.FindOne(csName);
+
+            currentSchema = DbSchemaFactory.Create(model.Name);
 
             List<SODatabase> dbList = currentSchema.GetDatabaseList();
             cbDatabase.Items.Clear();

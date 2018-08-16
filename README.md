@@ -1,7 +1,8 @@
 # Kalman.Studio
-开发辅助工具，内置基于T4的代码生成器。
+开发辅助工具，自动代码生成器，内置基于T4的代码生成器。
 
 作者博客：http://www.cnblogs.com/lingyun_k
+
 QQ群：122161138
 
 [![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/loamen/Kalman.Studio/) 
@@ -29,6 +30,11 @@ QQ群：122161138
 ![软件界面](Documents/Images/readme_2.jpg)
 
 ## 二、更新日志
+
+2018-08-16
+
+	* 修正数据库架构查看器；
+	* 修正数据库文档生成器；
 
 2018-07-25
 
