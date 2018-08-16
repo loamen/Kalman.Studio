@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Kalman.Studio")]
 [assembly: AssemblyDescription(".Net平台开发辅助工具")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Kalman")]
+[assembly: AssemblyCompany("Loamen")]
 [assembly: AssemblyProduct("Kalman.Studio")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
-[assembly: AssemblyTrademark("Kalman")]
+[assembly: AssemblyCopyright("Copyright ©loamen.com  2013-2018")]
+[assembly: AssemblyTrademark("Loamen")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.2.1.*")]
-[assembly: AssemblyFileVersion("2.2.1")]
+[assembly: AssemblyVersion("2.2.2.*")]
+[assembly: AssemblyFileVersion("2.2.2")]

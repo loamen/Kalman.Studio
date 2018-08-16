@@ -79,6 +79,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Kalman.Studio.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Aspose.Cells, Version=18.7.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.Cells.18.7.0\lib\net40\Aspose.Cells.dll</HintPath>

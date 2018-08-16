@@ -101,6 +101,10 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.tsmiIssu = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHomePage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDownload = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -613,48 +617,52 @@
             // menuItemDbSchemaViewer
             // 
             this.menuItemDbSchemaViewer.Name = "menuItemDbSchemaViewer";
-            this.menuItemDbSchemaViewer.Size = new System.Drawing.Size(175, 22);
+            this.menuItemDbSchemaViewer.Size = new System.Drawing.Size(180, 22);
             this.menuItemDbSchemaViewer.Text = "数据库架构查看器";
             this.menuItemDbSchemaViewer.Click += new System.EventHandler(this.menuItemDbSchemaViewer_Click);
             // 
             // menuItemDbDocBuilder
             // 
             this.menuItemDbDocBuilder.Name = "menuItemDbDocBuilder";
-            this.menuItemDbDocBuilder.Size = new System.Drawing.Size(175, 22);
+            this.menuItemDbDocBuilder.Size = new System.Drawing.Size(180, 22);
             this.menuItemDbDocBuilder.Text = "数据库文档生成器";
             this.menuItemDbDocBuilder.Click += new System.EventHandler(this.menuItemDbDocBuilder_Click);
             // 
             // menuItemWebSubmitter
             // 
             this.menuItemWebSubmitter.Name = "menuItemWebSubmitter";
-            this.menuItemWebSubmitter.Size = new System.Drawing.Size(175, 22);
+            this.menuItemWebSubmitter.Size = new System.Drawing.Size(180, 22);
             this.menuItemWebSubmitter.Text = "Web客户端模拟器";
             this.menuItemWebSubmitter.Click += new System.EventHandler(this.menuItemWebSubmitter_Click);
             // 
             // menuItemIisLogParser
             // 
             this.menuItemIisLogParser.Name = "menuItemIisLogParser";
-            this.menuItemIisLogParser.Size = new System.Drawing.Size(175, 22);
+            this.menuItemIisLogParser.Size = new System.Drawing.Size(180, 22);
             this.menuItemIisLogParser.Text = "IIS日志解析器";
             this.menuItemIisLogParser.Click += new System.EventHandler(this.menuItemIisLogParser_Click);
             // 
             // menuItemStringConnector
             // 
             this.menuItemStringConnector.Name = "menuItemStringConnector";
-            this.menuItemStringConnector.Size = new System.Drawing.Size(175, 22);
+            this.menuItemStringConnector.Size = new System.Drawing.Size(180, 22);
             this.menuItemStringConnector.Text = "字符串拼接工具";
             this.menuItemStringConnector.Click += new System.EventHandler(this.menuItemStringConnector_Click);
             // 
             // menuItemStringConverter
             // 
             this.menuItemStringConverter.Name = "menuItemStringConverter";
-            this.menuItemStringConverter.Size = new System.Drawing.Size(175, 22);
+            this.menuItemStringConverter.Size = new System.Drawing.Size(180, 22);
             this.menuItemStringConverter.Text = "字符串转换工具";
             this.menuItemStringConverter.Click += new System.EventHandler(this.menuItemStringConverter_Click);
             // 
             // menuItemHelp
             // 
             this.menuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiHomePage,
+            this.tsmiIssu,
+            this.tsmiDownload,
+            this.toolStripMenuItem1,
             this.menuItemAbout});
             this.menuItemHelp.Name = "menuItemHelp";
             this.menuItemHelp.Size = new System.Drawing.Size(61, 21);
@@ -663,8 +671,8 @@
             // menuItemAbout
             // 
             this.menuItemAbout.Name = "menuItemAbout";
-            this.menuItemAbout.Size = new System.Drawing.Size(188, 22);
-            this.menuItemAbout.Text = "关于 Kalman Studio";
+            this.menuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.menuItemAbout.Text = "关于";
             this.menuItemAbout.Click += new System.EventHandler(this.menuItemAbout_Click);
             // 
             // menuStripMain
@@ -720,6 +728,32 @@
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
+            // 
+            // tsmiIssu
+            // 
+            this.tsmiIssu.Name = "tsmiIssu";
+            this.tsmiIssu.Size = new System.Drawing.Size(188, 22);
+            this.tsmiIssu.Text = "问题反馈";
+            this.tsmiIssu.Click += new System.EventHandler(this.tsmiIssu_Click);
+            // 
+            // tsmiHomePage
+            // 
+            this.tsmiHomePage.Name = "tsmiHomePage";
+            this.tsmiHomePage.Size = new System.Drawing.Size(188, 22);
+            this.tsmiHomePage.Text = "官方主页";
+            this.tsmiHomePage.Click += new System.EventHandler(this.tsmiHomePage_Click);
+            // 
+            // tsmiDownload
+            // 
+            this.tsmiDownload.Name = "tsmiDownload";
+            this.tsmiDownload.Size = new System.Drawing.Size(188, 22);
+            this.tsmiDownload.Text = "检查更新";
+            this.tsmiDownload.Click += new System.EventHandler(this.tsmiDownload_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
             // 
             // Main
             // 
@@ -822,5 +856,9 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslLoading;
         public System.Windows.Forms.ToolStripStatusLabel tsslStatus;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHomePage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiIssu;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDownload;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }

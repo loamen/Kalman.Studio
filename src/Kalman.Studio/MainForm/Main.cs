@@ -10,6 +10,7 @@ using System.Net;
 using WeifenLuo.WinFormsUI.Docking;
 using System.IO;
 using Kalman.Data.SchemaObject;
+using System.Diagnostics;
 
 namespace Kalman.Studio
 {
@@ -477,6 +478,20 @@ namespace Kalman.Studio
             (new About()).ShowDialog();
         }
 
+        private void tsmiHomePage_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/loamen/Kalman.Studio");
+        }
+
+        private void tsmiIssu_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/loamen/Kalman.Studio/issues");
+        }
+
+        private void tsmiDownload_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/loamen/Kalman.Studio/releases");
+        }
         #endregion
 
         #region 工具栏命令事件处理
@@ -662,5 +677,6 @@ namespace Kalman.Studio
         }
 
         #endregion
+
     }
 }
