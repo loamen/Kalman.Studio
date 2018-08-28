@@ -126,6 +126,7 @@ namespace Kalman.Studio
                 if (content is DockExplorer) continue;
                 if (!content.DockHandler.IsActivated)
                 {
+                    if (content is StartForm) continue;
                     //if (content is DockToolWindow) content.DockHandler.Hide();
                     //else content.DockHandler.Close();
 
@@ -142,7 +143,7 @@ namespace Kalman.Studio
                 if (dockPanel.Contents[i] is IDockContent)
                 {
                     IDockContent content = (IDockContent)dockPanel.Contents[i];
-                    if (content is DockExplorer) continue;
+                    if (content is DockExplorer || content is StartForm) continue;
 
                     //if (content is DockToolWindow) content.DockHandler.Hide();
                     //else content.DockHandler.Close();

@@ -10,6 +10,8 @@ namespace Kalman.Studio
 {
     public class Config
     {
+        public const string HOME_PAGE = "http://www.loamen.com";
+
         public static Main MainForm
         {
             get

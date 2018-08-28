@@ -304,6 +304,19 @@
     <Compile Include="ExplorerForm\DatabaseSettingForm.Designer.cs">
       <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Library\WebBrowserEx.cs" />
+    <Compile Include="MainForm\StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForm\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForm\StringConvertor\String_Random.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -545,6 +558,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExplorerForm\TemplateExplorer.resx">
       <DependentUpon>TemplateExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForm\StringConvertor\String_Guid.resx">
       <DependentUpon>String_Guid.cs</DependentUpon>

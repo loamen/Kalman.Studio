@@ -11,12 +11,14 @@ using WeifenLuo.WinFormsUI.Docking;
 using System.IO;
 using Kalman.Data.SchemaObject;
 using System.Diagnostics;
+using Kalman.Studio.ToolForm;
 
 namespace Kalman.Studio
 {
     public partial class Main : Form
     {
         DatabaseExplorer dbExplorer = new DatabaseExplorer();
+        StartForm startForm = new StartForm();
         Output output = new Output();
         //DbSchemaViewer viewer = new DbSchemaViewer();
         CodeExplorer codeExplorer = new CodeExplorer();
@@ -34,6 +36,7 @@ namespace Kalman.Studio
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
+            startForm.Show(dockPanel);
             output.Show(dockPanel);
             dbExplorer.Show(dockPanel);
 
@@ -469,6 +472,11 @@ namespace Kalman.Studio
             convertor.ShowDialog();
         }
 
+        private void tsmiSettings_Click(object sender, EventArgs e)
+        {
+            SettingForm settingForm = new SettingForm();
+            settingForm.ShowDialog();
+        }
         #endregion
 
         #region 帮助菜单项事件处理
@@ -677,6 +685,5 @@ namespace Kalman.Studio
         }
 
         #endregion
-
     }
 }

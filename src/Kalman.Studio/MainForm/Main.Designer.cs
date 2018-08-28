@@ -95,16 +95,18 @@
             this.menuItemStringConnector = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemStringConverter = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHomePage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiIssu = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDownload = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.MainStatusBar = new System.Windows.Forms.StatusStrip();
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.tsmiIssu = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiHomePage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDownload = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -609,7 +611,9 @@
             this.menuItemWebSubmitter,
             this.menuItemIisLogParser,
             this.menuItemStringConnector,
-            this.menuItemStringConverter});
+            this.menuItemStringConverter,
+            this.toolStripMenuItem2,
+            this.tsmiSettings});
             this.menuItemTools.Name = "menuItemTools";
             this.menuItemTools.Size = new System.Drawing.Size(59, 21);
             this.menuItemTools.Text = "工具(&T)";
@@ -668,10 +672,36 @@
             this.menuItemHelp.Size = new System.Drawing.Size(61, 21);
             this.menuItemHelp.Text = "帮助(&H)";
             // 
+            // tsmiHomePage
+            // 
+            this.tsmiHomePage.Name = "tsmiHomePage";
+            this.tsmiHomePage.Size = new System.Drawing.Size(124, 22);
+            this.tsmiHomePage.Text = "官方主页";
+            this.tsmiHomePage.Click += new System.EventHandler(this.tsmiHomePage_Click);
+            // 
+            // tsmiIssu
+            // 
+            this.tsmiIssu.Name = "tsmiIssu";
+            this.tsmiIssu.Size = new System.Drawing.Size(124, 22);
+            this.tsmiIssu.Text = "问题反馈";
+            this.tsmiIssu.Click += new System.EventHandler(this.tsmiIssu_Click);
+            // 
+            // tsmiDownload
+            // 
+            this.tsmiDownload.Name = "tsmiDownload";
+            this.tsmiDownload.Size = new System.Drawing.Size(124, 22);
+            this.tsmiDownload.Text = "检查更新";
+            this.tsmiDownload.Click += new System.EventHandler(this.tsmiDownload_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(121, 6);
+            // 
             // menuItemAbout
             // 
             this.menuItemAbout.Name = "menuItemAbout";
-            this.menuItemAbout.Size = new System.Drawing.Size(180, 22);
+            this.menuItemAbout.Size = new System.Drawing.Size(124, 22);
             this.menuItemAbout.Text = "关于";
             this.menuItemAbout.Click += new System.EventHandler(this.menuItemAbout_Click);
             // 
@@ -729,31 +759,17 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
-            // tsmiIssu
+            // toolStripMenuItem2
             // 
-            this.tsmiIssu.Name = "tsmiIssu";
-            this.tsmiIssu.Size = new System.Drawing.Size(188, 22);
-            this.tsmiIssu.Text = "问题反馈";
-            this.tsmiIssu.Click += new System.EventHandler(this.tsmiIssu_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
-            // tsmiHomePage
+            // tsmiSettings
             // 
-            this.tsmiHomePage.Name = "tsmiHomePage";
-            this.tsmiHomePage.Size = new System.Drawing.Size(188, 22);
-            this.tsmiHomePage.Text = "官方主页";
-            this.tsmiHomePage.Click += new System.EventHandler(this.tsmiHomePage_Click);
-            // 
-            // tsmiDownload
-            // 
-            this.tsmiDownload.Name = "tsmiDownload";
-            this.tsmiDownload.Size = new System.Drawing.Size(188, 22);
-            this.tsmiDownload.Text = "检查更新";
-            this.tsmiDownload.Click += new System.EventHandler(this.tsmiDownload_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
+            this.tsmiSettings.Name = "tsmiSettings";
+            this.tsmiSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmiSettings.Text = "选项";
+            this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
             // Main
             // 
@@ -860,5 +876,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiIssu;
         private System.Windows.Forms.ToolStripMenuItem tsmiDownload;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
     }
 }
