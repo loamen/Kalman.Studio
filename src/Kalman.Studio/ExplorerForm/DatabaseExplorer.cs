@@ -121,11 +121,16 @@ namespace Kalman.Studio
         //解决右键点击节点定位的问题
         private void tvDatabase_MouseClick(object sender, MouseEventArgs e)
         {
+            TreeView tv = sender as TreeView;
+            TreeNode tn = tv.GetNodeAt(e.X, e.Y);
+
             if (e.Button == MouseButtons.Right)
             {
-                TreeView tv = sender as TreeView;
-                TreeNode tn = tv.GetNodeAt(e.X, e.Y);
                 tv.SelectedNode = tn;
+            }
+            else
+            {
+                Config.MainForm.toolItemDbList.Text= tn.Text;
             }
         }
 

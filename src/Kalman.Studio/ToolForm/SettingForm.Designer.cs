@@ -31,14 +31,14 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageGeneral = new System.Windows.Forms.TabPage();
             this.tabPageGo = new System.Windows.Forms.TabPage();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.lblGoRoot = new System.Windows.Forms.Label();
-            this.txtGoRoot = new System.Windows.Forms.TextBox();
-            this.txtGoBin = new System.Windows.Forms.TextBox();
-            this.lblGoBin = new System.Windows.Forms.Label();
             this.txtGoPath = new System.Windows.Forms.TextBox();
             this.lblGoPath = new System.Windows.Forms.Label();
+            this.txtGoBin = new System.Windows.Forms.TextBox();
+            this.lblGoBin = new System.Windows.Forms.Label();
+            this.txtGoRoot = new System.Windows.Forms.TextBox();
+            this.lblGoRoot = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageGo.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,54 @@
             this.tabPageGo.Text = "GO设置";
             this.tabPageGo.UseVisualStyleBackColor = true;
             // 
+            // txtGoPath
+            // 
+            this.txtGoPath.Location = new System.Drawing.Point(66, 67);
+            this.txtGoPath.Name = "txtGoPath";
+            this.txtGoPath.Size = new System.Drawing.Size(241, 21);
+            this.txtGoPath.TabIndex = 5;
+            // 
+            // lblGoPath
+            // 
+            this.lblGoPath.AutoSize = true;
+            this.lblGoPath.Location = new System.Drawing.Point(7, 71);
+            this.lblGoPath.Name = "lblGoPath";
+            this.lblGoPath.Size = new System.Drawing.Size(47, 12);
+            this.lblGoPath.TabIndex = 4;
+            this.lblGoPath.Text = "GOPATH:";
+            // 
+            // txtGoBin
+            // 
+            this.txtGoBin.Location = new System.Drawing.Point(66, 37);
+            this.txtGoBin.Name = "txtGoBin";
+            this.txtGoBin.Size = new System.Drawing.Size(241, 21);
+            this.txtGoBin.TabIndex = 3;
+            // 
+            // lblGoBin
+            // 
+            this.lblGoBin.AutoSize = true;
+            this.lblGoBin.Location = new System.Drawing.Point(7, 41);
+            this.lblGoBin.Name = "lblGoBin";
+            this.lblGoBin.Size = new System.Drawing.Size(41, 12);
+            this.lblGoBin.TabIndex = 2;
+            this.lblGoBin.Text = "GOBIN:";
+            // 
+            // txtGoRoot
+            // 
+            this.txtGoRoot.Location = new System.Drawing.Point(66, 7);
+            this.txtGoRoot.Name = "txtGoRoot";
+            this.txtGoRoot.Size = new System.Drawing.Size(241, 21);
+            this.txtGoRoot.TabIndex = 1;
+            // 
+            // lblGoRoot
+            // 
+            this.lblGoRoot.AutoSize = true;
+            this.lblGoRoot.Location = new System.Drawing.Point(7, 11);
+            this.lblGoRoot.Name = "lblGoRoot";
+            this.lblGoRoot.Size = new System.Drawing.Size(47, 12);
+            this.lblGoRoot.TabIndex = 0;
+            this.lblGoRoot.Text = "GOROOT:";
+            // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -103,54 +151,6 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // lblGoRoot
-            // 
-            this.lblGoRoot.AutoSize = true;
-            this.lblGoRoot.Location = new System.Drawing.Point(7, 11);
-            this.lblGoRoot.Name = "lblGoRoot";
-            this.lblGoRoot.Size = new System.Drawing.Size(47, 12);
-            this.lblGoRoot.TabIndex = 0;
-            this.lblGoRoot.Text = "GOROOT:";
-            // 
-            // txtGoRoot
-            // 
-            this.txtGoRoot.Location = new System.Drawing.Point(66, 7);
-            this.txtGoRoot.Name = "txtGoRoot";
-            this.txtGoRoot.Size = new System.Drawing.Size(241, 21);
-            this.txtGoRoot.TabIndex = 1;
-            // 
-            // txtGoBin
-            // 
-            this.txtGoBin.Location = new System.Drawing.Point(66, 37);
-            this.txtGoBin.Name = "txtGoBin";
-            this.txtGoBin.Size = new System.Drawing.Size(241, 21);
-            this.txtGoBin.TabIndex = 3;
-            // 
-            // lblGoBin
-            // 
-            this.lblGoBin.AutoSize = true;
-            this.lblGoBin.Location = new System.Drawing.Point(7, 41);
-            this.lblGoBin.Name = "lblGoBin";
-            this.lblGoBin.Size = new System.Drawing.Size(41, 12);
-            this.lblGoBin.TabIndex = 2;
-            this.lblGoBin.Text = "GOBIN:";
-            // 
-            // txtGoPath
-            // 
-            this.txtGoPath.Location = new System.Drawing.Point(66, 67);
-            this.txtGoPath.Name = "txtGoPath";
-            this.txtGoPath.Size = new System.Drawing.Size(241, 21);
-            this.txtGoPath.TabIndex = 5;
-            // 
-            // lblGoPath
-            // 
-            this.lblGoPath.AutoSize = true;
-            this.lblGoPath.Location = new System.Drawing.Point(7, 71);
-            this.lblGoPath.Name = "lblGoPath";
-            this.lblGoPath.Size = new System.Drawing.Size(47, 12);
-            this.lblGoPath.TabIndex = 4;
-            this.lblGoPath.Text = "GOROOT:";
             // 
             // SettingForm
             // 

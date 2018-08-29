@@ -11,24 +11,30 @@ namespace Kalman.Command
     public class CmdHelper
     {
         /// <summary>
-        /// 调用cmd.exe执行一条命令
+        /// /调用cmd.exe执行一条命令
         /// </summary>
-        /// <param name="commandText"></param>
+        /// <param name="cmdText"></param>
+        /// <param name="workingDirectory"></param>
         /// <returns></returns>
-        public static string Execute(string cmdText)
+        public static string Execute(string cmdText,string workingDirectory = null)
         {
-            return Execute(new string[] { cmdText });
+            return Execute(new string[] { cmdText }, workingDirectory);
         }
-        
+
         /// <summary>
         /// 调用cmd.exe执行多条命令
         /// </summary>
         /// <param name="cmdTexts"></param>
+        /// <param name="workingDirectory"></param>
         /// <returns></returns>
-        public static string Execute(string[] cmdTexts)
+        public static string Execute(string[] cmdTexts,string workingDirectory = null)
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
+            if (!string.IsNullOrEmpty(workingDirectory))
+            {
+                p.StartInfo.WorkingDirectory = workingDirectory;
+            }
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
@@ -43,7 +49,6 @@ namespace Kalman.Command
                 {
                     p.StandardInput.WriteLine(item);
                 }
-
                 p.StandardInput.WriteLine("exit");
                 output = p.StandardOutput.ReadToEnd();
                 //strOutput = Encoding.UTF8.GetString(Encoding.Default.GetBytes(strOutput));

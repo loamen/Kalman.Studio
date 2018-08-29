@@ -92,6 +92,24 @@ namespace Kalman.Studio
                 menuItemSaveAs.Enabled = (dockPanel.DocumentsCount > 0);
             }
         }
+        #region 新建项目
+        /// <summary>
+        /// 新建Beego项目
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmiCreateBeegoProject_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(toolItemDbList.Text.Trim()))
+            {
+                MessageBox.Show("请先选择数据库！");
+                return;
+            }
+
+            BeegoProjectCodeBuilder beegoProjectCodeBuilder = new BeegoProjectCodeBuilder();
+            beegoProjectCodeBuilder.ShowDialog();
+        }
+        #endregion
 
         #region 新建文档
 
@@ -685,5 +703,7 @@ namespace Kalman.Studio
         }
 
         #endregion
+
+ 
     }
 }

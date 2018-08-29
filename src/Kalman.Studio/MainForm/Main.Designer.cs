@@ -48,8 +48,12 @@
             this.toolItemBuildCodeSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolItemExit = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
+            this.toolComboBox_DB = new System.Windows.Forms.ToolStripComboBox();
+            this.toolComboBox_Table = new System.Windows.Forms.ToolStripComboBox();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCreateBeegoProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemNewAspx = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNewCpp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNewCSharp = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +98,8 @@
             this.menuItemIisLogParser = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemStringConnector = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemStringConverter = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHomePage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiIssu = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,8 +111,6 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -240,7 +244,7 @@
             this.toolItemBuildCode.Image = ((System.Drawing.Image)(resources.GetObject("toolItemBuildCode.Image")));
             this.toolItemBuildCode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolItemBuildCode.Name = "toolItemBuildCode";
-            this.toolItemBuildCode.Size = new System.Drawing.Size(76, 22);
+            this.toolItemBuildCode.Size = new System.Drawing.Size(76, 26);
             this.toolItemBuildCode.Text = "生成代码";
             this.toolItemBuildCode.Visible = false;
             this.toolItemBuildCode.Click += new System.EventHandler(this.toolItemBuildCode_Click);
@@ -248,7 +252,7 @@
             // toolItemBuildCodeSeparator
             // 
             this.toolItemBuildCodeSeparator.Name = "toolItemBuildCodeSeparator";
-            this.toolItemBuildCodeSeparator.Size = new System.Drawing.Size(6, 25);
+            this.toolItemBuildCodeSeparator.Size = new System.Drawing.Size(6, 29);
             this.toolItemBuildCodeSeparator.Visible = false;
             // 
             // toolItemExit
@@ -281,12 +285,28 @@
             this.toolStripSeparator5,
             this.toolItemBuildCode,
             this.toolItemBuildCodeSeparator,
-            this.toolItemExit});
+            this.toolItemExit,
+            this.toolComboBox_DB,
+            this.toolComboBox_Table});
             this.toolStripMain.Location = new System.Drawing.Point(0, 25);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(636, 25);
             this.toolStripMain.TabIndex = 3;
             this.toolStripMain.Text = "toolStrip1";
+            // 
+            // toolComboBox_DB
+            // 
+            this.toolComboBox_DB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolComboBox_DB.Name = "toolComboBox_DB";
+            this.toolComboBox_DB.Size = new System.Drawing.Size(125, 29);
+            this.toolComboBox_DB.Visible = false;
+            // 
+            // toolComboBox_Table
+            // 
+            this.toolComboBox_Table.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolComboBox_Table.Name = "toolComboBox_Table";
+            this.toolComboBox_Table.Size = new System.Drawing.Size(130, 25);
+            this.toolComboBox_Table.Visible = false;
             // 
             // menuItemFile
             // 
@@ -310,6 +330,8 @@
             // menuItemNew
             // 
             this.menuItemNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCreateBeegoProject,
+            this.toolStripMenuItem3,
             this.menuItemNewAspx,
             this.menuItemNewCpp,
             this.menuItemNewCSharp,
@@ -323,83 +345,95 @@
             this.menuItemNewXML});
             this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuItemNew.Size = new System.Drawing.Size(174, 22);
+            this.menuItemNew.Size = new System.Drawing.Size(180, 22);
             this.menuItemNew.Text = "新建(&N)";
+            // 
+            // tsmiCreateBeegoProject
+            // 
+            this.tsmiCreateBeegoProject.Name = "tsmiCreateBeegoProject";
+            this.tsmiCreateBeegoProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCreateBeegoProject.Text = "Beego项目";
+            this.tsmiCreateBeegoProject.Click += new System.EventHandler(this.tsmiCreateBeegoProject_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemNewAspx
             // 
             this.menuItemNewAspx.Name = "menuItemNewAspx";
-            this.menuItemNewAspx.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewAspx.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewAspx.Text = "Aspx";
             this.menuItemNewAspx.Click += new System.EventHandler(this.menuItemNewAspx_Click);
             // 
             // menuItemNewCpp
             // 
             this.menuItemNewCpp.Name = "menuItemNewCpp";
-            this.menuItemNewCpp.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewCpp.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewCpp.Text = "C/C++";
             this.menuItemNewCpp.Click += new System.EventHandler(this.menuItemNewCpp_Click);
             // 
             // menuItemNewCSharp
             // 
             this.menuItemNewCSharp.Name = "menuItemNewCSharp";
-            this.menuItemNewCSharp.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewCSharp.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewCSharp.Text = "CSharp";
             this.menuItemNewCSharp.Click += new System.EventHandler(this.menuItemNewCSharp_Click);
             // 
             // menuItemNewHtml
             // 
             this.menuItemNewHtml.Name = "menuItemNewHtml";
-            this.menuItemNewHtml.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewHtml.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewHtml.Text = "Html";
             this.menuItemNewHtml.Click += new System.EventHandler(this.menuItemNewHtml_Click);
             // 
             // menuItemNewJava
             // 
             this.menuItemNewJava.Name = "menuItemNewJava";
-            this.menuItemNewJava.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewJava.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewJava.Text = "Java";
             this.menuItemNewJava.Click += new System.EventHandler(this.menuItemNewJava_Click);
             // 
             // menuItemNewJavascript
             // 
             this.menuItemNewJavascript.Name = "menuItemNewJavascript";
-            this.menuItemNewJavascript.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewJavascript.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewJavascript.Text = "Javascript";
             this.menuItemNewJavascript.Click += new System.EventHandler(this.menuItemNewJavascript_Click);
             // 
             // menuItemNewPHP
             // 
             this.menuItemNewPHP.Name = "menuItemNewPHP";
-            this.menuItemNewPHP.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewPHP.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewPHP.Text = "PHP";
             this.menuItemNewPHP.Click += new System.EventHandler(this.menuItemNewPHP_Click);
             // 
             // menuItemNewText
             // 
             this.menuItemNewText.Name = "menuItemNewText";
-            this.menuItemNewText.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewText.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewText.Text = "Text";
             this.menuItemNewText.Click += new System.EventHandler(this.menuItemNewText_Click);
             // 
             // menuItemNewTSQL
             // 
             this.menuItemNewTSQL.Name = "menuItemNewTSQL";
-            this.menuItemNewTSQL.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewTSQL.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewTSQL.Text = "TSQL";
             this.menuItemNewTSQL.Click += new System.EventHandler(this.menuItemNewTSQL_Click);
             // 
             // menuItemNewVB
             // 
             this.menuItemNewVB.Name = "menuItemNewVB";
-            this.menuItemNewVB.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewVB.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewVB.Text = "VB.NET";
             this.menuItemNewVB.Click += new System.EventHandler(this.menuItemNewVB_Click);
             // 
             // menuItemNewXML
             // 
             this.menuItemNewXML.Name = "menuItemNewXML";
-            this.menuItemNewXML.Size = new System.Drawing.Size(133, 22);
+            this.menuItemNewXML.Size = new System.Drawing.Size(180, 22);
             this.menuItemNewXML.Text = "XML";
             this.menuItemNewXML.Click += new System.EventHandler(this.menuItemNewXML_Click);
             // 
@@ -407,65 +441,65 @@
             // 
             this.menuItemOpen.Name = "menuItemOpen";
             this.menuItemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuItemOpen.Size = new System.Drawing.Size(174, 22);
+            this.menuItemOpen.Size = new System.Drawing.Size(180, 22);
             this.menuItemOpen.Text = "打开(&O)...";
             this.menuItemOpen.Click += new System.EventHandler(this.menuItemOpen_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemClose
             // 
             this.menuItemClose.Name = "menuItemClose";
-            this.menuItemClose.Size = new System.Drawing.Size(174, 22);
+            this.menuItemClose.Size = new System.Drawing.Size(180, 22);
             this.menuItemClose.Text = "关闭";
             this.menuItemClose.Click += new System.EventHandler(this.menuItemClose_Click);
             // 
             // menuItemCloseOther
             // 
             this.menuItemCloseOther.Name = "menuItemCloseOther";
-            this.menuItemCloseOther.Size = new System.Drawing.Size(174, 22);
+            this.menuItemCloseOther.Size = new System.Drawing.Size(180, 22);
             this.menuItemCloseOther.Text = "除此之外全部关闭";
             this.menuItemCloseOther.Click += new System.EventHandler(this.menuItemCloseOther_Click);
             // 
             // menuItemCloseAll
             // 
             this.menuItemCloseAll.Name = "menuItemCloseAll";
-            this.menuItemCloseAll.Size = new System.Drawing.Size(174, 22);
+            this.menuItemCloseAll.Size = new System.Drawing.Size(180, 22);
             this.menuItemCloseAll.Text = "全部关闭";
             this.menuItemCloseAll.Click += new System.EventHandler(this.menuItemCloseAll_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemSave
             // 
             this.menuItemSave.Name = "menuItemSave";
             this.menuItemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuItemSave.Size = new System.Drawing.Size(174, 22);
+            this.menuItemSave.Size = new System.Drawing.Size(180, 22);
             this.menuItemSave.Text = "保存(&S)";
             this.menuItemSave.Click += new System.EventHandler(this.menuItemSave_Click);
             // 
             // menuItemSaveAs
             // 
             this.menuItemSaveAs.Name = "menuItemSaveAs";
-            this.menuItemSaveAs.Size = new System.Drawing.Size(174, 22);
+            this.menuItemSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuItemSaveAs.Text = "另存为...";
             this.menuItemSaveAs.Click += new System.EventHandler(this.menuItemSaveAs_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(174, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(180, 22);
             this.menuItemExit.Text = "退出";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
@@ -621,44 +655,56 @@
             // menuItemDbSchemaViewer
             // 
             this.menuItemDbSchemaViewer.Name = "menuItemDbSchemaViewer";
-            this.menuItemDbSchemaViewer.Size = new System.Drawing.Size(180, 22);
+            this.menuItemDbSchemaViewer.Size = new System.Drawing.Size(175, 22);
             this.menuItemDbSchemaViewer.Text = "数据库架构查看器";
             this.menuItemDbSchemaViewer.Click += new System.EventHandler(this.menuItemDbSchemaViewer_Click);
             // 
             // menuItemDbDocBuilder
             // 
             this.menuItemDbDocBuilder.Name = "menuItemDbDocBuilder";
-            this.menuItemDbDocBuilder.Size = new System.Drawing.Size(180, 22);
+            this.menuItemDbDocBuilder.Size = new System.Drawing.Size(175, 22);
             this.menuItemDbDocBuilder.Text = "数据库文档生成器";
             this.menuItemDbDocBuilder.Click += new System.EventHandler(this.menuItemDbDocBuilder_Click);
             // 
             // menuItemWebSubmitter
             // 
             this.menuItemWebSubmitter.Name = "menuItemWebSubmitter";
-            this.menuItemWebSubmitter.Size = new System.Drawing.Size(180, 22);
+            this.menuItemWebSubmitter.Size = new System.Drawing.Size(175, 22);
             this.menuItemWebSubmitter.Text = "Web客户端模拟器";
             this.menuItemWebSubmitter.Click += new System.EventHandler(this.menuItemWebSubmitter_Click);
             // 
             // menuItemIisLogParser
             // 
             this.menuItemIisLogParser.Name = "menuItemIisLogParser";
-            this.menuItemIisLogParser.Size = new System.Drawing.Size(180, 22);
+            this.menuItemIisLogParser.Size = new System.Drawing.Size(175, 22);
             this.menuItemIisLogParser.Text = "IIS日志解析器";
             this.menuItemIisLogParser.Click += new System.EventHandler(this.menuItemIisLogParser_Click);
             // 
             // menuItemStringConnector
             // 
             this.menuItemStringConnector.Name = "menuItemStringConnector";
-            this.menuItemStringConnector.Size = new System.Drawing.Size(180, 22);
+            this.menuItemStringConnector.Size = new System.Drawing.Size(175, 22);
             this.menuItemStringConnector.Text = "字符串拼接工具";
             this.menuItemStringConnector.Click += new System.EventHandler(this.menuItemStringConnector_Click);
             // 
             // menuItemStringConverter
             // 
             this.menuItemStringConverter.Name = "menuItemStringConverter";
-            this.menuItemStringConverter.Size = new System.Drawing.Size(180, 22);
+            this.menuItemStringConverter.Size = new System.Drawing.Size(175, 22);
             this.menuItemStringConverter.Text = "字符串转换工具";
             this.menuItemStringConverter.Click += new System.EventHandler(this.menuItemStringConverter_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(172, 6);
+            // 
+            // tsmiSettings
+            // 
+            this.tsmiSettings.Name = "tsmiSettings";
+            this.tsmiSettings.Size = new System.Drawing.Size(175, 22);
+            this.tsmiSettings.Text = "选项";
+            this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
             // menuItemHelp
             // 
@@ -759,18 +805,6 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // tsmiSettings
-            // 
-            this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(180, 22);
-            this.tsmiSettings.Text = "选项";
-            this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -811,7 +845,6 @@
         private System.Windows.Forms.ToolStripButton toolItemDbSchema;
         private System.Windows.Forms.ToolStripButton toolItemWebSubmitter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripComboBox toolItemDbList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton toolItemExecSql;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
@@ -878,5 +911,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCreateBeegoProject;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        public System.Windows.Forms.ToolStripComboBox toolComboBox_DB;
+        public System.Windows.Forms.ToolStripComboBox toolComboBox_Table;
+        public System.Windows.Forms.ToolStripComboBox toolItemDbList;
     }
 }
