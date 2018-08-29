@@ -21,6 +21,7 @@ namespace Kalman.Studio
     {
         DbConnDAL dal = new DbConnDAL();
         SODatabase currentDatabase;
+        List<SOTable> tableList = new List<SOTable>();
 
         string GOROOT = Environment.GetEnvironmentVariable("GOROOT");
         string GOPATH = Environment.GetEnvironmentVariable("GOPATH");
@@ -36,6 +37,8 @@ namespace Kalman.Studio
             RefreshDatabase();
 
             currentDatabase = Config.MainForm.toolItemDbList.SelectedItem as SODatabase;
+            tableList = currentDatabase.TableList;
+
             cbConnectStringName.SelectedValue = currentDatabase.Parent.DbProvider.ConnectionString;
             cbConnectStringName.Enabled = false;
 
@@ -45,6 +48,9 @@ namespace Kalman.Studio
             cmbDatabase.DataSource = dbList;
 
             cmbDatabase.Text = currentDatabase.Name;
+
+            this.Height -= gbTableSelect.Height;
+            this.Height += gbApiSetting.Height;
         }
 
         private void RefreshDatabase()
@@ -174,7 +180,13 @@ namespace Kalman.Studio
 
                 var path = GOPATH + (GOPATH.EndsWith(@"\") ? "src" : @"\src");
 
-                result = CmdHelper.Execute(cmd,path);
+                result = CmdHelper.Execute(cmd, path);
+                if (result.Contains("success") && cbGenerateSwagger.Checked)
+                {
+                    backgroundWorkerGenerate.ReportProgress(50, result);
+                    cmd = "bee run -gendoc=true -downdoc=true";
+                    result = CmdHelper.Execute(cmd, codePath);
+                }
                 backgroundWorkerGenerate.ReportProgress(100, result);
             }
         }
@@ -205,7 +217,82 @@ namespace Kalman.Studio
             this.btnOK.Enabled = false;
             this.btnCancel.Enabled = false;
         }
-    
+
+        #endregion
+
+        #region 列表选择相关
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            SelectOne();
+        }
+
+        private void listBox2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            RemoveOne();
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            SelectAll();
+        }
+        private void btnSelectOne_Click(object sender, EventArgs e)
+        {
+            SelectOne();
+        }
+        private void btnRemoveOne_Click(object sender, EventArgs e)
+        {
+            RemoveOne();
+        }
+        private void btnRemoveAll_Click(object sender, EventArgs e)
+        {
+            RemoveAll();
+        }
+
+        private void SelectAll()
+        {
+            if (backgroundWorkerGenerate.IsBusy) return;
+            if (listBox1.Items.Count > 0)
+            {
+                listBox2.Items.AddRange(listBox1.Items);
+                listBox1.Items.Clear();
+            }
+        }
+
+        private void SelectOne()
+        {
+            if (backgroundWorkerGenerate.IsBusy) return;
+            object[] items = new object[listBox1.SelectedItems.Count];
+            listBox1.SelectedItems.CopyTo(items, 0);
+            listBox2.Items.AddRange(items);
+
+            foreach (var item in items)
+            {
+                listBox1.Items.Remove(item);
+            }
+        }
+
+        private void RemoveOne()
+        {
+            if (backgroundWorkerGenerate.IsBusy) return;
+            object[] items = new object[listBox2.SelectedItems.Count];
+            listBox2.SelectedItems.CopyTo(items, 0);
+            listBox1.Items.AddRange(items);
+
+            foreach (var item in items)
+            {
+                listBox2.Items.Remove(item);
+            }
+        }
+
+        private void RemoveAll()
+        {
+            if (backgroundWorkerGenerate.IsBusy) return;
+            if (listBox2.Items.Count > 0)
+            {
+                listBox1.Items.AddRange(listBox2.Items);
+                listBox2.Items.Clear();
+            }
+        }
         #endregion
 
         private void backgroundWorkerGenerate_DoWork(object sender, DoWorkEventArgs e)
@@ -232,6 +319,58 @@ namespace Kalman.Studio
         {
             SetBtnEnable();
             OpenDirectory();
+        }
+
+        private void rbWebProject_CheckedChanged(object sender, EventArgs e)
+        {
+            var check = ((RadioButton)sender).Checked;
+            if (check)
+            {
+                listBox1.Items.Clear();
+                listBox2.Items.Clear();
+                foreach (SOTable t in tableList)
+                {
+                    listBox1.Items.Add(t);
+                }
+                this.Height += gbTableSelect.Height;
+                this.Height -= gbApiSetting.Height;
+                gbApiSetting.Visible = !check;
+                gbTableSelect.Visible = check;
+            }
+        }
+
+        private void rbApiProject_CheckedChanged(object sender, EventArgs e)
+        { var check = ((RadioButton)sender).Checked;
+            if (check)
+            {
+                gbApiSetting.Visible = check;
+                gbTableSelect.Visible = !check;
+                this.Height -= gbTableSelect.Height;
+                this.Height += gbApiSetting.Height;
+            }
+        }
+
+        private void BeegoProjectCodeBuilder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (backgroundWorkerGenerate.IsBusy)
+            {
+                DialogResult result = MessageBox.Show("正在生成代码，强制关闭可能会导致错误，是否关闭？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    var processes = Process.GetProcesses();
+                    foreach (var pro in processes)
+                    {
+                        if(pro.ProcessName=="cmd"|| pro.ProcessName == "cnnhost" || pro.ProcessName == "bee")
+                        {
+                            pro.Kill();
+                        }
+                    }
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+            }
         }
     }
 }

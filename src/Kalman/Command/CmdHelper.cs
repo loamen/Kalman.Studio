@@ -47,12 +47,16 @@ namespace Kalman.Command
 
                 foreach (string item in cmdTexts)
                 {
-                    p.StandardInput.WriteLine(item);
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        p.StandardInput.WriteLine(item);
+                    }
                 }
                 p.StandardInput.WriteLine("exit");
                 output = p.StandardOutput.ReadToEnd();
-                //strOutput = Encoding.UTF8.GetString(Encoding.Default.GetBytes(strOutput));
-                p.WaitForExit();
+                p.WaitForExit(20 * 1000);
+                var ExitCode = p.ExitCode;
+                Console.WriteLine("%%%%%%%%%%% EXIT CODE = " + ExitCode);
                 p.Close();
             }
             catch (Exception e)
