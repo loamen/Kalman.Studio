@@ -213,9 +213,10 @@
             // 
             // lblMsg
             // 
+            this.lblMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMsg.AutoSize = true;
             this.lblMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblMsg.Location = new System.Drawing.Point(10, 477);
+            this.lblMsg.Location = new System.Drawing.Point(8, 409);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.Size = new System.Drawing.Size(101, 12);
             this.lblMsg.TabIndex = 61;
@@ -314,8 +315,6 @@
             // cbGenerateSwagger
             // 
             this.cbGenerateSwagger.AutoSize = true;
-            this.cbGenerateSwagger.Checked = true;
-            this.cbGenerateSwagger.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbGenerateSwagger.Location = new System.Drawing.Point(12, 27);
             this.cbGenerateSwagger.Name = "cbGenerateSwagger";
             this.cbGenerateSwagger.Size = new System.Drawing.Size(150, 16);

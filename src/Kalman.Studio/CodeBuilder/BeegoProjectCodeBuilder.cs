@@ -5,14 +5,9 @@ using Kalman.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kalman.Studio
@@ -111,10 +106,20 @@ namespace Kalman.Studio
                 return;
             }
 
+            if (rbWebProject.Checked)
+            {
+                if(listBox2.Items.Count == 0)
+                {
+                    MessageBox.Show("请选择要生成的表！");
+                    return;
+                }
+            }
+
             codePath = GOPATH + (GOPATH.EndsWith(@"\") ? "src" : @"\src") + @"\" + txtProjectName.Text.Trim();
             if (Directory.Exists(codePath))
             {
                 OpenDirectory(string.Format("文件夹“{0}”已经存在，是否立即打开？", codePath));
+                this.Close();
                 return;
             }
 
@@ -122,49 +127,92 @@ namespace Kalman.Studio
             backgroundWorkerGenerate.RunWorkerAsync();
         }
 
-        private void DoBuild()
+        private string DoBuild()
         {
             backgroundWorkerGenerate.ReportProgress(1, "开始生成！");
 
             var cmdString = "bee {0} {1} -driver=\"mysql\" -conn=\"{2}:{3}@tcp({4}:{5})/{6}\"";
+
+            if(currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
+            {
+                cmdString = "bee {0} {1} -driver=\"sqlite\" -conn=\"{2}\"";
+            }
+
             string server="127.0.0.1", port = "3306", user="root", password="", db="";
             var connectionString = currentDatabase.Parent.DbProvider.ConnectionString;
             var conn = connectionString.Split(';');
+            #region 获取服务器信息
             foreach (var item in conn)
             {
-                var val = item.Split('=');
-                if (val[0].ToLower().Trim() == "server"){
-                    server = val[1];
-                }
-                if (val[0].ToLower().Trim() == "port")
+                if (currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.MySql)
                 {
-                    port = val[1];
+                    var val = item.Split('=');
+                    if (val[0].ToLower().Trim() == "server")
+                    {
+                        server = val[1].Trim();
+                    }
+                    if (val[0].ToLower().Trim() == "port")
+                    {
+                        port = val[1].Trim();
+                    }
+                    if (val[0].ToLower().Trim() == "id")
+                    {
+                        user = val[1].Trim();
+                    }
+                    if (val[0].ToLower().Trim() == "password")
+                    {
+                        password = val[1].Trim();
+                    }
+                    if (val[0].ToLower().Trim() == "database")
+                    {
+                        db = val[1].Trim();
+                    }
                 }
-                if (val[0].ToLower().Trim() == "id")
+                else if(currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
                 {
-                    user = val[1];
-                }
-                if (val[0].ToLower().Trim() == "password")
-                {
-                    password = val[1];
-                }
-                if (val[0].ToLower().Trim() == "database")
-                {
-                    db = val[1];
+                    var val = item.Split('=');
+                    if (val[0].ToLower().Trim() == "data source")
+                    {
+                        server = val[1].Trim();
+                        break;
+                    }
                 }
             }
+            #endregion
 
             var result = string.Empty;
+            var path = GOPATH + (GOPATH.EndsWith(@"\") ? "src" : @"\src");
+
             if (rbWebProject.Checked)
             {
-                var cmd = string.Format(cmdString,
+                List<string> temp = new List<string>();
+                foreach (var item in this.listBox2.Items)
+                {
+                    temp.Add(item.ToString());
+                }
+
+                var cmd = string.Format(cmdString + " -level=3 -tables=\"{7}\"",
                     " generate appcode ",
-                    txtProjectName.Text.Trim(),
+                    string.Empty,
                     user,
                     password,
                     server,
                     port,
-                    db);
+                    db,
+                    string.Join(",", temp));
+
+                var newCmd = "bee new " + txtProjectName.Text.Trim();
+                result = CmdHelper.Execute(newCmd, path);
+
+                if (result.Contains("success"))
+                {
+                    backgroundWorkerGenerate.ReportProgress(50, result);
+                    CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, cmd);
+                    CmdHelper.RunApp(Config.TEMP_BAT_FILENAME,ProcessWindowStyle.Normal, codePath);
+
+                    result = "代码生成成功，是否打开目录？详细信息如下：\n" + result;
+                }
+                backgroundWorkerGenerate.ReportProgress(100, result);
             }
             else if (rbApiProject.Checked)
             {
@@ -177,18 +225,34 @@ namespace Kalman.Studio
                     port,
                     db);
 
-
-                var path = GOPATH + (GOPATH.EndsWith(@"\") ? "src" : @"\src");
+                if (currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
+                {
+                    cmd = string.Format(cmdString,
+                       "api",
+                       txtProjectName.Text.Trim(),
+                       server);
+                }
 
                 result = CmdHelper.Execute(cmd, path);
+
                 if (result.Contains("success") && cbGenerateSwagger.Checked)
                 {
                     backgroundWorkerGenerate.ReportProgress(50, result);
                     cmd = "bee run -gendoc=true -downdoc=true";
-                    result = CmdHelper.Execute(cmd, codePath);
+
+                    CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, cmd);
+                    CmdHelper.RunApp(Config.TEMP_BAT_FILENAME, ProcessWindowStyle.Normal, codePath);
+                    result = "代码生成成功，是否打开目录？详细信息如下：\n" + result;
                 }
+                else
+                {
+                    result = "代码生成失败，是否打开目录？详细信息如下：\n" + result;
+                }
+
                 backgroundWorkerGenerate.ReportProgress(100, result);
             }
+
+            return result;
         }
 
         private void OpenDirectory(string message = "代码生成成功，是否打开输出目录")
@@ -203,7 +267,6 @@ namespace Kalman.Studio
                     p.Start();
                 }
             }
-            this.Close();
         }
 
         #region 控件设置      
@@ -297,7 +360,7 @@ namespace Kalman.Studio
 
         private void backgroundWorkerGenerate_DoWork(object sender, DoWorkEventArgs e)
         {
-            DoBuild();
+            e.Result = DoBuild();
         }
 
         private void backgroundWorkerGenerate_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -307,7 +370,7 @@ namespace Kalman.Studio
 
             if (e.ProgressPercentage == 100)
             {
-                lblMsg.Text = "代码已全部生成";
+                lblMsg.Text = "代码生成完成";
             }
             else
             {
@@ -318,7 +381,7 @@ namespace Kalman.Studio
         private void backgroundWorkerGenerate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             SetBtnEnable();
-            OpenDirectory();
+            OpenDirectory(e.Result.ToString());
         }
 
         private void rbWebProject_CheckedChanged(object sender, EventArgs e)

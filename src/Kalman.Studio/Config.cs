@@ -11,6 +11,10 @@ namespace Kalman.Studio
     public class Config
     {
         public const string HOME_PAGE = "http://www.loamen.com";
+        /// <summary>
+        /// 临时BAT执行文件
+        /// </summary>
+        public static string TEMP_BAT_FILENAME = NormalConfig.SettingPath + @"\temp.bat"; //临时BAT执行文件
 
         public static Main MainForm
         {
