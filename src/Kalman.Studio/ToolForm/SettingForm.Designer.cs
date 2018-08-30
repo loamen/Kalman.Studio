@@ -31,6 +31,9 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageGeneral = new System.Windows.Forms.TabPage();
             this.tabPageGo = new System.Windows.Forms.TabPage();
+            this.btnBrowserGoPath = new System.Windows.Forms.Button();
+            this.btnBrowserGoBin = new System.Windows.Forms.Button();
+            this.btnBrowserGoRoot = new System.Windows.Forms.Button();
             this.txtGoPath = new System.Windows.Forms.TextBox();
             this.lblGoPath = new System.Windows.Forms.Label();
             this.txtGoBin = new System.Windows.Forms.TextBox();
@@ -39,6 +42,8 @@
             this.lblGoRoot = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageGo.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +73,10 @@
             // 
             // tabPageGo
             // 
+            this.tabPageGo.Controls.Add(this.lblDescription);
+            this.tabPageGo.Controls.Add(this.btnBrowserGoPath);
+            this.tabPageGo.Controls.Add(this.btnBrowserGoBin);
+            this.tabPageGo.Controls.Add(this.btnBrowserGoRoot);
             this.tabPageGo.Controls.Add(this.txtGoPath);
             this.tabPageGo.Controls.Add(this.lblGoPath);
             this.tabPageGo.Controls.Add(this.txtGoBin);
@@ -82,11 +91,41 @@
             this.tabPageGo.Text = "GO设置";
             this.tabPageGo.UseVisualStyleBackColor = true;
             // 
+            // btnBrowserGoPath
+            // 
+            this.btnBrowserGoPath.Location = new System.Drawing.Point(253, 66);
+            this.btnBrowserGoPath.Name = "btnBrowserGoPath";
+            this.btnBrowserGoPath.Size = new System.Drawing.Size(54, 23);
+            this.btnBrowserGoPath.TabIndex = 15;
+            this.btnBrowserGoPath.Text = "浏览...";
+            this.btnBrowserGoPath.UseVisualStyleBackColor = true;
+            this.btnBrowserGoPath.Click += new System.EventHandler(this.btnBrowserGoPath_Click);
+            // 
+            // btnBrowserGoBin
+            // 
+            this.btnBrowserGoBin.Location = new System.Drawing.Point(253, 36);
+            this.btnBrowserGoBin.Name = "btnBrowserGoBin";
+            this.btnBrowserGoBin.Size = new System.Drawing.Size(54, 23);
+            this.btnBrowserGoBin.TabIndex = 14;
+            this.btnBrowserGoBin.Text = "浏览...";
+            this.btnBrowserGoBin.UseVisualStyleBackColor = true;
+            this.btnBrowserGoBin.Click += new System.EventHandler(this.btnBrowserGoBin_Click);
+            // 
+            // btnBrowserGoRoot
+            // 
+            this.btnBrowserGoRoot.Location = new System.Drawing.Point(253, 6);
+            this.btnBrowserGoRoot.Name = "btnBrowserGoRoot";
+            this.btnBrowserGoRoot.Size = new System.Drawing.Size(54, 23);
+            this.btnBrowserGoRoot.TabIndex = 13;
+            this.btnBrowserGoRoot.Text = "浏览...";
+            this.btnBrowserGoRoot.UseVisualStyleBackColor = true;
+            this.btnBrowserGoRoot.Click += new System.EventHandler(this.btnBrowserGoRoot_Click);
+            // 
             // txtGoPath
             // 
             this.txtGoPath.Location = new System.Drawing.Point(66, 67);
             this.txtGoPath.Name = "txtGoPath";
-            this.txtGoPath.Size = new System.Drawing.Size(241, 21);
+            this.txtGoPath.Size = new System.Drawing.Size(181, 21);
             this.txtGoPath.TabIndex = 5;
             // 
             // lblGoPath
@@ -102,7 +141,7 @@
             // 
             this.txtGoBin.Location = new System.Drawing.Point(66, 37);
             this.txtGoBin.Name = "txtGoBin";
-            this.txtGoBin.Size = new System.Drawing.Size(241, 21);
+            this.txtGoBin.Size = new System.Drawing.Size(181, 21);
             this.txtGoBin.TabIndex = 3;
             // 
             // lblGoBin
@@ -118,7 +157,7 @@
             // 
             this.txtGoRoot.Location = new System.Drawing.Point(66, 7);
             this.txtGoRoot.Name = "txtGoRoot";
-            this.txtGoRoot.Size = new System.Drawing.Size(241, 21);
+            this.txtGoRoot.Size = new System.Drawing.Size(181, 21);
             this.txtGoRoot.TabIndex = 1;
             // 
             // lblGoRoot
@@ -152,6 +191,16 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(12, 125);
+            this.lblDescription.MaximumSize = new System.Drawing.Size(300, 0);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(293, 24);
+            this.lblDescription.TabIndex = 16;
+            this.lblDescription.Text = "环境变量修改或设置后如果没有变化，可能需要重启电脑！";
+            // 
             // SettingForm
             // 
             this.AcceptButton = this.btnOK;
@@ -162,7 +211,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tabControlMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SettingForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -188,5 +237,10 @@
         private System.Windows.Forms.Label lblGoPath;
         private System.Windows.Forms.TextBox txtGoBin;
         private System.Windows.Forms.Label lblGoBin;
+        private System.Windows.Forms.Button btnBrowserGoPath;
+        private System.Windows.Forms.Button btnBrowserGoBin;
+        private System.Windows.Forms.Button btnBrowserGoRoot;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label lblDescription;
     }
 }

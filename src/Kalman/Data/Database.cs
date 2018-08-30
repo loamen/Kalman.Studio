@@ -807,20 +807,20 @@ namespace Kalman.Data
                         connection.ChangeDatabase(this.CurrentDatabaseName);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //instrumentationProvider.FireConnectionFailedEvent(ConnectionStringNoCredentials, ex);
-                    throw;
+                    throw ex;
                 }
 
                 //instrumentationProvider.FireConnectionOpenedEvent();
             }
-            catch
+            catch(Exception ex)
             {
                 if (connection != null)
                     connection.Close();
 
-                throw;
+                throw ex;
             }
 
             return connection;

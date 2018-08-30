@@ -18,8 +18,8 @@ namespace Kalman.Studio
         SODatabase currentDatabase;
         List<SOTable> tableList = new List<SOTable>();
 
-        string GOROOT = Environment.GetEnvironmentVariable("GOROOT");
-        string GOPATH = Environment.GetEnvironmentVariable("GOPATH");
+        string GOROOT = Environment.GetEnvironmentVariable("GOROOT") ?? string.Empty;
+        string GOPATH = Environment.GetEnvironmentVariable("GOPATH") ?? string.Empty;
         string codePath = string.Empty;
 
         public BeegoProjectCodeBuilder()
@@ -75,6 +75,27 @@ namespace Kalman.Studio
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (!CheckGoEnvironment())
+            {
+                if (MsgBox.ShowQuestionMessage("检测到未安装GO环境！是否查看帮助？") == DialogResult.Yes)
+                {
+                    Help.ShowHelp(this,"https://jingyan.baidu.com/article/d2b1d102cbac775c7f37d477.html");
+                }
+                return;
+            }
+
+            if (!CheckBeeEnvironment())
+            {
+                if (MsgBox.ShowQuestionMessage("检测到未安装Bee工具！是否查看帮助？") == DialogResult.Yes)
+                {
+
+                    CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, "go get -u github.com/astaxie/beego \r\ngo get -u github.com/beego/bee");
+                    CmdHelper.RunApp(Config.TEMP_BAT_FILENAME, ProcessWindowStyle.Normal, GOPATH);
+                    Help.ShowHelp(this, "https://beego.me/quickstart");
+                };
+                return;
+            }
+
             if (string.IsNullOrEmpty(cmbDatabase.Text))
             {
                 MsgBox.Show("请选择数据库！");
@@ -108,7 +129,7 @@ namespace Kalman.Studio
 
             if (rbWebProject.Checked)
             {
-                if(listBox2.Items.Count == 0)
+                if (listBox2.Items.Count == 0)
                 {
                     MsgBox.Show("请选择要生成的表！");
                     return;
@@ -133,12 +154,12 @@ namespace Kalman.Studio
 
             var cmdString = "bee {0} {1} -driver=\"mysql\" -conn=\"{2}:{3}@tcp({4}:{5})/{6}\"";
 
-            if(currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
+            if (currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
             {
                 cmdString = "bee {0} {1} -driver=\"sqlite\" -conn=\"{2}\"";
             }
 
-            string server="127.0.0.1", port = "3306", user="root", password="", db="";
+            string server = "127.0.0.1", port = "3306", user = "root", password = "", db = "";
             var connectionString = currentDatabase.Parent.DbProvider.ConnectionString;
             var conn = connectionString.Split(';');
             #region 获取服务器信息
@@ -168,7 +189,7 @@ namespace Kalman.Studio
                         db = val[1].Trim();
                     }
                 }
-                else if(currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
+                else if (currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
                 {
                     var val = item.Split('=');
                     if (val[0].ToLower().Trim() == "data source")
@@ -417,7 +438,8 @@ namespace Kalman.Studio
         }
 
         private void rbApiProject_CheckedChanged(object sender, EventArgs e)
-        { var check = ((RadioButton)sender).Checked;
+        {
+            var check = ((RadioButton)sender).Checked;
             if (check)
             {
                 gbApiSetting.Visible = check;
@@ -437,7 +459,7 @@ namespace Kalman.Studio
                     var processes = Process.GetProcesses();
                     foreach (var pro in processes)
                     {
-                        if(pro.ProcessName=="cmd"|| pro.ProcessName == "cnnhost" || pro.ProcessName == "bee")
+                        if (pro.ProcessName == "cmd" || pro.ProcessName == "cnnhost" || pro.ProcessName == "bee")
                         {
                             pro.Kill();
                         }
@@ -448,6 +470,24 @@ namespace Kalman.Studio
                     e.Cancel = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// 检查是否已安装beego环境
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckBeeEnvironment()
+        {
+            return File.Exists(GOPATH + (GOPATH.EndsWith(@"\") ? string.Empty : @"\") + @"bin\bee.exe");
+        }
+
+        /// <summary>
+        /// 检测是否已安装GO环境
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckGoEnvironment()
+        {
+            return File.Exists(GOROOT + (GOROOT.EndsWith(@"\") ? string.Empty : @"\") + @"bin\go.exe");
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Kalman.Command
                 output = p.StandardOutput.ReadToEnd();
                 p.WaitForExit(20 * 1000);
                 var ExitCode = p.ExitCode;
-                Console.WriteLine("%%%%%%%%%%% EXIT CODE = " + ExitCode);
+               
                 p.Close();
             }
             catch (Exception e)

@@ -37,5 +37,35 @@ namespace Kalman.Studio.ToolForm
 
             this.Close();
         }
+
+        private void btnBrowserGoRoot_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = txtGoRoot.Text;
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                txtGoRoot.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+
+        private void btnBrowserGoBin_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = txtGoBin.Text;
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                txtGoBin.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+
+        private void btnBrowserGoPath_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = txtGoPath.Text;
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                txtGoPath.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
     }
 }
