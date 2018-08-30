@@ -42,7 +42,7 @@ namespace Kalman.Studio
                 dic = txtCharList.Text.Trim();
                 if (dic.Length == 0)
                 {
-                    MessageBox.Show("使用自定义生成时，字典内容不能为空");
+                    MsgBox.Show("使用自定义生成时，字典内容不能为空");
                     return;
                 }
             }

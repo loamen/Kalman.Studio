@@ -23,19 +23,19 @@ namespace Kalman.Studio
 
             if (string.IsNullOrEmpty(connectName))
             {
-                MessageBox.Show("请选择或输入连接名称！");
+                MsgBox.Show("请选择或输入连接名称！");
                 return;
             }
 
             if (string.IsNullOrEmpty(providerName))
             {
-                MessageBox.Show("请选择Provider名称！");
+                MsgBox.Show("请选择Provider名称！");
                 return;
             }
 
             if (string.IsNullOrEmpty(connectString))
             {
-                MessageBox.Show("请输入ConnectString内容！");
+                MsgBox.Show("请输入ConnectString内容！");
                 return;
             }
 
@@ -60,11 +60,11 @@ namespace Kalman.Studio
                 }
 
                 this.DialogResult = DialogResult.Yes;
-                MessageBox.Show("保存成功！");
+                MsgBox.Show("保存成功！");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.ShowExceptionMessage(ex);
                 this.DialogResult = DialogResult.No;
             }
         }
@@ -93,7 +93,7 @@ namespace Kalman.Studio
             {
                 var result = dal.Delete(name);
                 this.DialogResult = DialogResult.Yes;
-                MessageBox.Show("删除成功！");
+                MsgBox.Show("删除成功！");
             }
         }
 

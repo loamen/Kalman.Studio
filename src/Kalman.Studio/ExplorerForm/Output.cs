@@ -12,25 +12,34 @@ namespace Kalman.Studio
 {
     public partial class Output : DockExplorer
     {
+        delegate void AppendTextCallback(string text);
+
         public Output()
         {
             InitializeComponent();
+        }
+
+        public void AppendText(string text)
+        {
+            if (this.richTextBox1.InvokeRequired)
+            {
+                AppendTextCallback d = new AppendTextCallback(AppendText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(text)) return;
+                richTextBox1.AppendText(text);
+            }
         }
 
         /// <summary>
         /// 向输出窗口追加一行文本
         /// </summary>
         /// <param name="s"></param>
-        public void AppendLine(string s)
+        public void AppendLine(string text)
         {
-            if (string.IsNullOrEmpty(s)) return;
-            richTextBox1.AppendText(s + Environment.NewLine);
-        }
-
-        public void AppendText(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return;
-            richTextBox1.AppendText(s);
+            AppendText(text + Environment.NewLine);
         }
 
         /// <summary>

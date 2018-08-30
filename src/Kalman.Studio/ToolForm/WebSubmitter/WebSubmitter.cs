@@ -80,11 +80,11 @@ namespace Kalman.Studio
         {
             if (txtUrl.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("请求地址不能为空");
+                MsgBox.Show("请求地址不能为空");
                 return;
             }
 
-            DialogResult result = MessageBox.Show("是否提交当前请求", "确认提交请求", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MsgBox.ShowQuestionMessage("是否提交当前请求", "确认提交请求");
             if (result != DialogResult.Yes) return;
 
             DoSubmit();
@@ -159,10 +159,6 @@ namespace Kalman.Studio
 
         private void lbParams_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //DialogResult result = MessageBox.Show("是否删除所选参数", "确认参数删除", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //if (result == DialogResult.Yes)
-            //RemoveParam();
-
             object obj = lbParams.SelectedItem;
             if (obj == null) return;
 

@@ -77,31 +77,31 @@ namespace Kalman.Studio
         {
             if (string.IsNullOrEmpty(cmbDatabase.Text))
             {
-                MessageBox.Show("请选择数据库！");
+                MsgBox.Show("请选择数据库！");
                 return;
             }
 
             if (string.IsNullOrEmpty(txtProjectName.Text.Trim()))
             {
-                MessageBox.Show("请输入项目名称！");
+                MsgBox.Show("请输入项目名称！");
                 return;
             }
 
             if (string.IsNullOrEmpty(GOROOT))
             {
-                MessageBox.Show("请先在选项中设置GOROOT环境变量！");
+                MsgBox.Show("请先在选项中设置GOROOT环境变量！");
                 return;
             }
 
             if (string.IsNullOrEmpty(GOPATH))
             {
-                MessageBox.Show("请先在选项中设置GOPATH环境变量！");
+                MsgBox.Show("请先在选项中设置GOPATH环境变量！");
                 return;
             }
 
             if (currentDatabase.Parent.DbProvider.DatabaseType != DatabaseType.MySql)
             {
-                MessageBox.Show("该数据库不是MySql，不支持该操作！");
+                MsgBox.Show("该数据库不是MySql，不支持该操作！");
                 this.Close();
                 return;
             }
@@ -110,7 +110,7 @@ namespace Kalman.Studio
             {
                 if(listBox2.Items.Count == 0)
                 {
-                    MessageBox.Show("请选择要生成的表！");
+                    MsgBox.Show("请选择要生成的表！");
                     return;
                 }
             }
@@ -206,11 +206,16 @@ namespace Kalman.Studio
 
                 if (result.Contains("success"))
                 {
-                    backgroundWorkerGenerate.ReportProgress(50, result);
-                    CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, cmd);
-                    CmdHelper.RunApp(Config.TEMP_BAT_FILENAME,ProcessWindowStyle.Normal, codePath);
+                    var msg = "正在生成剩余项";
+                    Config.Console(msg + "，详细信息如下：\n" + result);
 
-                    result = "代码生成成功，是否打开目录？详细信息如下：\n" + result;
+                    backgroundWorkerGenerate.ReportProgress(50, msg);
+                    CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, cmd);
+                    CmdHelper.RunApp(Config.TEMP_BAT_FILENAME, ProcessWindowStyle.Normal, codePath);
+
+                    msg = "代码生成成功，是否打开目录？";
+                    Config.Console(msg + "详细信息如下：\n" + result);
+                    result = msg;
                 }
                 backgroundWorkerGenerate.ReportProgress(100, result);
             }
@@ -235,18 +240,27 @@ namespace Kalman.Studio
 
                 result = CmdHelper.Execute(cmd, path);
 
+                var msg = "创建项目成功";
                 if (result.Contains("success") && cbGenerateSwagger.Checked)
                 {
-                    backgroundWorkerGenerate.ReportProgress(50, result);
+                    msg = "正在生成Swagger";
+                    Config.Console(msg + "，详细信息如下：\n" + result);
+
+                    backgroundWorkerGenerate.ReportProgress(50, msg);
                     cmd = "bee run -gendoc=true -downdoc=true";
 
                     CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, cmd);
                     CmdHelper.RunApp(Config.TEMP_BAT_FILENAME, ProcessWindowStyle.Normal, codePath);
-                    result = "代码生成成功，是否打开目录？详细信息如下：\n" + result;
+
+                    msg = "代码生成成功，是否打开目录？";
+                    Config.Console(msg + "详细信息如下：\n" + result);
+                    result = msg;
                 }
                 else
                 {
-                    result = "代码生成失败，是否打开目录？详细信息如下：\n" + result;
+                    msg = "代码生成失败，是否打开目录？";
+                    Config.Console(msg + "详细信息如下：\n" + result);
+                    result = msg;
                 }
 
                 backgroundWorkerGenerate.ReportProgress(100, result);
@@ -257,7 +271,7 @@ namespace Kalman.Studio
 
         private void OpenDirectory(string message = "代码生成成功，是否打开输出目录")
         {
-            DialogResult result = MessageBox.Show(message, "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MsgBox.ShowQuestionMessage(message, "提示");
             if (result == DialogResult.Yes)
             {
                 if (Directory.Exists(codePath))
@@ -417,7 +431,7 @@ namespace Kalman.Studio
         {
             if (backgroundWorkerGenerate.IsBusy)
             {
-                DialogResult result = MessageBox.Show("正在生成代码，强制关闭可能会导致错误，是否关闭？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult result = MsgBox.ShowQuestionMessage("正在生成代码，强制关闭可能会导致错误，是否关闭？");
                 if (result == DialogResult.Yes)
                 {
                     var processes = Process.GetProcesses();

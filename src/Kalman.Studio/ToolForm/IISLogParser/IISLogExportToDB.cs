@@ -82,9 +82,7 @@ namespace Kalman.Studio
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
-                ErrorInfo ei = new ErrorInfo(ex, sql);
-                ei.Show();
+                MsgBox.ShowExceptionDialog(ex, sql);
             }
 
         }
@@ -115,7 +113,7 @@ namespace Kalman.Studio
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("数据导入完成");
+            MsgBox.Show("数据导入完成");
             this.Close();
         }
 

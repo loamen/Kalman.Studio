@@ -46,7 +46,7 @@ namespace Kalman.Studio
         {
             if (this.Text.EndsWith("*"))
             {
-                if (MessageBox.Show("文件内容已改变，是否保存文件", "信息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                if (MsgBox.ShowQuestionMessage("文件内容已改变，是否保存文件", "信息提示") == DialogResult.Yes)
                 {
                     Save();
                 }

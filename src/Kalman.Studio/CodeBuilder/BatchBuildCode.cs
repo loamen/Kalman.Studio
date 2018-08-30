@@ -71,7 +71,7 @@ namespace Kalman.Studio
             else
             {
                 e.Cancel = true;
-                MessageBox.Show("正在生成代码，请不要关闭窗口");
+                MsgBox.Show("正在生成代码，请不要关闭窗口");
             }
         }
 
@@ -133,7 +133,7 @@ namespace Kalman.Studio
                 DirectoryInfo dir = (DirectoryInfo)tn.Tag;
                 if (Directory.Exists(dir.FullName) == false)
                 {
-                    MessageBox.Show("目标可能被删除、移动、改名，请刷新模板树");
+                    MsgBox.Show("目标可能被删除、移动、改名，请刷新模板树");
                     return;
                 }
                 ExpentTemplateDir(dir, tn);
@@ -143,7 +143,7 @@ namespace Kalman.Studio
                 FileInfo fi = tn.Tag as FileInfo;
                 if (File.Exists(fi.FullName) == false)
                 {
-                    MessageBox.Show("目标可能被删除、移动、改名，请刷新模板树");
+                    MsgBox.Show("目标可能被删除、移动、改名，请刷新模板树");
                     return;
                 }
                 textEditorControl1.LoadFile(fi.FullName);
@@ -378,11 +378,9 @@ namespace Kalman.Studio
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            DialogResult result = MessageBox.Show("代码生成成功，是否打开输出目录", "代码生成消息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MsgBox.ShowQuestionMessage("代码生成成功，是否打开输出目录", "代码生成消息提示");
             if (result == DialogResult.Yes)
             {
-                //string cmd = "explorer.exe " + outputPath;
-                //Kalman.Command.CmdHelper.Execute(cmd);
                 Process p = new Process();
                 p.StartInfo = new ProcessStartInfo(outputPath);
                 p.Start();

@@ -68,7 +68,7 @@ namespace Kalman.Studio
             }
             else
             {
-                MessageBox.Show(string.Format("文件[{0}]不存在",fileName));
+                MsgBox.Show(string.Format("文件[{0}]不存在",fileName));
             }
         }
 
@@ -96,7 +96,7 @@ namespace Kalman.Studio
             else
             {
                 e.Cancel = true;
-                MessageBox.Show("正在生成代码，请不要关闭窗口");
+                MsgBox.Show("正在生成代码，请不要关闭窗口");
             }
         }
 
@@ -247,7 +247,7 @@ namespace Kalman.Studio
             templateFile = txtTemplateFile.Text;
             if (File.Exists(templateFile) == false)
             {
-                MessageBox.Show("所选的模板文件不存在");
+                MsgBox.Show("所选的模板文件不存在");
                 return;
             }
 
@@ -457,7 +457,7 @@ namespace Kalman.Studio
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            DialogResult result = MessageBox.Show("代码生成成功，是否打开输出目录", "代码生成消息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MsgBox.ShowQuestionMessage("代码生成成功，是否打开输出目录", "代码生成消息提示");
             if (result == DialogResult.Yes)
             {
                 string cmd = "explorer.exe " + outputPath;

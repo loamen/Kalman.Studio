@@ -354,7 +354,7 @@ namespace Kalman.Studio
                 iTextExporter exporter = new iTextExporter(fileName);
                 exporter.PDModel2Rtf(tableList,title);
 
-                if (MessageBox.Show("数据库文档生成成功，是否打开文档", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MsgBox.ShowQuestionMessage("数据库文档生成成功，是否打开文档", "提示信息") == DialogResult.Yes)
                 {
                     CmdHelper.Execute(fileName);
                 }
@@ -390,7 +390,7 @@ namespace Kalman.Studio
                 iTextExporter exporter = new iTextExporter(fileName);
                 exporter.PDModel2Pdf(tableList, title);
 
-                if (MessageBox.Show("数据库文档生成成功，是否打开文档", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MsgBox.ShowQuestionMessage("数据库文档生成成功，是否打开文档", "提示信息") == DialogResult.Yes)
                 {
                     CmdHelper.Execute(fileName);
                 }

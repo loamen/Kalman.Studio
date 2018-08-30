@@ -311,7 +311,8 @@
       <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Library\ComboBoxItem.cs" />
-    <Compile Include="Library\WebBrowserEx.cs" />
+    <Compile Include="Library\UI\MsgBox.cs" />
+    <Compile Include="Library\UI\WebBrowserEx.cs" />
     <Compile Include="MainForm\StartForm.cs">
       <SubType>Form</SubType>
     </Compile>

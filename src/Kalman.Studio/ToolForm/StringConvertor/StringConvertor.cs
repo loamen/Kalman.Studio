@@ -66,7 +66,6 @@ namespace Kalman.Studio
         {
             String_Convert convert = new String_Convert();
             convert.ShowDialog(this);
-            //MessageBox.Show(convert.Visible.ToString());
         }
 
         private void btnToUpper_Click(object sender, EventArgs e)

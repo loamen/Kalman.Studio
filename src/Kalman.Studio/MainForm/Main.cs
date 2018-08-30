@@ -19,7 +19,7 @@ namespace Kalman.Studio
     {
         DatabaseExplorer dbExplorer = new DatabaseExplorer();
         StartForm startForm = new StartForm();
-        Output output = new Output();
+        private Output output = new Output();
         //DbSchemaViewer viewer = new DbSchemaViewer();
         CodeExplorer codeExplorer = new CodeExplorer();
         TemplateExplorer templateExplorer = new TemplateExplorer();
@@ -47,23 +47,18 @@ namespace Kalman.Studio
         {
             Exception ex = ((Exception)e.ExceptionObject);
             Log(ex);
-            MessageBox.Show(ex.Message);
+            MsgBox.ShowExceptionMessage(ex);
         }
 
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             Log(e.Exception);
-            MessageBox.Show(e.Exception.Message);
+            MsgBox.ShowExceptionMessage(e.Exception);
         }
 
         void Log(Exception ex)
         {
-            if (output == null) output = new Output();
-
-            output.ClearText();
-            output.AppendText(ex.ToString());
-            output.DockState = DockState.DockBottom;
-            output.Activate();
+            AppendOutputLine(ex.ToString());
 
             string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt");
             File.AppendAllText(logFile, string.Format("{0}\r\n{1}\r\n", ex.Message, ex.StackTrace));
@@ -102,7 +97,7 @@ namespace Kalman.Studio
         {
             if (string.IsNullOrEmpty(toolItemDbList.Text.Trim()))
             {
-                MessageBox.Show("请先选择数据库！");
+                MsgBox.Show("请先选择数据库！");
                 return;
             }
 
@@ -607,7 +602,7 @@ namespace Kalman.Studio
 
         private void toolItemExit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("是否退出Kalman Studio", "信息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MsgBox.ShowQuestionMessage("是否退出Kalman Studio", "信息提示") == DialogResult.Yes)
             {
                 this.Close();
                 Application.Exit();
@@ -639,9 +634,6 @@ namespace Kalman.Studio
             }
         }
         #endregion
-
-        
-
         #endregion
 
         #region 封装对输出窗体的操作
@@ -650,10 +642,14 @@ namespace Kalman.Studio
         /// 向输出窗体追加一行文本
         /// </summary>
         /// <param name="s"></param>
-        public void AppendOutputLine(string s)
+        public void AppendOutputLine(string text, bool newLine = true)
         {
             if (output == null) output = new Output();
-            output.AppendLine(s);
+            if (newLine)
+                output.AppendLine(text);
+            else
+                output.AppendText(text);
+
             output.Activate();
         }
         /// <summary>

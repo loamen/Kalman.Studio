@@ -41,7 +41,7 @@ namespace Kalman.Studio
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("文件{0}不存在", SC.S1));
+                        MsgBox.Show(string.Format("文件{0}不存在", SC.S1));
                     }
                     return;
                 }

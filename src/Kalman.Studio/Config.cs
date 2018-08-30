@@ -33,5 +33,18 @@ namespace Kalman.Studio
                 return fm;
             }
         }
+
+        #region 封装对输出窗体的操作
+        /// <summary>
+        /// 向输出窗体追加一行文本
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="newLine"></param>
+        public static void Console(string text,bool newLine = true)
+        {
+            MainForm.AppendOutputLine(text, newLine);
+        }
+        #endregion
+
     }
 }

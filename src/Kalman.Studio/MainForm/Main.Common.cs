@@ -78,13 +78,13 @@ namespace Kalman.Studio
             FileInfo fi = new FileInfo(fileName);
             if (fi.Length > 2 * 1024 * 1024)
             {
-                MessageBox.Show("大于2M的文件请用其他编辑器打开");
+                MsgBox.Show("大于2M的文件请用其他编辑器打开");
                 return;
             }
 
             if (FindDockDocument(fileName) != null)
             {
-                MessageBox.Show(string.Format("文件[{0}]已经打开", fileName));
+                MsgBox.Show(string.Format("文件[{0}]已经打开", fileName));
                 return;
             }
 

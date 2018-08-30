@@ -36,7 +36,7 @@ namespace Kalman.Studio
 
         void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            main.AppendOutputLine(e.Exception.ToString());
+            Config.Console(e.Exception.ToString());
         }
 
         public void ParseLog(LogParseFilter logParseFilter)

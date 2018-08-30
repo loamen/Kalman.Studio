@@ -86,7 +86,7 @@ namespace Kalman.Studio
             else
             {
                 e.Cancel = true;
-                MessageBox.Show("正在生成代码，请不要关闭窗口");
+                MsgBox.Show("正在生成代码，请不要关闭窗口");
             }
         }
 
@@ -263,7 +263,7 @@ namespace Kalman.Studio
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            DialogResult result = MessageBox.Show("代码生成成功，是否打开输出目录", "代码生成消息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MsgBox.ShowQuestionMessage("代码生成成功，是否打开输出目录", "代码生成消息提示");
             if (result == DialogResult.Yes)
             {
                 string cmd = "explorer.exe " + outputPath;

@@ -35,7 +35,7 @@ namespace Kalman.Studio
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MsgBox.ShowExceptionMessage(ex);
             }
         }
 
@@ -46,7 +46,6 @@ namespace Kalman.Studio
         private void wbStatistics_NavigateError(object sender, WebBrowserNavigateErrorEventArgs e)
         {
             int code = e.StatusCode;
-            //wbStatistics.DocumentText = Config.GetErrorHtml(code);
         }
 
         #endregion

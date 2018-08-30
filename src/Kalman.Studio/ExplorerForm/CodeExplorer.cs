@@ -182,7 +182,7 @@ namespace Kalman.Studio
         //删除目录
         private void menuItemDeleteDir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定删除该目录吗，这将会删除该目录下所有文件", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MsgBox.ShowQuestionMessage("确定删除该目录吗，这将会删除该目录下所有文件", "提示信息") == DialogResult.Yes)
             {
                 TreeNode dirNode = tvCode.SelectedNode;
                 tvCode.Nodes.Remove(dirNode);
@@ -229,7 +229,7 @@ namespace Kalman.Studio
         //删除文件
         private void menuItemDeleteFile_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定删除该文件吗", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MsgBox.ShowQuestionMessage("确定删除该文件吗", "提示信息") == DialogResult.Yes)
             {
                 TreeNode fileNode = tvCode.SelectedNode;
                 tvCode.Nodes.Remove(fileNode);

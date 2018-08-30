@@ -68,7 +68,7 @@ namespace Kalman.Studio
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MsgBox.ShowExceptionMessage(ex);
             }
         }
 

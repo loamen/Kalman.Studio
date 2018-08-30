@@ -245,7 +245,7 @@ namespace Kalman.Studio
         {
             if (this.Text.EndsWith("*"))
             {
-                if (MessageBox.Show("是否保存文件" + this.Text.TrimEnd('*'), "信息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MsgBox.ShowQuestionMessage("是否保存文件" + this.Text.TrimEnd('*'), "信息提示") == DialogResult.Yes)
                 {
                     Save();
                 }

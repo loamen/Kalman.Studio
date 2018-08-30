@@ -133,7 +133,7 @@ namespace Kalman.Studio
                 DirectoryInfo dir = (DirectoryInfo)tn.Tag;
                 if (Directory.Exists(dir.FullName) == false)
                 {
-                    MessageBox.Show("目标可能被删除、移动、改名，请刷新模板树");
+                    MsgBox.Show("目标可能被删除、移动、改名，请刷新模板树");
                     return;
                 }
                 ExpentTemplateDir(dir, tn);
@@ -143,7 +143,7 @@ namespace Kalman.Studio
                 FileInfo fi = tn.Tag as FileInfo;
                 if (File.Exists(fi.FullName) == false)
                 {
-                    MessageBox.Show("目标可能被删除、移动、改名，请刷新模板树");
+                    MsgBox.Show("目标可能被删除、移动、改名，请刷新模板树");
                     return;
                 }
                 textEditorControl1.LoadFile(fi.FullName);

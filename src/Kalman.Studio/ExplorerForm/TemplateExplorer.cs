@@ -170,7 +170,7 @@ namespace Kalman.Studio
         //删除模板目录
         private void menuItemDeleteDir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定删除该模板目录吗，这将会删除该目录下所有模板文件", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MsgBox.ShowQuestionMessage("确定删除该模板目录吗，这将会删除该目录下所有模板文件", "提示信息") == DialogResult.Yes)
             {
                 TreeNode dirNode = tvTemplate.SelectedNode;
                 tvTemplate.Nodes.Remove(dirNode);
@@ -217,7 +217,7 @@ namespace Kalman.Studio
         //删除模板文件
         private void menuItemDeleteTemplate_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定删除该模板文件吗", "提示信息", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MsgBox.ShowQuestionMessage("确定删除该模板文件吗", "提示信息") == DialogResult.Yes)
             {
                 TreeNode fileNode = tvTemplate.SelectedNode;
                 tvTemplate.Nodes.Remove(fileNode);
