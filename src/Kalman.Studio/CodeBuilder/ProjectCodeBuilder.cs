@@ -437,7 +437,7 @@ namespace Kalman.Studio
             {
                 string dirName = Path.GetFileName(fromDirName);
                 string toDirName = Path.Combine(toDir, dirName);
-                return CopyDir(fromDirName, toDirName);
+                CopyDir(fromDirName, toDirName);
             }
 
             result = "全部生成完成";
@@ -445,5 +445,14 @@ namespace Kalman.Studio
             return result;
         }
         #endregion
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorkerGenerate.IsBusy)
+            {
+                backgroundWorkerGenerate.CancelAsync();
+            }
+            this.Close();
+        }
     }
 }

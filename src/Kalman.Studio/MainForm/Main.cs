@@ -598,13 +598,10 @@ namespace Kalman.Studio
         /// <param name="s"></param>
         public void AppendOutputLine(string text, bool newLine = true)
         {
-            if (output == null) output = new Output();
             if (newLine)
                 output.AppendLine(text);
             else
                 output.AppendText(text);
-
-            output.Activate();
         }
         /// <summary>
         /// 清除所有输出内容
