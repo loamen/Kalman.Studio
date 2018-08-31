@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Kalman Studio 已安装的模版", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("常规");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewFileForm));
             this.listView1 = new System.Windows.Forms.ListView();
             this.btn_Ok = new System.Windows.Forms.Button();
@@ -46,6 +48,11 @@
             // listView1
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            listViewGroup1.Header = "Kalman Studio 已安装的模版";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup1.Tag = "Kalman Studio 已安装的模版";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
@@ -132,6 +139,10 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Location = new System.Drawing.Point(9, 25);
             this.treeView1.Name = "treeView1";
+            treeNode1.Name = "常规";
+            treeNode1.Text = "常规";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(163, 276);
             this.treeView1.TabIndex = 11;
             // 
@@ -197,5 +208,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ListViewGroup listViewGroup1;
     }
 }

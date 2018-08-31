@@ -16,21 +16,8 @@ namespace Kalman.Studio
         public NewFileForm()
         {
             InitializeComponent();
-            InitTreeView();
             InitListView();
         }
-
-        #region 初始化tree
-        private void InitTreeView()
-        {
-            TreeNode tnEnviroment = new TreeNode("模版", 0, 1);
-            //TreeNode tnEditor = new TreeNode("模版", 2, 3);
-
-            this.treeView1.Nodes.Add(tnEnviroment);
-            //this.treeView1.Nodes.Add(tnEditor);
-
-        }
-        #endregion
 
         #region 初始化项
 
@@ -40,12 +27,6 @@ namespace Kalman.Studio
             this.listView1.Items.Clear();
             this.listView1.LargeImageList = imageList1;
             this.listView1.View = View.LargeIcon;
-
-            ListViewGroup listViewGroup1 = new ListViewGroup("KalmanStudio 已安装的模版", HorizontalAlignment.Left);
-            listViewGroup1.Header = "KalmanStudio 已安装的模版";
-            listViewGroup1.Name = "listViewGroup1";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
 
             string path = Path.Combine(Application.StartupPath, "Template");
             var files = Directory.GetFiles(path);
@@ -89,7 +70,7 @@ namespace Kalman.Studio
             }
 
             string selstr = this.listView1.SelectedItems[0].Text;
-            Config.MainForm.NewDockDocument("Class", CodeType.CSHARP, Config.MainForm.GetCodeTemplateText(selstr));
+            Config.MainForm.NewDockDocument("New", CodeTypeHelper.GetCodeType(selstr), Config.MainForm.GetCodeTemplateText(selstr), selstr);
             Close();
         }
 

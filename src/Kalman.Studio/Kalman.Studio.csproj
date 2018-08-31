@@ -319,6 +319,12 @@
     <Compile Include="MainForm\StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForm\NewProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForm\NewProjectForm.Designer.cs">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForm\NewFileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,6 +585,9 @@
     <EmbeddedResource Include="MainForm\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolForm\NewProjectForm.resx">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForm\NewFileForm.resx">
       <DependentUpon>NewFileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -698,6 +707,21 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="SQL\IISLogData.sql" />
+    <None Include="T4Template\Node.js\Egg\.eslintignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="T4Template\Node.js\Egg\.eslintrc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="T4Template\Node.js\Egg\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="T4Template\Node.js\Egg\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="T4Template\Node.js\Egg\README.zh-CN.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Template\template.go">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -812,54 +836,75 @@
     <Content Include="CodeLib\readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\Controller\Controller.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\Controller\Controller.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\Entity\Default.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\Entity\Default.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Default.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\Entity\Normal.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\Entity\Normal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Normal.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\Service\IService.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\Service\IService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IService.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\Service\Service.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\Service\Service.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Service.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\View\Create.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\View\Create.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Create.cs</LastGenOutput>
+      <LastGenOutput>Create.cshtml</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\View\Delete.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\View\Delete.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Delete.cs</LastGenOutput>
+      <LastGenOutput>Delete.cshtml</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\View\Details.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\View\Details.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Details.cs</LastGenOutput>
+      <LastGenOutput>Details.cshtml</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\View\Edit.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\View\Edit.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Edit.cs</LastGenOutput>
+      <LastGenOutput>Edit.cshtml</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T4Template\Asp.Net\View\Index.tt">
+    <Content Include="T4Template\Asp.Net\Ebboy\View\Index.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Index.cs</LastGenOutput>
+      <LastGenOutput>Index.cshtml</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\.autod.conf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\.gitignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\app\controller\home.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\app\router.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\config\config.default.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\config\plugin.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T4Template\Node.js\Egg\test\app\controller\home.test.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T4Template\PHP\Yii\ADPlatform\controller.tt">

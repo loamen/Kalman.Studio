@@ -52,8 +52,10 @@
             this.toolComboBox_Table = new System.Windows.Forms.ToolStripComboBox();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCreateBeegoProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiCreateProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCreateBeegoProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemClose = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +102,6 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -320,13 +321,33 @@
             // menuItemNew
             // 
             this.menuItemNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCreateBeegoProject,
+            this.tsmiNewFile,
             this.toolStripMenuItem3,
-            this.tsmiNewFile});
+            this.tsmiCreateProject,
+            this.tsmiCreateBeegoProject});
             this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.menuItemNew.Size = new System.Drawing.Size(180, 22);
             this.menuItemNew.Text = "新建(&N)";
+            // 
+            // tsmiNewFile
+            // 
+            this.tsmiNewFile.Name = "tsmiNewFile";
+            this.tsmiNewFile.Size = new System.Drawing.Size(180, 22);
+            this.tsmiNewFile.Text = "文件";
+            this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // tsmiCreateProject
+            // 
+            this.tsmiCreateProject.Name = "tsmiCreateProject";
+            this.tsmiCreateProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCreateProject.Text = "项目";
+            this.tsmiCreateProject.Click += new System.EventHandler(this.tsmiCreateProject_Click);
             // 
             // tsmiCreateBeegoProject
             // 
@@ -334,11 +355,6 @@
             this.tsmiCreateBeegoProject.Size = new System.Drawing.Size(180, 22);
             this.tsmiCreateBeegoProject.Text = "Beego项目";
             this.tsmiCreateBeegoProject.Click += new System.EventHandler(this.tsmiCreateBeegoProject_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemOpen
             // 
@@ -708,13 +724,6 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
-            // tsmiNewFile
-            // 
-            this.tsmiNewFile.Name = "tsmiNewFile";
-            this.tsmiNewFile.Size = new System.Drawing.Size(180, 22);
-            this.tsmiNewFile.Text = "文件";
-            this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -816,5 +825,6 @@
         public System.Windows.Forms.ToolStripComboBox toolComboBox_Table;
         public System.Windows.Forms.ToolStripComboBox toolItemDbList;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCreateProject;
     }
 }

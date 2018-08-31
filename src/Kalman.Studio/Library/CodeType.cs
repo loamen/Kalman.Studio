@@ -88,6 +88,7 @@ namespace Kalman.Studio
                 case ".aspx":
                 case ".asax":
                 case ".asmx":
+                case ".jsp":
                     return CodeType.ASPX;
                 case ".bat":
                     return CodeType.BAT;
@@ -100,6 +101,7 @@ namespace Kalman.Studio
                 case ".cpp":
                 case ".cc":
                 case ".hpp":
+                case ".go":
                     return CodeType.CPP;
                 case ".cs":
                     return CodeType.CSHARP;
@@ -107,6 +109,7 @@ namespace Kalman.Studio
                 case ".html":
                     return CodeType.HTML;
                 case ".java":
+                case ".py":
                     return CodeType.JAVA;
                 case ".js":
                     return CodeType.JS;

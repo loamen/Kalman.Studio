@@ -104,6 +104,18 @@ namespace Kalman.Studio
             BeegoProjectCodeBuilder beegoProjectCodeBuilder = new BeegoProjectCodeBuilder();
             beegoProjectCodeBuilder.ShowDialog();
         }
+
+        private void tsmiCreateProject_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(toolItemDbList.Text.Trim()))
+            {
+                MsgBox.Show("请先选择数据库！");
+                return;
+            }
+
+            NewProjectForm newProjectForm = new NewProjectForm();
+            newProjectForm.ShowDialog();
+        }
         #endregion
 
         #region 新建文档
@@ -467,7 +479,8 @@ namespace Kalman.Studio
 
         private void toolItemNewFile_Click(object sender, EventArgs e)
         {
-            NewDockDocument("Document", null, null);
+            NewFileForm newFileForm = new NewFileForm();
+            newFileForm.ShowDialog();
         }
 
         private void toolItemOpenFile_Click(object sender, EventArgs e)

@@ -41,12 +41,18 @@ namespace Kalman.Studio
         /// <param name="caption">文档所在窗体的标题，如“Class1.cs”</param>
         /// <param name="codeType">代码类型</param>
         /// <param name="content">文档文本内容</param>
-        public void NewDockDocument(string caption, string codeType, string content)
+        public void NewDockDocument(string caption, string codeType, string content,string extention = null)
         {
             DockDocument doc = new DockDocument();
 
             int count = 1;
             string ext = CodeTypeHelper.GetExtention(codeType);
+
+            if (!string.IsNullOrEmpty(extention))
+            {
+                ext = extention;
+            }
+
             string text = string.Format("{0}{1}{2}", caption, count.ToString(), ext);
             while (FindDockDocument(text) != null)
             {
