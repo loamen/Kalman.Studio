@@ -1,7 +1,7 @@
 # Kalman.Studio
 开发辅助工具，自动代码生成器，内置基于T4的代码生成器。
 
-作者博客：http://www.cnblogs.com/lingyun_k
+<a href="http://www.cnblogs.com/lingyun_k" target="_blank">作者博客</a>
 
 QQ群：122161138
 
@@ -31,21 +31,4 @@ QQ群：122161138
 
 ## 二、更新日志
 
-2018-08-16
-
-	* 修正数据库架构查看器；
-	* 修正数据库文档生成器；
-
-2018-07-25
-
-	* 修正MySql无法连接的问题；
-	* 修正MySql、Sqlite、Access无法查询数据的问题；
-	+ 添加数据库连接配置；
-	* 调整一些界面细节；
-
-2017-09-15
-
-	* 升级.Net Framework到4.6；
-	* 升级某些依赖项；
-	* 修正生成代码报错的问题；
-	* 调整一些界面细节；
+<a href="Update.md" target="_blank">更新日志</a>
