@@ -14,7 +14,7 @@ using Ebboy.Core.Data;
 using Ebboy.Core.Domain;
 using System.Linq;
 
-namespace Ebboy.Services.<#= nameSpace #>
+namespace <#= nameSpace #>.Services
 {
 	/// <summary>
     /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>

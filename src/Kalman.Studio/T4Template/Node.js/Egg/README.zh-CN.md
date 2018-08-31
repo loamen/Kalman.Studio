@@ -1,39 +1,53 @@
-# Egg
+# sequelize-example
 
-Egg.js
+这个 [egg] 示例项目示范如何使用 [egg-sequelize] 插件。它会展示如何在 egg 项目中使用 [sequelize] 连接数据库，使用 [migrations] 来管理数据结构变更，并通过 [factory-girl] 来编写更易于维护的测试用例。
 
-## 快速入门
+## 快速开始
 
-<!-- 在此次添加使用文档 -->
+### 安装依赖
 
-如需进一步了解，参见 [egg 文档][egg]。
+- 安装 mysql 并建立数据库
 
-### 本地开发
+```
+brew install mysql # macOS
+brew service start mysql
 
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
+mysql
+  > create database `egg-sequelize-example-dev`;
+  > create database `egg-sequelize-example-unittest`;
 ```
 
-### 部署
+- 安装 node 依赖
 
-```bash
-$ npm start
-$ npm stop
+```
+npm install
 ```
 
-### 单元测试
+### 启动和测试
 
-- [egg-bin] 内置了 [mocha], [thunk-mocha], [power-assert], [istanbul] 等框架，让你可以专注于写单元测试，无需理会配套工具。
-- 断言库非常推荐使用 [power-assert]。
-- 具体参见 [egg 文档 - 单元测试](https://eggjs.org/zh-cn/core/unittest)。
+- 执行 migration 执行数据变更
 
-### 内置指令
+```
+# for develop
+npm run sequelize -- db:migrate
+# for unittest
+NODE_ENV=test npm run sequelize -- db:migrate
+```
 
-- 使用 `npm run lint` 来做代码风格检查。
-- 使用 `npm test` 来执行单元测试。
-- 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
+- 启动项目
 
+```
+npm run dev
+```
+
+- 运行测试
+
+```
+npm test
+```
 
 [egg]: https://eggjs.org
+[egg-sequelize]: https://github.com/eggjs/egg-sequelize
+[sequelize]: http://docs.sequelizejs.com/
+[migrations]: http://docs.sequelizejs.com/manual/tutorial/migrations.html
+[factory-girl]: https://github.com/aexmachina/factory-girl

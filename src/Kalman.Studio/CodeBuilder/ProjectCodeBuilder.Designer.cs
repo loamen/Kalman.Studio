@@ -60,6 +60,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.cbTemplateName = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbTableSelect.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cbTemplateName);
             this.groupBox3.Controls.Add(this.cbClassNameRemovePlural);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txtClassPrefix);
@@ -393,6 +395,18 @@
             this.listBox1.Size = new System.Drawing.Size(180, 196);
             this.listBox1.TabIndex = 0;
             // 
+            // cbTemplateName
+            // 
+            this.cbTemplateName.AutoSize = true;
+            this.cbTemplateName.Checked = true;
+            this.cbTemplateName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTemplateName.Location = new System.Drawing.Point(250, 122);
+            this.cbTemplateName.Name = "cbTemplateName";
+            this.cbTemplateName.Size = new System.Drawing.Size(120, 16);
+            this.cbTemplateName.TabIndex = 45;
+            this.cbTemplateName.Text = "模板名作为文件名";
+            this.cbTemplateName.UseVisualStyleBackColor = true;
+            // 
             // ProjectCodeBuilder
             // 
             this.AcceptButton = this.btnOK;
@@ -456,5 +470,6 @@
         private System.Windows.Forms.TextBox txtNameSpace;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox cbTemplateName;
     }
 }

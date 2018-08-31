@@ -1,13 +1,17 @@
 'use strict';
 
 module.exports = appInfo => {
-  const config = exports = {};
+  const config = {};
 
-  // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1535696594335_4783';
+  // should change to your own
+  config.keys = appInfo.name + '_loamen-example';
 
-  // add your config here
-  config.middleware = [];
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'egg-loamen-example',
+    host: '127.0.0.1',
+    port: 3306,
+  };
 
   return config;
 };

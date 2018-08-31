@@ -1,43 +1,31 @@
 {
-  "name": "Egg",
+  "name": "loamen-example",
   "version": "1.0.0",
-  "description": "Egg.js",
+  "description": "The egg example project that uses egg-sequelize plugin by loamen.",
   "private": true,
   "dependencies": {
-    "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
+    "egg": "^2.10.0",
+    "egg-sequelize": "^4.0.1",
+    "mysql2": "^1.6.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
-    "autod-egg": "^1.0.0",
-    "egg-bin": "^4.3.5",
-    "egg-ci": "^1.8.0",
-    "egg-mock": "^3.14.0",
-    "eslint": "^4.11.0",
-    "eslint-config-egg": "^6.0.0",
-    "webstorm-disable-index": "^1.2.0"
+    "egg-bin": "^4.8.1",
+    "egg-mock": "^3.19.2",
+    "factory-girl": "^5.0.2",
+    "lodash": "^4.17.10",
+    "sequelize-cli": "^4.0.0"
   },
   "engines": {
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-Egg",
-    "stop": "egg-scripts stop --title=egg-server-Egg",
     "dev": "egg-bin dev",
-    "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "egg-bin test",
+    "test": "egg-bin test",
     "cov": "egg-bin cov",
-    "lint": "eslint .",
-    "ci": "npm run lint && npm run cov",
-    "autod": "autod"
-  },
-  "ci": {
-    "version": "8"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
+    "ci": "npm run cov",
+    "autod": "autod",
+    "sequelize": "sequelize --"
   },
   "author": "loamen.com",
   "license": "MIT"

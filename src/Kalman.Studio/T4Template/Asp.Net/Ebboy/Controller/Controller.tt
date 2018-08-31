@@ -24,7 +24,7 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace <#= nameSpace #>
+namespace <#= nameSpace #>.Controller
 {
 	/// <summary>
     /// <#= table.Comment == "" ? table.Name : table.Comment.Replace("\r\n"," ") #>

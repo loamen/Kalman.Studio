@@ -15,7 +15,7 @@
 	string lowerTableName = tableName.Substring(0, 1).ToLower() + tableName.Substring(1, length - 1);
 	string serviceName = "_" + lowerTableName + "Service";
 #>
-@model Ebboy.Core.Domain.<#=tableName#>
+@model <#= nameSpace #>.Core.Domain.<#=tableName#>
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutSubMenu.cshtml";

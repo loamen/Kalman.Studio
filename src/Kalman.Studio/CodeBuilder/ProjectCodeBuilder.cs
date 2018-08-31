@@ -134,7 +134,7 @@ namespace Kalman.Studio
                 return;
             }
 
-            maxCount = totalCount - templateCount + totalCount * listBox2.Items.Count; //生成文件总数
+            maxCount = totalCount - templateCount + templateCount * listBox2.Items.Count; //生成文件总数
             this.progressBarInfo.Maximum = maxCount;
 
             if (txtNameSpace.Text.Trim() != "") nameSpace = txtNameSpace.Text.Trim();
@@ -285,7 +285,7 @@ namespace Kalman.Studio
             }
             else
             {
-                lblMsg.Text = string.Format("已完成：{0}%，正在处理：{1}", ((double)e.ProgressPercentage / maxCount) * 100, message);
+                lblMsg.Text = string.Format("已完成：{0}%，正在处理：{1}", (((double)e.ProgressPercentage / maxCount) * 100).ToString("F0"), message);
             }
         }
 
@@ -360,11 +360,35 @@ namespace Kalman.Studio
                         outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
                         dicTemp.Add(templateFile,outputContent);
                     }
-                    var extName = templateFileInfo.Name.Replace(templateFileInfo.Extension, "");
+                    var extName = templateFileInfo.Name.Replace(templateFileInfo.Extension, ""); //模板名称
 
-                    string outputFile = Path.Combine(toDic, string.Format("{0}{1}{2}", table.Name, extName, host.FileExtention));
-                    if (cbClassNameIsFileName.Checked) outputFile = Path.Combine(toDic, string.Format("{0}{1}{2}", className, extName, host.FileExtention));
+                    var fileNameFormat = new StringBuilder("{0}");
+                    string outputFile = string.Empty;
 
+                    if (cbTemplateName.Checked || cbClassNameIsFileName.Checked)
+                    {
+                        if (cbClassNameIsFileName.Checked && cbTemplateName.Checked)
+                        {
+                            outputFile = Path.Combine(toDic, string.Format("{0}{1}{2}", className, extName, host.FileExtention)); //类名和模板名作为文件名
+                        }
+                        else
+                        {
+                            if (cbClassNameIsFileName.Checked)
+                            {
+                                outputFile = Path.Combine(toDic, string.Format("{0}{1}", className, host.FileExtention)); //类名作为文件名
+                            }
+                            else if (cbTemplateName.Checked)
+                            {
+                                outputFile = Path.Combine(toDic, string.Format("{0}{1}", extName, host.FileExtention)); //模板名作为文件名
+                            }
+                        }
+                    }
+                    else
+                    {
+                        outputFile = Path.Combine(toDic, string.Format("{0}{1}", table.Name, host.FileExtention)); //表名作为文件名
+                    }
+                    
+                    
                     StringBuilder sb = new StringBuilder();
                     if (host.ErrorCollection != null && host.ErrorCollection.HasErrors)
                     {
