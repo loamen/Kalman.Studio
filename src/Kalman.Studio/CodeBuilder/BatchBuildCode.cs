@@ -330,16 +330,18 @@ namespace Kalman.Studio
                 host.SetValue("PrefixLevel", prefixLevel);
 
                 Engine engine = new Engine();
-                string outputContent = string.Empty;
+                string templateContent = string.Empty;
                 if (dicTemp.ContainsKey(templateFile))
                 {
-                    outputContent = dicTemp[templateFile];
+                    templateContent = dicTemp[templateFile];
                 }
                 else
                 {
-                    outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
-                    dicTemp.Add(templateFile, outputContent);
+                    templateContent = File.ReadAllText(templateFile);
+                    dicTemp.Add(templateFile, templateContent);
                 }
+
+                var outputContent = engine.ProcessTemplate(templateContent, host); 
                 //string outputFile = Path.Combine(outputPath, string.Format("{0}.cs", className));
                 string outputFile = Path.Combine(outputPath, string.Format("{0}{1}", table.Name, host.FileExtention));
                 if(cbClassNameIsFileName.Checked)outputFile = Path.Combine(outputPath, string.Format("{0}{1}", className, host.FileExtention));

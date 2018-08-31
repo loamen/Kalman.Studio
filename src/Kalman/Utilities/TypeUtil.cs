@@ -236,6 +236,54 @@ namespace Kalman.Utilities
         }
 
         /// <summary>
+        /// 将System.Data.DbType类型转换为对应Mysql Sequelize类型字符串
+        /// </summary>
+        /// <param name="dbType"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string DbType2MysqlSequelizeString(DbType dbType,int length=0)
+        {
+            switch (dbType)
+            {
+                case DbType.AnsiString:
+                case DbType.AnsiStringFixedLength:
+                case DbType.String:
+                case DbType.StringFixedLength:
+                    return "STRING" + (length > 0 ? "(" + length + ")" : "");
+                case DbType.Xml:
+                    return "TEXT";
+                case DbType.Binary:
+                    return "byte[]";
+                case DbType.Boolean:
+                    return "BOOLEAN";
+                case DbType.Time:
+                case DbType.Date:
+                case DbType.DateTime:
+                case DbType.DateTime2:
+                    return "DATE";
+                case DbType.Currency:
+                case DbType.Decimal:
+                case DbType.Double:
+                case DbType.VarNumeric:
+                    return "DOUBLE";
+                case DbType.Guid:
+                    return "UUID";
+                case DbType.Byte://?
+                case DbType.Int16:
+                case DbType.Int32:
+                case DbType.Int64:
+                case DbType.SByte:
+                case DbType.Single:
+                case DbType.UInt16:
+                case DbType.UInt32:
+                case DbType.UInt64:
+                    return "INTEGER";
+                default:
+                    return "STRING" + (length > 0 ? "(" + length + ")" : "");
+            }
+        }
+
+        /// <summary>
         /// 将System.Data.DbType类型转换为对应System.Type类型
         /// </summary>
         /// <param name="dbType"></param>

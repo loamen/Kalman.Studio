@@ -349,17 +349,19 @@ namespace Kalman.Studio
                     host.SetValue("PrefixLevel", prefixLevel);
 
                     Engine engine = new Engine();
-                    string outputContent = string.Empty;
+                    string templateContent = string.Empty;
                     var templateFileInfo = new FileInfo(templateFile);
                     if (dicTemp.ContainsKey(templateFile))
                     {
-                        outputContent = dicTemp[templateFile];
+                        templateContent = dicTemp[templateFile];
                     }
                     else
                     {
-                        outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
-                        dicTemp.Add(templateFile,outputContent);
+                        templateContent = File.ReadAllText(templateFile);
+                        dicTemp.Add(templateFile, templateContent);
                     }
+
+                    var outputContent = engine.ProcessTemplate(templateContent, host);
                     var extName = templateFileInfo.Name.Replace(templateFileInfo.Extension, ""); //模板名称
 
                     var fileNameFormat = new StringBuilder("{0}");

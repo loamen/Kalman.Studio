@@ -1,0 +1,44 @@
+<#@ template language="C#" hostSpecific="true" debug="false" #>
+<#@ output extension=".cs" #>
+<# 
+	TableHost host = (TableHost)(Host); 
+	SOTable table = host.Table;
+	List<SOColumn> list = host.ColumnList;
+	string nameSpace = host.GetString("NameSpace");
+	string className = host.GetString("ClassName");
+	if(string.IsNullOrEmpty(nameSpace))nameSpace = "Entity";
+	if(string.IsNullOrEmpty(className))className = table.Name;
+	string tableName  = table.Name.EndsWith("s") ?table.Name.TrimEnd('s') : table.Name.Trim();
+#>
+'use strict';
+
+module.exports = app => {
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+
+  const <#= tableName.InitialToUpperMulti() #> = app.model.define('<#= tableName #>', 
+  <# StringBuilder sb = new StringBuilder("{");
+            foreach (SOColumn c in list)
+            {
+                string comment = c.Comment == "" ? c.Name : c.Comment.Replace("\r\n", " ");
+                string type = TypeUtil.DbType2MysqlSequelizeString(c.DataType, c.Length);
+                string name = c.Name;
+                
+                if (c.PrimaryKey && c.IsInt())
+                {
+                    sb.AppendLine(name + ": {type: INTEGER,");
+                    sb.AppendLine("primaryKey: true,");
+                    if (c.Identify)
+                    {
+                        sb.AppendLine("autoIncrement: true},");
+                    }
+                }
+                else
+                {
+                    sb.AppendLine(name + ": " + type + ",");
+                }
+            }
+            sb.AppendLine("});");#>
+  <#=sb.ToString()#>
+
+  return <#= tableName.InitialToUpperMulti() #>;
+};

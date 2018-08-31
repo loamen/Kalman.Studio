@@ -899,6 +899,11 @@
     <Content Include="T4Template\Node.js\Egg\app\extend\helper.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="T4Template\Node.js\Egg\app\model\model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>model.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="T4Template\Node.js\Egg\app\model\user.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
