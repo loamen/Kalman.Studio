@@ -54,17 +54,6 @@
             this.menuItemNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCreateBeegoProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemNewAspx = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewCpp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewCSharp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewHtml = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewJava = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewJavascript = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewPHP = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewText = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewTSQL = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewVB = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNewXML = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemClose = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,6 +100,7 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -332,17 +322,7 @@
             this.menuItemNew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiCreateBeegoProject,
             this.toolStripMenuItem3,
-            this.menuItemNewAspx,
-            this.menuItemNewCpp,
-            this.menuItemNewCSharp,
-            this.menuItemNewHtml,
-            this.menuItemNewJava,
-            this.menuItemNewJavascript,
-            this.menuItemNewPHP,
-            this.menuItemNewText,
-            this.menuItemNewTSQL,
-            this.menuItemNewVB,
-            this.menuItemNewXML});
+            this.tsmiNewFile});
             this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.menuItemNew.Size = new System.Drawing.Size(180, 22);
@@ -359,83 +339,6 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
-            // 
-            // menuItemNewAspx
-            // 
-            this.menuItemNewAspx.Name = "menuItemNewAspx";
-            this.menuItemNewAspx.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewAspx.Text = "Aspx";
-            this.menuItemNewAspx.Click += new System.EventHandler(this.menuItemNewAspx_Click);
-            // 
-            // menuItemNewCpp
-            // 
-            this.menuItemNewCpp.Name = "menuItemNewCpp";
-            this.menuItemNewCpp.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewCpp.Text = "C/C++";
-            this.menuItemNewCpp.Click += new System.EventHandler(this.menuItemNewCpp_Click);
-            // 
-            // menuItemNewCSharp
-            // 
-            this.menuItemNewCSharp.Name = "menuItemNewCSharp";
-            this.menuItemNewCSharp.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewCSharp.Text = "CSharp";
-            this.menuItemNewCSharp.Click += new System.EventHandler(this.menuItemNewCSharp_Click);
-            // 
-            // menuItemNewHtml
-            // 
-            this.menuItemNewHtml.Name = "menuItemNewHtml";
-            this.menuItemNewHtml.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewHtml.Text = "Html";
-            this.menuItemNewHtml.Click += new System.EventHandler(this.menuItemNewHtml_Click);
-            // 
-            // menuItemNewJava
-            // 
-            this.menuItemNewJava.Name = "menuItemNewJava";
-            this.menuItemNewJava.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewJava.Text = "Java";
-            this.menuItemNewJava.Click += new System.EventHandler(this.menuItemNewJava_Click);
-            // 
-            // menuItemNewJavascript
-            // 
-            this.menuItemNewJavascript.Name = "menuItemNewJavascript";
-            this.menuItemNewJavascript.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewJavascript.Text = "Javascript";
-            this.menuItemNewJavascript.Click += new System.EventHandler(this.menuItemNewJavascript_Click);
-            // 
-            // menuItemNewPHP
-            // 
-            this.menuItemNewPHP.Name = "menuItemNewPHP";
-            this.menuItemNewPHP.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewPHP.Text = "PHP";
-            this.menuItemNewPHP.Click += new System.EventHandler(this.menuItemNewPHP_Click);
-            // 
-            // menuItemNewText
-            // 
-            this.menuItemNewText.Name = "menuItemNewText";
-            this.menuItemNewText.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewText.Text = "Text";
-            this.menuItemNewText.Click += new System.EventHandler(this.menuItemNewText_Click);
-            // 
-            // menuItemNewTSQL
-            // 
-            this.menuItemNewTSQL.Name = "menuItemNewTSQL";
-            this.menuItemNewTSQL.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewTSQL.Text = "TSQL";
-            this.menuItemNewTSQL.Click += new System.EventHandler(this.menuItemNewTSQL_Click);
-            // 
-            // menuItemNewVB
-            // 
-            this.menuItemNewVB.Name = "menuItemNewVB";
-            this.menuItemNewVB.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewVB.Text = "VB.NET";
-            this.menuItemNewVB.Click += new System.EventHandler(this.menuItemNewVB_Click);
-            // 
-            // menuItemNewXML
-            // 
-            this.menuItemNewXML.Name = "menuItemNewXML";
-            this.menuItemNewXML.Size = new System.Drawing.Size(180, 22);
-            this.menuItemNewXML.Text = "XML";
-            this.menuItemNewXML.Click += new System.EventHandler(this.menuItemNewXML_Click);
             // 
             // menuItemOpen
             // 
@@ -805,6 +708,13 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
+            // tsmiNewFile
+            // 
+            this.tsmiNewFile.Name = "tsmiNewFile";
+            this.tsmiNewFile.Size = new System.Drawing.Size(180, 22);
+            this.tsmiNewFile.Text = "文件";
+            this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -888,17 +798,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
         private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewAspx;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewCpp;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewCSharp;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewHtml;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewJava;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewJavascript;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewPHP;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewText;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewTSQL;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewVB;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNewXML;
         private System.Windows.Forms.ToolStripMenuItem menuItemStringConnector;
         private System.Windows.Forms.ToolStripMenuItem menuItemStringConverter;
         private System.Windows.Forms.StatusStrip MainStatusBar;
@@ -916,5 +815,6 @@
         public System.Windows.Forms.ToolStripComboBox toolComboBox_DB;
         public System.Windows.Forms.ToolStripComboBox toolComboBox_Table;
         public System.Windows.Forms.ToolStripComboBox toolItemDbList;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
     }
 }

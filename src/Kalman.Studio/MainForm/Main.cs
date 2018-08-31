@@ -107,8 +107,12 @@ namespace Kalman.Studio
         #endregion
 
         #region 新建文档
-
-        string GetCodeTemplateText(string ext)
+        private void tsmiNewFile_Click(object sender, EventArgs e)
+        {
+            NewFileForm newFileForm = new NewFileForm();
+            newFileForm.ShowDialog();
+        }
+        public string GetCodeTemplateText(string ext)
         {
             string text = "";
             string path = Path.Combine(Application.StartupPath, "Template\\template" + ext);
@@ -116,62 +120,6 @@ namespace Kalman.Studio
             if (File.Exists(path)) text = File.ReadAllText(path);
             return text;
         }
-
-        private void menuItemNewAspx_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("WebForm", CodeType.ASPX, GetCodeTemplateText(".aspx"));
-        }
-
-        private void menuItemNewCpp_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Class", CodeType.CPP, GetCodeTemplateText(".cpp"));
-        }
-
-        private void menuItemNewCSharp_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Class", CodeType.CSHARP, GetCodeTemplateText(".cs"));
-        }
-
-        private void menuItemNewHtml_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Page", CodeType.HTML, GetCodeTemplateText(".htm"));
-        }
-
-        private void menuItemNewJava_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Class", CodeType.JAVA, GetCodeTemplateText(".java"));
-        }
-
-        private void menuItemNewJavascript_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Script", CodeType.JS, GetCodeTemplateText(".js"));
-        }
-
-        private void menuItemNewPHP_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Page", CodeType.PHP, GetCodeTemplateText(".php"));
-        }
-
-        private void menuItemNewText_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("TextFile", null, null);
-        }
-
-        private void menuItemNewTSQL_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Query", CodeType.TSQL, GetCodeTemplateText(".sql"));
-        }
-
-        private void menuItemNewVB_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("Class", CodeType.VB, GetCodeTemplateText(".vb"));
-        }
-
-        private void menuItemNewXML_Click(object sender, EventArgs e)
-        {
-            NewDockDocument("XmlFile", CodeType.XML, GetCodeTemplateText(".xml"));
-        }
-
         #endregion
 
         //打开文档
@@ -698,8 +646,7 @@ namespace Kalman.Studio
             }
         }
 
-        #endregion
 
- 
+        #endregion
     }
 }
