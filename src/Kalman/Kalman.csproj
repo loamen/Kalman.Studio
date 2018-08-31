@@ -321,6 +321,7 @@
     <Compile Include="Security\Enums\HashAlgorithmType.cs" />
     <Compile Include="ILogable.cs" />
     <Compile Include="Utilities\DatetimeUtil.cs" />
+    <Compile Include="Utilities\IOUtil.cs" />
     <Compile Include="Utilities\LunarDateUtil.cs" />
     <Compile Include="Utilities\NetUtil.cs" />
     <Compile Include="QQWryLocator.cs" />

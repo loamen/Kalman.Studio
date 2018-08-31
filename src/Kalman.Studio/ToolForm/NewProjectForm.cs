@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Kalman.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,6 +15,19 @@ namespace Kalman.Studio
 {
     public partial class NewProjectForm : Form
     {
+        /// <summary>
+        /// 目录路径
+        /// </summary>
+        public string TemplatePath { get; set; }
+        /// <summary>
+        /// 输出目录
+        /// </summary>
+        public string OutputPath { get; set; }
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjctName { get; set; }
+
         public NewProjectForm()
         {
             InitializeComponent();
@@ -92,10 +107,29 @@ namespace Kalman.Studio
                 MsgBox.Show("请选择项目输出目录！");
                 return;
             }
-            this.Close();
 
-            string path = this.listView1.SelectedItems[0].Tag.ToString();
-            Config.MainForm.OpenNewProjectDialog(path, txtProName.Text.Trim());
+            TemplatePath = this.listView1.SelectedItems[0].Tag.ToString();
+            OutputPath = txtProPath.Text.Trim();
+            ProjctName = txtProName.Text.Trim();
+
+            var outputCount = IOUtil.GetFilesCount(new DirectoryInfo(OutputPath));
+
+            if (outputCount > 0)
+            {
+                if (MsgBox.ShowQuestionMessage("输出目录不为空，是否立即查看？") == DialogResult.Yes)
+                {
+                    DialogResult = DialogResult.Cancel;
+                    Process p = new Process();
+                    p.StartInfo = new ProcessStartInfo(OutputPath);
+                    p.Start();
+                    Close();
+                }
+                return;
+            }
+
+           
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

@@ -107,10 +107,10 @@ namespace Kalman.Studio
                 doc.Show(dockPanel);
         }
 
-        public void OpenNewProjectDialog(string path, string projectName)
+        public void OpenNewProjectDialog(string projectName, string outputPath, string templatePath)
         {
-            ProjectCodeBuilder projectCodeBuilder = new ProjectCodeBuilder(path, projectName);
-            projectCodeBuilder.ShowDialog();
+            ProjectCodeBuilder projectCodeBuilder = new ProjectCodeBuilder(projectName, outputPath, templatePath);
+            projectCodeBuilder.Show();
         }
 
         public void OpenNewProjectForm()
@@ -121,8 +121,11 @@ namespace Kalman.Studio
                 return;
             }
 
-            NewProjectForm newProjectForm = new NewProjectForm();
-            newProjectForm.Show();
+            NewProjectForm form = new NewProjectForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                OpenNewProjectDialog(form.ProjctName, form.OutputPath, form.TemplatePath);
+            }
         }
 
         //打开文档

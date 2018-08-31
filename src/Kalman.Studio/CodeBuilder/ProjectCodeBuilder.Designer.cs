@@ -29,6 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbClassNameRemovePlural = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtClassPrefix = new System.Windows.Forms.TextBox();
+            this.cbClassNameIsFileName = new System.Windows.Forms.CheckBox();
+            this.cbAddSuffix = new System.Windows.Forms.CheckBox();
+            this.cbClassNamePascal = new System.Windows.Forms.CheckBox();
+            this.cbDeleteTablePrifix = new System.Windows.Forms.CheckBox();
+            this.txtClassSuffix = new System.Windows.Forms.TextBox();
+            this.txtPrefixLevel = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTablePrefix = new System.Windows.Forms.TextBox();
+            this.txtNameSpace = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbConnectStringName = new System.Windows.Forms.ComboBox();
             this.cmbDatabase = new System.Windows.Forms.ComboBox();
@@ -46,20 +60,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.cbClassNameRemovePlural = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtClassPrefix = new System.Windows.Forms.TextBox();
-            this.cbClassNameIsFileName = new System.Windows.Forms.CheckBox();
-            this.cbAddSuffix = new System.Windows.Forms.CheckBox();
-            this.cbClassNamePascal = new System.Windows.Forms.CheckBox();
-            this.cbDeleteTablePrifix = new System.Windows.Forms.CheckBox();
-            this.txtClassSuffix = new System.Windows.Forms.TextBox();
-            this.txtPrefixLevel = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtTablePrefix = new System.Windows.Forms.TextBox();
-            this.txtNameSpace = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbTableSelect.SuspendLayout();
@@ -87,6 +87,131 @@
             this.groupBox3.TabIndex = 55;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "基本设置";
+            // 
+            // cbClassNameRemovePlural
+            // 
+            this.cbClassNameRemovePlural.AutoSize = true;
+            this.cbClassNameRemovePlural.Location = new System.Drawing.Point(138, 122);
+            this.cbClassNameRemovePlural.Name = "cbClassNameRemovePlural";
+            this.cbClassNameRemovePlural.Size = new System.Drawing.Size(96, 16);
+            this.cbClassNameRemovePlural.TabIndex = 44;
+            this.cbClassNameRemovePlural.Text = "去掉类名复数";
+            this.cbClassNameRemovePlural.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(199, 99);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "+类名+";
+            // 
+            // txtClassPrefix
+            // 
+            this.txtClassPrefix.Location = new System.Drawing.Point(122, 95);
+            this.txtClassPrefix.Name = "txtClassPrefix";
+            this.txtClassPrefix.Size = new System.Drawing.Size(71, 21);
+            this.txtClassPrefix.TabIndex = 42;
+            // 
+            // cbClassNameIsFileName
+            // 
+            this.cbClassNameIsFileName.AutoSize = true;
+            this.cbClassNameIsFileName.Checked = true;
+            this.cbClassNameIsFileName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbClassNameIsFileName.Location = new System.Drawing.Point(13, 122);
+            this.cbClassNameIsFileName.Name = "cbClassNameIsFileName";
+            this.cbClassNameIsFileName.Size = new System.Drawing.Size(108, 16);
+            this.cbClassNameIsFileName.TabIndex = 41;
+            this.cbClassNameIsFileName.Text = "类名作为文件名";
+            this.cbClassNameIsFileName.UseVisualStyleBackColor = true;
+            // 
+            // cbAddSuffix
+            // 
+            this.cbAddSuffix.AutoSize = true;
+            this.cbAddSuffix.Location = new System.Drawing.Point(13, 97);
+            this.cbAddSuffix.Name = "cbAddSuffix";
+            this.cbAddSuffix.Size = new System.Drawing.Size(108, 16);
+            this.cbAddSuffix.TabIndex = 40;
+            this.cbAddSuffix.Text = "类名添加前后缀";
+            this.cbAddSuffix.UseVisualStyleBackColor = true;
+            // 
+            // cbClassNamePascal
+            // 
+            this.cbClassNamePascal.AutoSize = true;
+            this.cbClassNamePascal.Location = new System.Drawing.Point(13, 72);
+            this.cbClassNamePascal.Name = "cbClassNamePascal";
+            this.cbClassNamePascal.Size = new System.Drawing.Size(180, 16);
+            this.cbClassNamePascal.TabIndex = 39;
+            this.cbClassNamePascal.Text = "规范化类名，按Pascal大小写";
+            this.cbClassNamePascal.UseVisualStyleBackColor = true;
+            // 
+            // cbDeleteTablePrifix
+            // 
+            this.cbDeleteTablePrifix.AutoSize = true;
+            this.cbDeleteTablePrifix.Location = new System.Drawing.Point(13, 47);
+            this.cbDeleteTablePrifix.Name = "cbDeleteTablePrifix";
+            this.cbDeleteTablePrifix.Size = new System.Drawing.Size(96, 16);
+            this.cbDeleteTablePrifix.TabIndex = 38;
+            this.cbDeleteTablePrifix.Text = "删除表名前缀";
+            this.cbDeleteTablePrifix.UseVisualStyleBackColor = true;
+            // 
+            // txtClassSuffix
+            // 
+            this.txtClassSuffix.Location = new System.Drawing.Point(246, 95);
+            this.txtClassSuffix.Name = "txtClassSuffix";
+            this.txtClassSuffix.Size = new System.Drawing.Size(76, 21);
+            this.txtClassSuffix.TabIndex = 37;
+            // 
+            // txtPrefixLevel
+            // 
+            this.txtPrefixLevel.Location = new System.Drawing.Point(327, 45);
+            this.txtPrefixLevel.Name = "txtPrefixLevel";
+            this.txtPrefixLevel.Size = new System.Drawing.Size(30, 21);
+            this.txtPrefixLevel.TabIndex = 36;
+            this.txtPrefixLevel.Text = "1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(272, 49);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "前缀层次";
+            // 
+            // txtTablePrefix
+            // 
+            this.txtTablePrefix.Location = new System.Drawing.Point(228, 45);
+            this.txtTablePrefix.Name = "txtTablePrefix";
+            this.txtTablePrefix.Size = new System.Drawing.Size(30, 21);
+            this.txtTablePrefix.TabIndex = 33;
+            this.txtTablePrefix.Text = "_";
+            // 
+            // txtNameSpace
+            // 
+            this.txtNameSpace.Location = new System.Drawing.Point(72, 18);
+            this.txtNameSpace.Name = "txtNameSpace";
+            this.txtNameSpace.Size = new System.Drawing.Size(285, 21);
+            this.txtNameSpace.TabIndex = 34;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "命名空间";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(157, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "前缀分隔符";
             // 
             // groupBox1
             // 
@@ -266,131 +391,6 @@
             this.listBox1.Size = new System.Drawing.Size(180, 196);
             this.listBox1.TabIndex = 0;
             // 
-            // cbClassNameRemovePlural
-            // 
-            this.cbClassNameRemovePlural.AutoSize = true;
-            this.cbClassNameRemovePlural.Location = new System.Drawing.Point(138, 122);
-            this.cbClassNameRemovePlural.Name = "cbClassNameRemovePlural";
-            this.cbClassNameRemovePlural.Size = new System.Drawing.Size(96, 16);
-            this.cbClassNameRemovePlural.TabIndex = 44;
-            this.cbClassNameRemovePlural.Text = "去掉类名复数";
-            this.cbClassNameRemovePlural.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(199, 99);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "+类名+";
-            // 
-            // txtClassPrefix
-            // 
-            this.txtClassPrefix.Location = new System.Drawing.Point(122, 95);
-            this.txtClassPrefix.Name = "txtClassPrefix";
-            this.txtClassPrefix.Size = new System.Drawing.Size(71, 21);
-            this.txtClassPrefix.TabIndex = 42;
-            // 
-            // cbClassNameIsFileName
-            // 
-            this.cbClassNameIsFileName.AutoSize = true;
-            this.cbClassNameIsFileName.Checked = true;
-            this.cbClassNameIsFileName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbClassNameIsFileName.Location = new System.Drawing.Point(13, 122);
-            this.cbClassNameIsFileName.Name = "cbClassNameIsFileName";
-            this.cbClassNameIsFileName.Size = new System.Drawing.Size(108, 16);
-            this.cbClassNameIsFileName.TabIndex = 41;
-            this.cbClassNameIsFileName.Text = "类名作为文件名";
-            this.cbClassNameIsFileName.UseVisualStyleBackColor = true;
-            // 
-            // cbAddSuffix
-            // 
-            this.cbAddSuffix.AutoSize = true;
-            this.cbAddSuffix.Location = new System.Drawing.Point(13, 97);
-            this.cbAddSuffix.Name = "cbAddSuffix";
-            this.cbAddSuffix.Size = new System.Drawing.Size(108, 16);
-            this.cbAddSuffix.TabIndex = 40;
-            this.cbAddSuffix.Text = "类名添加前后缀";
-            this.cbAddSuffix.UseVisualStyleBackColor = true;
-            // 
-            // cbClassNamePascal
-            // 
-            this.cbClassNamePascal.AutoSize = true;
-            this.cbClassNamePascal.Location = new System.Drawing.Point(13, 72);
-            this.cbClassNamePascal.Name = "cbClassNamePascal";
-            this.cbClassNamePascal.Size = new System.Drawing.Size(180, 16);
-            this.cbClassNamePascal.TabIndex = 39;
-            this.cbClassNamePascal.Text = "规范化类名，按Pascal大小写";
-            this.cbClassNamePascal.UseVisualStyleBackColor = true;
-            // 
-            // cbDeleteTablePrifix
-            // 
-            this.cbDeleteTablePrifix.AutoSize = true;
-            this.cbDeleteTablePrifix.Location = new System.Drawing.Point(13, 47);
-            this.cbDeleteTablePrifix.Name = "cbDeleteTablePrifix";
-            this.cbDeleteTablePrifix.Size = new System.Drawing.Size(96, 16);
-            this.cbDeleteTablePrifix.TabIndex = 38;
-            this.cbDeleteTablePrifix.Text = "删除表名前缀";
-            this.cbDeleteTablePrifix.UseVisualStyleBackColor = true;
-            // 
-            // txtClassSuffix
-            // 
-            this.txtClassSuffix.Location = new System.Drawing.Point(246, 95);
-            this.txtClassSuffix.Name = "txtClassSuffix";
-            this.txtClassSuffix.Size = new System.Drawing.Size(76, 21);
-            this.txtClassSuffix.TabIndex = 37;
-            // 
-            // txtPrefixLevel
-            // 
-            this.txtPrefixLevel.Location = new System.Drawing.Point(327, 45);
-            this.txtPrefixLevel.Name = "txtPrefixLevel";
-            this.txtPrefixLevel.Size = new System.Drawing.Size(30, 21);
-            this.txtPrefixLevel.TabIndex = 36;
-            this.txtPrefixLevel.Text = "1";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(272, 49);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "前缀层次";
-            // 
-            // txtTablePrefix
-            // 
-            this.txtTablePrefix.Location = new System.Drawing.Point(228, 45);
-            this.txtTablePrefix.Name = "txtTablePrefix";
-            this.txtTablePrefix.Size = new System.Drawing.Size(30, 21);
-            this.txtTablePrefix.TabIndex = 33;
-            this.txtTablePrefix.Text = "_";
-            // 
-            // txtNameSpace
-            // 
-            this.txtNameSpace.Location = new System.Drawing.Point(72, 18);
-            this.txtNameSpace.Name = "txtNameSpace";
-            this.txtNameSpace.Size = new System.Drawing.Size(285, 21);
-            this.txtNameSpace.TabIndex = 34;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 31;
-            this.label4.Text = "命名空间";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(157, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "前缀分隔符";
-            // 
             // ProjectCodeBuilder
             // 
             this.AcceptButton = this.btnOK;
@@ -405,9 +405,8 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBarInfo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ProjectCodeBuilder";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新建项目";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BeegoProjectCodeBuilder_FormClosing);
