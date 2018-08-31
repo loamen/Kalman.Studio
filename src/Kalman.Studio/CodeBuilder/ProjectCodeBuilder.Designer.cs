@@ -298,6 +298,7 @@
             // backgroundWorkerGenerate
             // 
             this.backgroundWorkerGenerate.WorkerReportsProgress = true;
+            this.backgroundWorkerGenerate.WorkerSupportsCancellation = true;
             this.backgroundWorkerGenerate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerGenerate_DoWork);
             this.backgroundWorkerGenerate.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerGenerate_ProgressChanged);
             this.backgroundWorkerGenerate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerGenerate_RunWorkerCompleted);

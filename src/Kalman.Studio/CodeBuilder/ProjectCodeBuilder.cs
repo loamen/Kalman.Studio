@@ -24,6 +24,7 @@ namespace Kalman.Studio
         DbConnDAL dal = new DbConnDAL();
         SODatabase currentDatabase;
         List<SOTable> tableList = new List<SOTable>();
+        Dictionary<string, string> dicTemp = new Dictionary<string, string>();
 
         string projectName = string.Empty;
         string outputPath = string.Empty;
@@ -152,14 +153,7 @@ namespace Kalman.Studio
                 DialogResult result = MsgBox.ShowQuestionMessage("正在生成代码，强制关闭可能会导致错误，是否关闭？");
                 if (result == DialogResult.Yes)
                 {
-                    var processes = Process.GetProcesses();
-                    foreach (var pro in processes)
-                    {
-                        if (pro.ProcessName == "cmd" || pro.ProcessName == "cnnhost" || pro.ProcessName == "bee")
-                        {
-                            pro.Kill();
-                        }
-                    }
+                    backgroundWorkerGenerate.CancelAsync();
                 }
                 else
                 {
@@ -180,6 +174,7 @@ namespace Kalman.Studio
                     Process p = new Process();
                     p.StartInfo = new ProcessStartInfo(outputPath);
                     p.Start();
+                    this.Close();
                 }
             }
         }
@@ -354,15 +349,24 @@ namespace Kalman.Studio
                     host.SetValue("PrefixLevel", prefixLevel);
 
                     Engine engine = new Engine();
+                    string outputContent = string.Empty;
                     var templateFileInfo = new FileInfo(templateFile);
-                    string outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
+                    if (dicTemp.ContainsKey(templateFile))
+                    {
+                        outputContent = dicTemp[templateFile];
+                    }
+                    else
+                    {
+                        outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
+                        dicTemp.Add(templateFile,outputContent);
+                    }
                     var extName = templateFileInfo.Name.Replace(templateFileInfo.Extension, "");
 
                     string outputFile = Path.Combine(toDic, string.Format("{0}{1}{2}", table.Name, extName, host.FileExtention));
                     if (cbClassNameIsFileName.Checked) outputFile = Path.Combine(toDic, string.Format("{0}{1}{2}", className, extName, host.FileExtention));
 
                     StringBuilder sb = new StringBuilder();
-                    if (host.ErrorCollection.HasErrors)
+                    if (host.ErrorCollection != null && host.ErrorCollection.HasErrors)
                     {
                         foreach (CompilerError err in host.ErrorCollection)
                         {
@@ -383,7 +387,7 @@ namespace Kalman.Studio
             }
             catch (Exception ex)
             {
-                Config.Console(ex.ToString());
+                Config.ConsoleException(ex);
                 result = ex.Message;
                 this.backgroundWorkerGenerate.CancelAsync(); //中止
             }
@@ -440,7 +444,7 @@ namespace Kalman.Studio
                 CopyDir(fromDirName, toDirName);
             }
 
-            result = "全部生成完成";
+            result = "全部生成完成，是否立即查看？";
 
             return result;
         }

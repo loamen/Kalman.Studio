@@ -44,6 +44,21 @@ namespace Kalman.Studio
         {
             MainForm.AppendOutputLine(text, newLine);
         }
+
+        /// <summary>
+        /// 输出异常
+        /// </summary>
+        /// <param name="ex"></param>
+        public static void ConsoleException(Exception ex)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(ex.Message);
+            sb.AppendLine(ex.Source);
+            sb.AppendLine(ex.StackTrace);
+            sb.AppendLine(ex.HelpLink);
+
+            MainForm.AppendOutputLine(sb.ToString(), true);
+        }
         #endregion
 
     }

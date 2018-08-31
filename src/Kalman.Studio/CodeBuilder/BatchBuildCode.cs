@@ -27,7 +27,7 @@ namespace Kalman.Studio
         string _CodeType = CodeType.CSHARP;
         SODatabase currentDatabase;
         List<SOTable> tableList = new List<SOTable>();
-        //string templatePath = Path.Combine(Application.StartupPath, "T4Template\\SP");
+        Dictionary<string, string> dicTemp = new Dictionary<string, string>();
 
         public BatchBuildCode(SODatabase db)
         {
@@ -47,6 +47,7 @@ namespace Kalman.Studio
 
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
             txtOutputPath.Text = Path.Combine(Application.StartupPath, "Output");
+            txtNameSpace.Text = nameSpace;
 
             SetDocumentCodeType(textEditorControl1, CodeType.CSHARP);
             LoadTemplateTree();
@@ -274,7 +275,7 @@ namespace Kalman.Studio
         #endregion
 
         #region 代码生成相关
-        string nameSpace = "Kalman";
+        string nameSpace = "Loamen";
         string tablePrefix = string.Empty;
         int prefixLevel = 1;
         string templateFile = string.Empty;
@@ -329,14 +330,22 @@ namespace Kalman.Studio
                 host.SetValue("PrefixLevel", prefixLevel);
 
                 Engine engine = new Engine();
-
-                string outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
+                string outputContent = string.Empty;
+                if (dicTemp.ContainsKey(templateFile))
+                {
+                    outputContent = dicTemp[templateFile];
+                }
+                else
+                {
+                    outputContent = engine.ProcessTemplate(File.ReadAllText(templateFile), host);
+                    dicTemp.Add(templateFile, outputContent);
+                }
                 //string outputFile = Path.Combine(outputPath, string.Format("{0}.cs", className));
                 string outputFile = Path.Combine(outputPath, string.Format("{0}{1}", table.Name, host.FileExtention));
                 if(cbClassNameIsFileName.Checked)outputFile = Path.Combine(outputPath, string.Format("{0}{1}", className, host.FileExtention));
 
                 StringBuilder sb = new StringBuilder();
-                if (host.ErrorCollection.HasErrors)
+                if (host.ErrorCollection != null && host.ErrorCollection.HasErrors)
                 {
                     foreach (CompilerError err in host.ErrorCollection)
                     {
