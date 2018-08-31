@@ -107,6 +107,24 @@ namespace Kalman.Studio
                 doc.Show(dockPanel);
         }
 
+        public void OpenNewProjectDialog(string path, string projectName)
+        {
+            ProjectCodeBuilder projectCodeBuilder = new ProjectCodeBuilder(path, projectName);
+            projectCodeBuilder.ShowDialog();
+        }
+
+        public void OpenNewProjectForm()
+        {
+            if (string.IsNullOrEmpty(toolItemDbList.Text.Trim()))
+            {
+                MsgBox.Show("请先选择数据库！");
+                return;
+            }
+
+            NewProjectForm newProjectForm = new NewProjectForm();
+            newProjectForm.Show();
+        }
+
         //打开文档
         void OpenDockDocument()
         {

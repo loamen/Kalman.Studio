@@ -107,14 +107,7 @@ namespace Kalman.Studio
 
         private void tsmiCreateProject_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(toolItemDbList.Text.Trim()))
-            {
-                MsgBox.Show("请先选择数据库！");
-                return;
-            }
-
-            NewProjectForm newProjectForm = new NewProjectForm();
-            newProjectForm.ShowDialog();
+            OpenNewProjectForm();
         }
         #endregion
 

@@ -297,6 +297,12 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="CodeBuilder\ProjectCodeBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeBuilder\ProjectCodeBuilder.Designer.cs">
+      <DependentUpon>ProjectCodeBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="CodeBuilder\BeegoProjectCodeBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -551,6 +557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CodeBuilder\BatchBuildCode.resx">
       <DependentUpon>BatchBuildCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeBuilder\ProjectCodeBuilder.resx">
+      <DependentUpon>ProjectCodeBuilder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CodeBuilder\BeegoProjectCodeBuilder.resx">
       <DependentUpon>BeegoProjectCodeBuilder.cs</DependentUpon>

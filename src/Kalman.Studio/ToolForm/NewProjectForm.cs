@@ -57,10 +57,7 @@ namespace Kalman.Studio
                 listView1.Items.AddRange(new ListViewItem[] { item1 });
             }
         }
-
         #endregion
-
-
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
@@ -95,10 +92,10 @@ namespace Kalman.Studio
                 MsgBox.Show("请选择项目输出目录！");
                 return;
             }
+            this.Close();
 
-            string selstr = this.listView1.SelectedItems[0].Tag.ToString();
-            MsgBox.Show(selstr);
-            Close();
+            string path = this.listView1.SelectedItems[0].Tag.ToString();
+            Config.MainForm.OpenNewProjectDialog(path, txtProName.Text.Trim());
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

@@ -25,6 +25,12 @@ namespace Kalman.Studio
         SODatabase currentDatabase;
         string templatePath = Path.Combine(Application.StartupPath, "T4Template");
 
+        public BatchBuildCustomCode()
+        {
+            InitializeComponent();
+            currentDatabase = Config.MainForm.toolItemDbList.SelectedItem as SODatabase;
+        }
+
         public BatchBuildCustomCode(SODatabase db)
         {
             InitializeComponent();
