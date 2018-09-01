@@ -150,7 +150,7 @@ namespace Kalman.Studio
 
         private void linkLabelDownload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Help.ShowHelp(this, "https://github.com/loamen/Kalman.Studio/tree/master/Templates");
+            Help.ShowHelp(this, "https://github.com/loamen/Kalman.Studio/tree/master/Documents/Templates");
         }
     }
 }
