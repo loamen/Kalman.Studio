@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Kalman Studio 已安装的模版", System.Windows.Forms.HorizontalAlignment.Left);
+            this.listViewGroup1 = new System.Windows.Forms.ListViewGroup("Kalman Studio 已安装的模版", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProjectForm));
             this.listView1 = new System.Windows.Forms.ListView();
             this.btnNext = new System.Windows.Forms.Button();
@@ -53,11 +53,11 @@
             // listView1
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup2.Header = "Kalman Studio 已安装的模版";
-            listViewGroup2.Name = "listViewGroup1";
-            listViewGroup2.Tag = "Kalman Studio 已安装的模版";
+            listViewGroup1.Header = "Kalman Studio 已安装的模版";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup1.Tag = "Kalman Studio 已安装的模版";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup2});
+            listViewGroup1});
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
