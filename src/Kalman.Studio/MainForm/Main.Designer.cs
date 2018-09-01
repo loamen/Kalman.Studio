@@ -102,6 +102,7 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.tsmiCreateABPProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -324,6 +325,7 @@
             this.tsmiNewFile,
             this.toolStripMenuItem3,
             this.tsmiCreateProject,
+            this.tsmiCreateABPProject,
             this.tsmiCreateBeegoProject});
             this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
@@ -724,6 +726,13 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
+            // tsmiCreateABPProject
+            // 
+            this.tsmiCreateABPProject.Name = "tsmiCreateABPProject";
+            this.tsmiCreateABPProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCreateABPProject.Text = "ABP项目";
+            this.tsmiCreateABPProject.Click += new System.EventHandler(this.tsmiCreateABPProject_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -826,5 +835,6 @@
         public System.Windows.Forms.ToolStripComboBox toolItemDbList;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateProject;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCreateABPProject;
     }
 }

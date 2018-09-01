@@ -109,6 +109,11 @@ namespace Kalman.Studio
         {
             OpenNewProjectForm();
         }
+
+        private void tsmiCreateABPProject_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "https://aspnetboilerplate.com/Templates");
+        }
         #endregion
 
         #region 新建文档

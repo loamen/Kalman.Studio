@@ -24,11 +24,11 @@ namespace Kalman.Studio
 
                 if (url.Contains("?"))
                 {
-                    url = url + "&n=" + Application.ProductName + "&v=" + Application.ProductVersion;
+                    url = url + "&n=" + Application.ProductName + "&v=" + Application.ProductVersion + "&l="+ System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                 }
                 else
                 {
-                    url = url + "?n=" + Application.ProductName + "&v=" + Application.ProductVersion;
+                    url = url + "?n=" + Application.ProductName + "&v=" + Application.ProductVersion + "&l=" + System.Threading.Thread.CurrentThread.CurrentCulture.Name;
                 }
 
                 wbStatistics.Navigate(url);

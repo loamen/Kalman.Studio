@@ -147,5 +147,10 @@ namespace Kalman.Studio
                 this.txtProPath.Text = folder.SelectedPath;
             }
         }
+
+        private void linkLabelDownload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Help.ShowHelp(this, "https://github.com/loamen/Kalman.Studio/tree/master/Templates");
+        }
     }
 }
