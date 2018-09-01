@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Kalman Studio 已安装的模版", System.Windows.Forms.HorizontalAlignment.Left);
+            this.listViewGroup1 = new System.Windows.Forms.ListViewGroup("Kalman Studio 已安装的模版", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("常规");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewFileForm));
             this.listView1 = new System.Windows.Forms.ListView();
