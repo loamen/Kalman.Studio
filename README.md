@@ -7,7 +7,7 @@ QQ群：122161138
 
 [![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/loamen/Kalman.Studio/) 
 [![build](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)](https://travis-ci.org/loamen/Kalman.Studio)
-[![license](http://img.shields.io/badge/license-LGPL-red.svg?style=flat)](https://raw.githubusercontent.com/loamen/Kalman.Studio/master/LICENSE)
+[![license](https://img.shields.io/badge/license-LGPL-red.svg?style=flat)](https://raw.githubusercontent.com/loamen/Kalman.Studio/master/LICENSE)
 [![platforms](https://img.shields.io/badge/platform-Windows-yellow.svg?style=flat)]()
 [![download_count](https://img.shields.io/github/downloads/loamen/Kalman.Studio/total.svg?style=plastic)](https://github.com/loamen/Kalman.Studio/releases) 
 [![release](https://img.shields.io/github/release/loamen/Kalman.Studio.svg?style=flat)](https://github.com/loamen/Kalman.Studio/releases) 
@@ -25,10 +25,10 @@ QQ群：122161138
 
 ## 一、软件界面
 
-![软件界面](Documents/Images/readme_1.jpg)
+![软件界面](https://raw.githubusercontent.com/loamen/Kalman.Studio/master/Documents/Images/readme_1.jpg)
 
-![软件界面](Documents/Images/readme_2.jpg)
+![软件界面](https://raw.githubusercontent.com/loamen/Kalman.Studio/master/Documents/Images/readme_2.jpg)
 
 ## 二、更新日志
 
-<a href="Update.md" target="_blank">更新日志</a>
+<a href="https://github.com/loamen/Kalman.Studio/blob/master/Update.md target="_blank">更新日志</a>
