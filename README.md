@@ -31,4 +31,4 @@ QQ群：122161138
 
 ## 二、更新日志
 
-<a href="https://github.com/loamen/Kalman.Studio/blob/master/Update.md target="_blank">更新日志</a>
+<a href="https://github.com/loamen/Kalman.Studio/blob/master/Update.md" target="_blank">更新日志</a>
