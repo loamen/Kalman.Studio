@@ -133,6 +133,19 @@
     <Compile Include="Collections\SynchronizedSortedList.cs" />
     <Compile Include="Collections\SynchronizedStack.cs" />
     <Compile Include="Command\CmdHelper.cs" />
+    <Compile Include="Command\ConsoleControl\CMDProcess.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\ConsoleControl\InternalCommands.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\ConsoleControl\NativeMethods.cs" />
+    <Compile Include="Command\ConsoleControl\ReflectionMethods.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Command\ConsoleControl\RichConsoleBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Command\WinrarHelper.cs" />
     <Compile Include="NormalConfig.cs" />
     <Compile Include="Config\ConfigBase.cs" />

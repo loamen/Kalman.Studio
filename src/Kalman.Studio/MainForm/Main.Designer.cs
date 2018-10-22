@@ -55,6 +55,7 @@
             this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiCreateProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCreateABPProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCreateBeegoProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -102,7 +103,7 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.tsmiCreateABPProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsnuTerminal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -329,32 +330,39 @@
             this.tsmiCreateBeegoProject});
             this.menuItemNew.Name = "menuItemNew";
             this.menuItemNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuItemNew.Size = new System.Drawing.Size(180, 22);
+            this.menuItemNew.Size = new System.Drawing.Size(174, 22);
             this.menuItemNew.Text = "新建(&N)";
             // 
             // tsmiNewFile
             // 
             this.tsmiNewFile.Name = "tsmiNewFile";
-            this.tsmiNewFile.Size = new System.Drawing.Size(180, 22);
+            this.tsmiNewFile.Size = new System.Drawing.Size(138, 22);
             this.tsmiNewFile.Text = "文件";
             this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(135, 6);
             // 
             // tsmiCreateProject
             // 
             this.tsmiCreateProject.Name = "tsmiCreateProject";
-            this.tsmiCreateProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCreateProject.Size = new System.Drawing.Size(138, 22);
             this.tsmiCreateProject.Text = "项目";
             this.tsmiCreateProject.Click += new System.EventHandler(this.tsmiCreateProject_Click);
+            // 
+            // tsmiCreateABPProject
+            // 
+            this.tsmiCreateABPProject.Name = "tsmiCreateABPProject";
+            this.tsmiCreateABPProject.Size = new System.Drawing.Size(138, 22);
+            this.tsmiCreateABPProject.Text = "ABP项目";
+            this.tsmiCreateABPProject.Click += new System.EventHandler(this.tsmiCreateABPProject_Click);
             // 
             // tsmiCreateBeegoProject
             // 
             this.tsmiCreateBeegoProject.Name = "tsmiCreateBeegoProject";
-            this.tsmiCreateBeegoProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCreateBeegoProject.Size = new System.Drawing.Size(138, 22);
             this.tsmiCreateBeegoProject.Text = "Beego项目";
             this.tsmiCreateBeegoProject.Click += new System.EventHandler(this.tsmiCreateBeegoProject_Click);
             // 
@@ -362,65 +370,65 @@
             // 
             this.menuItemOpen.Name = "menuItemOpen";
             this.menuItemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuItemOpen.Size = new System.Drawing.Size(180, 22);
+            this.menuItemOpen.Size = new System.Drawing.Size(174, 22);
             this.menuItemOpen.Text = "打开(&O)...";
             this.menuItemOpen.Click += new System.EventHandler(this.menuItemOpen_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
             // 
             // menuItemClose
             // 
             this.menuItemClose.Name = "menuItemClose";
-            this.menuItemClose.Size = new System.Drawing.Size(180, 22);
+            this.menuItemClose.Size = new System.Drawing.Size(174, 22);
             this.menuItemClose.Text = "关闭";
             this.menuItemClose.Click += new System.EventHandler(this.menuItemClose_Click);
             // 
             // menuItemCloseOther
             // 
             this.menuItemCloseOther.Name = "menuItemCloseOther";
-            this.menuItemCloseOther.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCloseOther.Size = new System.Drawing.Size(174, 22);
             this.menuItemCloseOther.Text = "除此之外全部关闭";
             this.menuItemCloseOther.Click += new System.EventHandler(this.menuItemCloseOther_Click);
             // 
             // menuItemCloseAll
             // 
             this.menuItemCloseAll.Name = "menuItemCloseAll";
-            this.menuItemCloseAll.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCloseAll.Size = new System.Drawing.Size(174, 22);
             this.menuItemCloseAll.Text = "全部关闭";
             this.menuItemCloseAll.Click += new System.EventHandler(this.menuItemCloseAll_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
             // 
             // menuItemSave
             // 
             this.menuItemSave.Name = "menuItemSave";
             this.menuItemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuItemSave.Size = new System.Drawing.Size(180, 22);
+            this.menuItemSave.Size = new System.Drawing.Size(174, 22);
             this.menuItemSave.Text = "保存(&S)";
             this.menuItemSave.Click += new System.EventHandler(this.menuItemSave_Click);
             // 
             // menuItemSaveAs
             // 
             this.menuItemSaveAs.Name = "menuItemSaveAs";
-            this.menuItemSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.menuItemSaveAs.Size = new System.Drawing.Size(174, 22);
             this.menuItemSaveAs.Text = "另存为...";
             this.menuItemSaveAs.Click += new System.EventHandler(this.menuItemSaveAs_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(171, 6);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(180, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(174, 22);
             this.menuItemExit.Text = "退出";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
@@ -445,7 +453,7 @@
             // 
             this.menuItemUndo.Name = "menuItemUndo";
             this.menuItemUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.menuItemUndo.Size = new System.Drawing.Size(162, 22);
+            this.menuItemUndo.Size = new System.Drawing.Size(180, 22);
             this.menuItemUndo.Text = "撤销(&Z)";
             this.menuItemUndo.Click += new System.EventHandler(this.menuItemUndo_Click);
             // 
@@ -453,20 +461,20 @@
             // 
             this.menuItemRedo.Name = "menuItemRedo";
             this.menuItemRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.menuItemRedo.Size = new System.Drawing.Size(162, 22);
+            this.menuItemRedo.Size = new System.Drawing.Size(180, 22);
             this.menuItemRedo.Text = "重复(&R)";
             this.menuItemRedo.Click += new System.EventHandler(this.menuItemRedo_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(159, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemCut
             // 
             this.menuItemCut.Name = "menuItemCut";
             this.menuItemCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.menuItemCut.Size = new System.Drawing.Size(162, 22);
+            this.menuItemCut.Size = new System.Drawing.Size(180, 22);
             this.menuItemCut.Text = "剪切(&X)";
             this.menuItemCut.Click += new System.EventHandler(this.menuItemCut_Click);
             // 
@@ -474,7 +482,7 @@
             // 
             this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItemCopy.Size = new System.Drawing.Size(162, 22);
+            this.menuItemCopy.Size = new System.Drawing.Size(180, 22);
             this.menuItemCopy.Text = "复制(&C)";
             this.menuItemCopy.Click += new System.EventHandler(this.menuItemCopy_Click);
             // 
@@ -482,7 +490,7 @@
             // 
             this.menuItemPaste.Name = "menuItemPaste";
             this.menuItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuItemPaste.Size = new System.Drawing.Size(162, 22);
+            this.menuItemPaste.Size = new System.Drawing.Size(180, 22);
             this.menuItemPaste.Text = "粘贴(&V)";
             this.menuItemPaste.Click += new System.EventHandler(this.menuItemPaste_Click);
             // 
@@ -490,20 +498,20 @@
             // 
             this.menuItemDelete.Name = "menuItemDelete";
             this.menuItemDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.menuItemDelete.Size = new System.Drawing.Size(162, 22);
+            this.menuItemDelete.Size = new System.Drawing.Size(180, 22);
             this.menuItemDelete.Text = "删除(&D)";
             this.menuItemDelete.Click += new System.EventHandler(this.menuItemDelete_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(159, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemSelectAll
             // 
             this.menuItemSelectAll.Name = "menuItemSelectAll";
             this.menuItemSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.menuItemSelectAll.Size = new System.Drawing.Size(162, 22);
+            this.menuItemSelectAll.Size = new System.Drawing.Size(180, 22);
             this.menuItemSelectAll.Text = "全选(&A)";
             this.menuItemSelectAll.Click += new System.EventHandler(this.menuItemSelectAll_Click);
             // 
@@ -514,7 +522,8 @@
             this.menuItemCodeExplorer,
             this.menuItemTemplateExplorer,
             this.menuItemPdmExplorer,
-            this.menuItemOutput});
+            this.menuItemOutput,
+            this.tsnuTerminal});
             this.menuItemView.Name = "menuItemView";
             this.menuItemView.Size = new System.Drawing.Size(60, 21);
             this.menuItemView.Text = "视图(&V)";
@@ -726,12 +735,14 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
-            // tsmiCreateABPProject
+            // tsnuTerminal
             // 
-            this.tsmiCreateABPProject.Name = "tsmiCreateABPProject";
-            this.tsmiCreateABPProject.Size = new System.Drawing.Size(180, 22);
-            this.tsmiCreateABPProject.Text = "ABP项目";
-            this.tsmiCreateABPProject.Click += new System.EventHandler(this.tsmiCreateABPProject_Click);
+            this.tsnuTerminal.Checked = true;
+            this.tsnuTerminal.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsnuTerminal.Name = "tsnuTerminal";
+            this.tsnuTerminal.Size = new System.Drawing.Size(188, 22);
+            this.tsnuTerminal.Text = "终端";
+            this.tsnuTerminal.Click += new System.EventHandler(this.tsnuTerminal_Click);
             // 
             // Main
             // 
@@ -836,5 +847,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateABPProject;
+        private System.Windows.Forms.ToolStripMenuItem tsnuTerminal;
     }
 }

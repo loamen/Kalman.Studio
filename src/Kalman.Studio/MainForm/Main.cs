@@ -20,6 +20,7 @@ namespace Kalman.Studio
         DatabaseExplorer dbExplorer = new DatabaseExplorer();
         StartForm startForm = new StartForm();
         private Output output = new Output();
+        private Terminal terminal = new Terminal();
         //DbSchemaViewer viewer = new DbSchemaViewer();
         CodeExplorer codeExplorer = new CodeExplorer();
         TemplateExplorer templateExplorer = new TemplateExplorer();
@@ -38,6 +39,7 @@ namespace Kalman.Studio
 
             startForm.Show(dockPanel);
             output.Show(dockPanel);
+            terminal.Show(dockPanel);
             dbExplorer.Show(dockPanel);
 
             Text = Text + @" v" + Application.ProductVersion;
@@ -287,7 +289,10 @@ namespace Kalman.Studio
         {
             ShowOutput();
         }
-
+        private void tsnuTerminal_Click(object sender, EventArgs e)
+        {
+            ShowTerminal();
+        }
         #region DoShow
         public void ShowDbExplorer()
         {
@@ -350,6 +355,18 @@ namespace Kalman.Studio
             else
             {
                 output.Hide();
+            }
+            menuItemOutput.Checked = !menuItemOutput.Checked;
+        }
+        public void ShowTerminal()
+        {
+            if (!menuItemOutput.Checked)
+            {
+                terminal.Show(dockPanel, DockState.DockBottomAutoHide);
+            }
+            else
+            {
+                terminal.Hide();
             }
             menuItemOutput.Checked = !menuItemOutput.Checked;
         }

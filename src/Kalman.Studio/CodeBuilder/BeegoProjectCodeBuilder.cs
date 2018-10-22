@@ -159,7 +159,7 @@ namespace Kalman.Studio
                 cmdString = "bee {0} {1} -driver=\"sqlite\" -conn=\"{2}\"";
             }
 
-            string server = "127.0.0.1", port = "3306", user = "root", password = "", db = "";
+            string server = "127.0.0.1", port = "3306", user = "root", password = "", db = currentDatabase.Name;
             var connectionString = currentDatabase.Parent.DbProvider.ConnectionString;
             var conn = connectionString.Split(';');
             #region 获取服务器信息
@@ -184,10 +184,10 @@ namespace Kalman.Studio
                     {
                         password = val[1].Trim();
                     }
-                    if (val[0].ToLower().Trim() == "database")
-                    {
-                        db = val[1].Trim();
-                    }
+                    //if (val[0].ToLower().Trim() == "database")
+                    //{
+                    //    db = val[1].Trim();
+                    //}
                 }
                 else if (currentDatabase.Parent.DbProvider.DatabaseType == DatabaseType.SQLite)
                 {

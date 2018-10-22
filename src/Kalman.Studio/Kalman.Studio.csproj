@@ -316,6 +316,12 @@
     <Compile Include="ExplorerForm\DatabaseSettingForm.Designer.cs">
       <DependentUpon>DatabaseSettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExplorerForm\Terminal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExplorerForm\Terminal.Designer.cs">
+      <DependentUpon>Terminal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Library\ComboBoxItem.cs" />
     <Compile Include="Library\UI\MsgBox.cs" />
     <Compile Include="Library\UI\WebBrowserEx.cs" />
@@ -590,6 +596,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExplorerForm\TemplateExplorer.resx">
       <DependentUpon>TemplateExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplorerForm\Terminal.resx">
+      <DependentUpon>Terminal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
