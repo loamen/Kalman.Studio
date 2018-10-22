@@ -40,7 +40,7 @@ namespace Kalman.Command
 			processCMD.StartInfo.RedirectStandardOutput = true;
 			processCMD.StartInfo.RedirectStandardInput = true;
 			processCMD.StartInfo.UseShellExecute = false;
-			processCMD.StartInfo.WorkingDirectory = Environment.GetFolderPath( Environment.SpecialFolder.System );
+			processCMD.StartInfo.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.System );
 			processCMD.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			
             // Process

@@ -37,6 +37,7 @@ namespace Kalman.Command
         #region Fields
 
         private int commandLineStartIndex = -1;
+        private int commandTextLength = 0;
         private StringCollection scCommandLineHistory = null;
 
         #endregion
@@ -96,11 +97,8 @@ namespace Kalman.Command
         /// <param name="e"></param>
         protected override void OnSizeChanged(EventArgs e)
         {
-
             ScrollToBottom();
-
             base.OnSizeChanged(e);
-
         }
 
 
@@ -114,12 +112,10 @@ namespace Kalman.Command
 
             try
             {
-
                 Process linkprocess = new Process();
                 linkprocess.StartInfo.UseShellExecute = true;
                 linkprocess.StartInfo.FileName = e.LinkText;
                 linkprocess.Start();
-
             }
             catch (Exception)
             {
@@ -189,39 +185,30 @@ namespace Kalman.Command
                 case Keys.Right:
                     e.SuppressKeyPress = true;
                     break;
-
-
+                case Keys.Back:
+                    if(this.Text.Length == this.commandTextLength)
+                    {
+                        e.SuppressKeyPress = true;
+                    }
+                    break;
                 // ENTER: Send the last command line to CMD.EXE via STDIN
                 case Keys.Enter:
-
                     // Get command line
                     string commandLine = String.Empty;
-
                     if (commandLineStartIndex != -1)
                         commandLine = this.Text.Substring(this.commandLineStartIndex);
-
-
                     // Start index of the next command line is unknown
                     commandLineStartIndex = -1;
-
-
                     // Handle built-in commands
                     if (ReflectionMethods.ExecuteInternalCommand(commandLine))
                     {
-
                         commandLine = String.Empty;
                     }
-
-
                     // Send the commandLine to standardInput or String.Empty for built-in commands (forces command prompt display)
                     StandardInputWriter.WriteLine(commandLine);
-
-
                     // Add this command line to the command line history
                     if (!scCommandLineHistory.Contains(commandLine))
                         scCommandLineHistory.Add(commandLine);
-
-
                     break;
 
 
@@ -323,8 +310,6 @@ namespace Kalman.Command
         /// <param name="IsStandardError"></param>
         private void OutputDataAvailable(string text, bool IsStandardError)
         {
-
-
             if (IsStandardError)
             {
                 this.AppendFormattedText(text, Color.Salmon);
@@ -335,8 +320,10 @@ namespace Kalman.Command
                 if (text.Contains(((char)12).ToString()))
                     this.Clear();
                 else
+                {
                     this.AppendText(text);
-
+                    commandTextLength = this.Text.Length;
+                }
             }
 
         }
