@@ -83,6 +83,7 @@
             this.menuItemTemplateExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPdmExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemOutput = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTerminal = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemTools = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemDbSchemaViewer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemDbDocBuilder = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,6 @@
             this.tsslLoading = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.tsnuTerminal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.MainStatusBar.SuspendLayout();
@@ -453,7 +453,7 @@
             // 
             this.menuItemUndo.Name = "menuItemUndo";
             this.menuItemUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.menuItemUndo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemUndo.Size = new System.Drawing.Size(162, 22);
             this.menuItemUndo.Text = "撤销(&Z)";
             this.menuItemUndo.Click += new System.EventHandler(this.menuItemUndo_Click);
             // 
@@ -461,20 +461,20 @@
             // 
             this.menuItemRedo.Name = "menuItemRedo";
             this.menuItemRedo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.menuItemRedo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemRedo.Size = new System.Drawing.Size(162, 22);
             this.menuItemRedo.Text = "重复(&R)";
             this.menuItemRedo.Click += new System.EventHandler(this.menuItemRedo_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(159, 6);
             // 
             // menuItemCut
             // 
             this.menuItemCut.Name = "menuItemCut";
             this.menuItemCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.menuItemCut.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCut.Size = new System.Drawing.Size(162, 22);
             this.menuItemCut.Text = "剪切(&X)";
             this.menuItemCut.Click += new System.EventHandler(this.menuItemCut_Click);
             // 
@@ -482,7 +482,7 @@
             // 
             this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItemCopy.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCopy.Size = new System.Drawing.Size(162, 22);
             this.menuItemCopy.Text = "复制(&C)";
             this.menuItemCopy.Click += new System.EventHandler(this.menuItemCopy_Click);
             // 
@@ -490,7 +490,7 @@
             // 
             this.menuItemPaste.Name = "menuItemPaste";
             this.menuItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuItemPaste.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPaste.Size = new System.Drawing.Size(162, 22);
             this.menuItemPaste.Text = "粘贴(&V)";
             this.menuItemPaste.Click += new System.EventHandler(this.menuItemPaste_Click);
             // 
@@ -498,20 +498,20 @@
             // 
             this.menuItemDelete.Name = "menuItemDelete";
             this.menuItemDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.menuItemDelete.Size = new System.Drawing.Size(180, 22);
+            this.menuItemDelete.Size = new System.Drawing.Size(162, 22);
             this.menuItemDelete.Text = "删除(&D)";
             this.menuItemDelete.Click += new System.EventHandler(this.menuItemDelete_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(159, 6);
             // 
             // menuItemSelectAll
             // 
             this.menuItemSelectAll.Name = "menuItemSelectAll";
             this.menuItemSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.menuItemSelectAll.Size = new System.Drawing.Size(180, 22);
+            this.menuItemSelectAll.Size = new System.Drawing.Size(162, 22);
             this.menuItemSelectAll.Text = "全选(&A)";
             this.menuItemSelectAll.Click += new System.EventHandler(this.menuItemSelectAll_Click);
             // 
@@ -523,7 +523,7 @@
             this.menuItemTemplateExplorer,
             this.menuItemPdmExplorer,
             this.menuItemOutput,
-            this.tsnuTerminal});
+            this.tsmiTerminal});
             this.menuItemView.Name = "menuItemView";
             this.menuItemView.Size = new System.Drawing.Size(60, 21);
             this.menuItemView.Text = "视图(&V)";
@@ -566,6 +566,15 @@
             this.menuItemOutput.Size = new System.Drawing.Size(188, 22);
             this.menuItemOutput.Text = "输出";
             this.menuItemOutput.Click += new System.EventHandler(this.menuItemOutput_Click);
+            // 
+            // tsmiTerminal
+            // 
+            this.tsmiTerminal.Checked = true;
+            this.tsmiTerminal.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmiTerminal.Name = "tsmiTerminal";
+            this.tsmiTerminal.Size = new System.Drawing.Size(188, 22);
+            this.tsmiTerminal.Text = "终端";
+            this.tsmiTerminal.Click += new System.EventHandler(this.tsnuTerminal_Click);
             // 
             // menuItemTools
             // 
@@ -735,15 +744,6 @@
             this.dockPanel.Size = new System.Drawing.Size(636, 367);
             this.dockPanel.TabIndex = 29;
             // 
-            // tsnuTerminal
-            // 
-            this.tsnuTerminal.Checked = true;
-            this.tsnuTerminal.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tsnuTerminal.Name = "tsnuTerminal";
-            this.tsnuTerminal.Size = new System.Drawing.Size(188, 22);
-            this.tsnuTerminal.Text = "终端";
-            this.tsnuTerminal.Click += new System.EventHandler(this.tsnuTerminal_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -847,6 +847,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiCreateABPProject;
-        private System.Windows.Forms.ToolStripMenuItem tsnuTerminal;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTerminal;
     }
 }

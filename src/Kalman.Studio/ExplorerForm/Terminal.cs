@@ -116,5 +116,15 @@ namespace Kalman.Studio
             // Add the data, one line at a time, to the string builder
             AppendText(e.Data);
         }
+
+        private void Terminal_Load(object sender, EventArgs e)
+        {
+            rtbCommand.Exit += new Command.RichConsoleBox.ExitEventHandler(rtbCommand_Exit);
+        }
+
+        private void rtbCommand_Exit(object sender, System.EventArgs e)
+        {
+            Config.MainForm.ShowTerminal(true);
+        }
     }
 }

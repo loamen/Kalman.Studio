@@ -54,6 +54,7 @@
             this.Name = "Terminal";
             this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockBottomAutoHide;
             this.Text = "终端";
+            this.Load += new System.EventHandler(this.Terminal_Load);
             this.ResumeLayout(false);
 
         }

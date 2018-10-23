@@ -358,9 +358,9 @@ namespace Kalman.Studio
             }
             menuItemOutput.Checked = !menuItemOutput.Checked;
         }
-        public void ShowTerminal()
+        public void ShowTerminal(bool renew = false)
         {
-            if (!menuItemOutput.Checked)
+            if (!tsmiTerminal.Checked)
             {
                 terminal.Show(dockPanel, DockState.DockBottomAutoHide);
             }
@@ -368,7 +368,11 @@ namespace Kalman.Studio
             {
                 terminal.Hide();
             }
-            menuItemOutput.Checked = !menuItemOutput.Checked;
+            tsmiTerminal.Checked = !tsmiTerminal.Checked;
+            if (renew)
+            {
+                terminal = new Terminal();
+            }
         }
         #endregion
 

@@ -39,6 +39,7 @@ namespace Kalman.Command
         private int commandLineStartIndex = -1;
         private int commandTextLength = 0;
         private StringCollection scCommandLineHistory = null;
+        private string cmdDirectory = null; // cmd当前目录
 
         #endregion
 
@@ -159,66 +160,97 @@ namespace Kalman.Command
 
             switch (e.KeyCode)
             {
-
-
                 // DOWN ARROW: Scroll Forward in History List
                 case Keys.Down:
                     // TODO: Command line history
                     e.SuppressKeyPress = true;
                     break;
-
-
                 // UP ARROW: Scroll Backward in History List
                 case Keys.Up:
                     // TODO: Command line history
                     e.SuppressKeyPress = true;
                     break;
-
-
                 // LEFT ARROW: Don't allow this to passed as a character to the command line
                 case Keys.Left:
                     e.SuppressKeyPress = true;
                     break;
-
-
                 // RIGHT ARROW: Don't allow this to passed as a character to the command line
                 case Keys.Right:
                     e.SuppressKeyPress = true;
                     break;
                 case Keys.Back:
-                    if(this.Text.Length == this.commandTextLength)
-                    {
+                    if (this.Text.Length == this.commandTextLength)
                         e.SuppressKeyPress = true;
+                    break;
+                case Keys.Tab:
+                    string command = GetCommandLine().Trim();
+                    if (!string.IsNullOrWhiteSpace(command))
+                    {
+                        var commands = command.Split(' ');
+                        if (commands.Length > 0)
+                        {
+                            var fileName = commands[commands.Length - 1];
+                            var name = string.Empty;
+                            if (!string.IsNullOrWhiteSpace(cmdDirectory))
+                            {
+                                var dic = new DirectoryInfo(cmdDirectory);
+                                var dics = dic.GetDirectories(fileName + "*");
+                                if (dics.Length > 0)
+                                {
+                                    name = dics[0].Name;
+                                }
+                                else
+                                {
+                                    var files = dic.GetFiles(fileName + "*");
+                                    if (files.Length > 0)
+                                    {
+                                        name = files[0].Name;
+                                    }
+                                }
+
+                                if (!string.IsNullOrWhiteSpace(name))
+                                {
+                                    commands[commands.Length - 1] = name;
+                                    command = string.Join(" ", commands);
+
+                                    StandardInputWriter.WriteLine(command);
+                                    if (!scCommandLineHistory.Contains(command))
+                                        scCommandLineHistory.Add(command);
+                                }
+                            }
+                        }
                     }
                     break;
                 // ENTER: Send the last command line to CMD.EXE via STDIN
                 case Keys.Enter:
                     // Get command line
-                    string commandLine = String.Empty;
-                    if (commandLineStartIndex != -1)
-                        commandLine = this.Text.Substring(this.commandLineStartIndex);
-                    // Start index of the next command line is unknown
-                    commandLineStartIndex = -1;
-                    // Handle built-in commands
-                    if (ReflectionMethods.ExecuteInternalCommand(commandLine))
-                    {
-                        commandLine = String.Empty;
-                    }
+                    string commandLine = GetCommandLine();
                     // Send the commandLine to standardInput or String.Empty for built-in commands (forces command prompt display)
                     StandardInputWriter.WriteLine(commandLine);
                     // Add this command line to the command line history
                     if (!scCommandLineHistory.Contains(commandLine))
                         scCommandLineHistory.Add(commandLine);
                     break;
-
-
                 default:
                     break;
 
             }
-
-
             base.OnKeyDown(e);
+        }
+
+        private string GetCommandLine()
+        {
+            string commandLine = String.Empty;
+            if (commandLineStartIndex != -1)
+                commandLine = this.Text.Substring(this.commandLineStartIndex);
+            // Start index of the next command line is unknown
+            commandLineStartIndex = -1;
+            // Handle built-in commands
+            if (ReflectionMethods.ExecuteInternalCommand(commandLine))
+            {
+                commandLine = String.Empty;
+            }
+            return commandLine;
         }
 
         #endregion
@@ -321,6 +353,14 @@ namespace Kalman.Command
                     this.Clear();
                 else
                 {
+                    var dic = text.Replace("\0", "").Trim();
+                    if (dic.EndsWith(">")) {
+                        dic = dic.TrimEnd('>');
+                        if (Directory.Exists(dic)) {
+                            cmdDirectory = new DirectoryInfo(dic).FullName;
+                        }
+                    }
+                    Debug.WriteLine(text);
                     this.AppendText(text);
                     commandTextLength = this.Text.Length;
                 }
