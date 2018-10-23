@@ -22,26 +22,29 @@ namespace Kalman.Command
         #endregion
 
         #region Events
+        [DllImport("kernel32.dll")]
+        static extern bool GenerateConsoleCtrlEvent(int dwCtrlEvent, int dwProcessGroupId);
+        [DllImport("kernel32.dll")]
+        static extern bool SetConsoleCtrlHandler(IntPtr handlerRoutine, bool add);
+        [DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
 
         /// <summary>
         /// Occurs when the Console exits
         /// </summary>
         public event ExitEventHandler Exit;
-
         private OutputDataAvailableDelegate OutputDataAvailableCallback;
         private ProcessExitedDelegate ProcessExitedCallback;
 
         #endregion
 
         #region Fields
-
         private int commandLineStartIndex = -1;
         private int commandTextLength = 0;
         private StringCollection scCommandLineHistory = null;
         private string cmdDirectory = null; // cmd work directory
         private int historyIndex = -1; // command history index
         private string historyCommand = string.Empty;
-
         #endregion
 
         private int updating;
@@ -129,21 +132,39 @@ namespace Kalman.Command
             base.OnKeyPress(e);
         }
 
-        [DllImport("kernel32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GenerateConsoleCtrlEvent(uint dwCtrlEvent,uint dwProcessGroupId);
-
+        /// <summary>
+        /// preview key down send ctrl+c
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.C)
             {
-                UInt32 CommandCtrlC = 0;
-                bool result = GenerateConsoleCtrlEvent(CommandCtrlC, Convert.ToUInt32(processCMD.Id));
-                this.AppendText("CTRL + C was pressed:" + result + processCMD.Id);
+
+                AttachConsole(processCMD.Id);
+                SetConsoleCtrlHandler(IntPtr.Zero, true);   // custom ctrl+c
+                var result = GenerateConsoleCtrlEvent(0, 0); // send ctrl+c
+                if (result)
+                {
+                    this.AppendText("CTRL+C was pressed.");
+                }
+                SetConsoleCtrlHandler(IntPtr.Zero, false);  //reset
+            }
+            else if (e.Control && e.KeyCode == Keys.V)
+            {
+                var seletedText = Clipboard.GetText();
+                if (!string.IsNullOrEmpty(seletedText))
+                {
+                    AppendText(seletedText);
+                }
             }
             base.OnPreviewKeyDown(e);
         }
 
+        /// <summary>
+        /// key down
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             // If StandardInput is closed return
@@ -265,6 +286,14 @@ namespace Kalman.Command
                         if (!scCommandLineHistory.Contains(commandLine))
                             scCommandLineHistory.Add(commandLine);
                     }
+                    else
+                    {
+                        var selectedText = this.SelectedText;
+                        if (!string.IsNullOrEmpty(selectedText))
+                        {
+                            Clipboard.SetText(selectedText.Trim()); // copy to clipboard
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -301,18 +330,13 @@ namespace Kalman.Command
 
         public void BeginUpdate()
         {
-
             // INTEROP: BeginUpdate
-
             // Deal with nested calls.
             ++updating;
             if (updating > 1)
                 return;
-
-
             // Prevent events
             updatingEventMask = NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETEVENTMASK, 0, IntPtr.Zero);
-
             // Prevent redrawing
             NativeMethods.SendMessage(this.Handle, NativeMethods.WM_SETREDRAW, 0, IntPtr.Zero);
         }
@@ -321,15 +345,12 @@ namespace Kalman.Command
         {
             // INTEROP: EndUpdate
             ScrollToBottom();
-
             // Deal with nested calls.
             --updating;
             if (updating > 0)
                 return;
-
             // Allow redrawing
             NativeMethods.SendMessage(this.Handle, NativeMethods.WM_SETREDRAW, 1, IntPtr.Zero);
-
             // Allow events
             NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETEVENTMASK, 0, updatingEventMask);
         }
@@ -341,9 +362,31 @@ namespace Kalman.Command
             NativeMethods.GetScrollRange(this.Handle, NativeMethods.SB_VERT, out min, out max);
             NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETSCROLLPOS, 0, new NativeMethods.POINT(0, max - this.DisplayRectangle.Height));
         }
+
+        /// <summary>
+        /// 发送命令
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="workingDirectory"></param>
+        /// <returns></returns>
+        public void RunApp(string appName, string workingDirectory = null)
+        {
+            if (!string.IsNullOrEmpty(workingDirectory))
+            {
+                processCMD.StartInfo.WorkingDirectory = workingDirectory;
+            }
+            if (commandLineStartIndex == -1)
+                commandLineStartIndex = this.SelectionStart;
+            AppendText(appName);
+            OnKeyDown(new KeyEventArgs(Keys.Enter));
+        }
+
+        /// <summary>
+        /// Append text
+        /// </summary>
+        /// <param name="text"></param>
         public new void AppendText(string text)
         {
-
             this.BeginUpdate();
             this.SelectionStart = this.TextLength;
             this.SelectedText = text;
@@ -389,7 +432,6 @@ namespace Kalman.Command
             }
             else
             {
-
                 if (text.Contains(((char)12).ToString()))
                     this.Clear();
                 else
@@ -399,6 +441,7 @@ namespace Kalman.Command
                         dic = dic.TrimEnd('>');
                         if (Directory.Exists(dic)) {
                             cmdDirectory = new DirectoryInfo(dic).FullName;
+                            processCMD.StartInfo.WorkingDirectory = cmdDirectory;
                         }
                     }
                     Debug.WriteLine(text);

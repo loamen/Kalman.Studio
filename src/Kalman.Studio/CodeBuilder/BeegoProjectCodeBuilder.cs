@@ -268,10 +268,12 @@ namespace Kalman.Studio
                     Config.Console(msg + "，详细信息如下：\n" + result);
 
                     backgroundWorkerGenerate.ReportProgress(50, msg);
-                    cmd = "bee run -gendoc=true -downdoc=true";
+                    cmd = string.Format("cd /d \"{0}\" \n", codePath);
+                    cmd += "bee run -gendoc=true -downdoc=true";
 
                     CmdHelper.CreateBat(Config.TEMP_BAT_FILENAME, cmd);
-                    CmdHelper.RunApp(Config.TEMP_BAT_FILENAME, ProcessWindowStyle.Normal, codePath);
+                    //CmdHelper.RunApp(Config.TEMP_BAT_FILENAME, ProcessWindowStyle.Normal, codePath);
+                    Config.MainForm.RunApp(Config.TEMP_BAT_FILENAME, codePath);
 
                     msg = "代码生成成功，是否打开目录？";
                     Config.Console(msg + "详细信息如下：\n" + result);
@@ -300,6 +302,7 @@ namespace Kalman.Studio
                     Process p = new Process();
                     p.StartInfo = new ProcessStartInfo(codePath);
                     p.Start();
+                    this.Close();
                 }
             }
         }

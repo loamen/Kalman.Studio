@@ -14,6 +14,7 @@ namespace Kalman.Studio
     public partial class Terminal : DockExplorer
     {
         delegate void AppendTextCallback(string text);
+        delegate void RunAppCallback(string appName, string workingDirectory = null);
 
         public Terminal()
         {
@@ -31,6 +32,20 @@ namespace Kalman.Studio
             {
                 if (string.IsNullOrEmpty(text)) return;
                 rtbCommand.AppendText(text);
+            }
+        }
+
+        public void RunApp(string appName, string workingDirectory = null)
+        {
+            if (this.rtbCommand.InvokeRequired)
+            {
+                RunAppCallback d = new RunAppCallback(RunApp);
+                this.Invoke(d, new object[] { appName,workingDirectory });
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(appName)) return;
+                rtbCommand.RunApp(appName,workingDirectory);
             }
         }
 

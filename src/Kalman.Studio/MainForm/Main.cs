@@ -638,6 +638,10 @@ namespace Kalman.Studio
             output.ClearText();
         }
 
+        public void RunApp(string appName, string workingDirectory = null)
+        {
+            terminal.RunApp(appName, workingDirectory);
+        }
         #endregion
 
         #region 状态栏
