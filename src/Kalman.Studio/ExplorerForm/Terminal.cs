@@ -66,57 +66,6 @@ namespace Kalman.Studio
             rtbCommand.SelectAll();
         }
 
-        private void rtbCommand_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Before the process starts, create a new stringbuilder
-                var m_output = new StringBuilder();
-
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
-                cmdStartInfo.FileName = @"C:\Windows\System32\cmd.exe";
-                cmdStartInfo.RedirectStandardOutput = true;
-                cmdStartInfo.RedirectStandardError = true;
-                cmdStartInfo.RedirectStandardInput = true;
-                cmdStartInfo.UseShellExecute = false;
-                cmdStartInfo.CreateNoWindow = true;
-
-                Process cmdProcess = new Process();
-                cmdProcess.StartInfo = cmdStartInfo;
-                //cmdProcess.OutputDataReceived += cmd_DataReceived;
-                cmdProcess.EnableRaisingEvents = true;
-                cmdProcess.Start();
-                cmdProcess.BeginOutputReadLine();
-                cmdProcess.BeginErrorReadLine();
-
-                cmdProcess.StandardInput.WriteLine(rtbCommand.Text);
-                cmdProcess.StandardInput.WriteLine("exit");
-
-                cmdProcess.WaitForExit();
-
-                // And now that everything's done, just set the text
-                // to whatever's in the stringbuilder
-                //rtbCommand.Text = m_output.ToString();
-
-                // We're done with the stringbuilder, let the garbage
-                // collector free it
-                m_output = null;
-            }
-        }
-
-        // Note: This is no longer a static method so it has
-        // access to the member variables, including m_output
-        void cmd_DataReceived(object sender, DataReceivedEventArgs e)
-        {
-            Debug.WriteLine("Output from other process");
-            Debug.WriteLine(e.Data);
-
-            // Add the data, one line at a time, to the string builder
-            AppendText(e.Data);
-        }
-
         private void Terminal_Load(object sender, EventArgs e)
         {
             rtbCommand.Exit += new Command.RichConsoleBox.ExitEventHandler(rtbCommand_Exit);

@@ -42,7 +42,6 @@
             this.rtbCommand.Size = new System.Drawing.Size(575, 178);
             this.rtbCommand.TabIndex = 1;
             this.rtbCommand.Text = "";
-            this.rtbCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbCommand_KeyDown);
             // 
             // Terminal
             // 

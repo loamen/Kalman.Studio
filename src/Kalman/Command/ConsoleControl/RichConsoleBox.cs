@@ -6,9 +6,8 @@ using System.Text;			// StringBuilder
 using System.Windows.Forms;		// DUH!
 using System.Diagnostics;		// Process
 using System.IO;			// StreamWriter, StreamReader
-using System.Threading;			// Thread
-
-
+using System.Threading;         // Thread
+using System.Runtime.InteropServices;
 
 namespace Kalman.Command
 {
@@ -39,7 +38,9 @@ namespace Kalman.Command
         private int commandLineStartIndex = -1;
         private int commandTextLength = 0;
         private StringCollection scCommandLineHistory = null;
-        private string cmdDirectory = null; // cmd当前目录
+        private string cmdDirectory = null; // cmd work directory
+        private int historyIndex = -1; // command history index
+        private string historyCommand = string.Empty;
 
         #endregion
 
@@ -53,7 +54,6 @@ namespace Kalman.Command
         /// </summary>
         protected override void OnCreateControl()
         {
-
             this.AcceptsTab = true;
             //this.BackColor = Color.Black;
             this.DetectUrls = true;
@@ -68,25 +68,16 @@ namespace Kalman.Command
             this.ShortcutsEnabled = true;
             this.ShowSelectionMargin = false;
 
-
-
             if (!this.DesignMode)
             {
-
                 // Delegates for invoked methods
                 ProcessExitedCallback = new ProcessExitedDelegate(ProcessExited);
                 OutputDataAvailableCallback = new OutputDataAvailableDelegate(OutputDataAvailable);
-
-
                 // scCommandLineHistory holds old command lines for quick reuse
                 scCommandLineHistory = new StringCollection();
-
-
                 //
                 CreateCMDProcess();
             }
-
-
             base.OnCreateControl();
         }
 
@@ -102,15 +93,12 @@ namespace Kalman.Command
             base.OnSizeChanged(e);
         }
 
-
-
         /// <summary>
         /// Launch recognized links via shell execute
         /// </summary>
         /// <param name="e"></param>
         protected override void OnLinkClicked(LinkClickedEventArgs e)
         {
-
             try
             {
                 Process linkprocess = new Process();
@@ -123,9 +111,7 @@ namespace Kalman.Command
 
             }
 
-
             base.OnLinkClicked(e);
-
         }
 
         /// <summary>
@@ -134,22 +120,32 @@ namespace Kalman.Command
         /// <param name="e"></param>
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
-
-
             if (e.KeyChar >= 32 && e.KeyChar <= 127)
             {
                 if (commandLineStartIndex == -1)
                     commandLineStartIndex = this.SelectionStart;
 
             }
-
-
             base.OnKeyPress(e);
+        }
+
+        [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GenerateConsoleCtrlEvent(uint dwCtrlEvent,uint dwProcessGroupId);
+
+        protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                UInt32 CommandCtrlC = 0;
+                bool result = GenerateConsoleCtrlEvent(CommandCtrlC, Convert.ToUInt32(processCMD.Id));
+                this.AppendText("CTRL + C was pressed:" + result + processCMD.Id);
+            }
+            base.OnPreviewKeyDown(e);
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-
             // If StandardInput is closed return
             if (StandardInputWriter == null)
             {
@@ -157,17 +153,52 @@ namespace Kalman.Command
                 return;
             }
 
-
             switch (e.KeyCode)
             {
                 // DOWN ARROW: Scroll Forward in History List
                 case Keys.Down:
-                    // TODO: Command line history
+                    if (scCommandLineHistory.Count > 0)
+                    {
+                        if (!string.IsNullOrEmpty(historyCommand) && this.Text.EndsWith(historyCommand))
+                        {
+                            this.Text = this.Text.Substring(0, this.Text.Length - historyCommand.Length);
+                        }
+
+                        if (historyIndex < 0)
+                            historyIndex = 0;
+                        if (historyIndex > scCommandLineHistory.Count - 1)
+                            historyIndex = scCommandLineHistory.Count - 1;
+
+
+                        historyCommand = scCommandLineHistory[historyIndex];
+                        this.AppendText(historyCommand);
+                        historyIndex++;
+                    }
                     e.SuppressKeyPress = true;
                     break;
                 // UP ARROW: Scroll Backward in History List
                 case Keys.Up:
-                    // TODO: Command line history
+                    if (scCommandLineHistory.Count > 0)
+                    {
+                        if (historyIndex == -1)
+                        {
+                            historyIndex = scCommandLineHistory.Count - 1;
+                        }
+
+                        if (!string.IsNullOrEmpty(historyCommand) && this.Text.EndsWith(historyCommand))
+                        {
+                            this.Text = this.Text.Substring(0, this.Text.Length - historyCommand.Length);
+                        }
+
+                        if (historyIndex < 0)
+                            historyIndex = 0;
+                        if (historyIndex > scCommandLineHistory.Count - 1)
+                            historyIndex = scCommandLineHistory.Count - 1;
+
+                        historyCommand = scCommandLineHistory[historyIndex];
+                        this.AppendText(historyCommand);
+                        historyIndex--;
+                    }
                     e.SuppressKeyPress = true;
                     break;
                 // LEFT ARROW: Don't allow this to passed as a character to the command line
@@ -226,11 +257,14 @@ namespace Kalman.Command
                 case Keys.Enter:
                     // Get command line
                     string commandLine = GetCommandLine();
-                    // Send the commandLine to standardInput or String.Empty for built-in commands (forces command prompt display)
-                    StandardInputWriter.WriteLine(commandLine);
-                    // Add this command line to the command line history
-                    if (!scCommandLineHistory.Contains(commandLine))
-                        scCommandLineHistory.Add(commandLine);
+                    if (!string.IsNullOrWhiteSpace(commandLine))
+                    {
+                        // Send the commandLine to standardInput or String.Empty for built-in commands (forces command prompt display)
+                        StandardInputWriter.WriteLine(commandLine);
+                        // Add this command line to the command line history
+                        if (!scCommandLineHistory.Contains(commandLine))
+                            scCommandLineHistory.Add(commandLine);
+                    }
                     break;
                 default:
                     break;
@@ -255,6 +289,15 @@ namespace Kalman.Command
         }
 
         #endregion
+
+        /// <summary>
+        /// release process
+        /// </summary>
+        ~RichConsoleBox()
+        {
+            if (processCMD != null)
+                processCMD.Close();
+        }
 
         public void BeginUpdate()
         {
@@ -291,8 +334,6 @@ namespace Kalman.Command
             NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETEVENTMASK, 0, updatingEventMask);
         }
 
-
-
         public void ScrollToBottom()
         {
             // Scroll to the bottom of the RichTextBox
@@ -300,7 +341,6 @@ namespace Kalman.Command
             NativeMethods.GetScrollRange(this.Handle, NativeMethods.SB_VERT, out min, out max);
             NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETSCROLLPOS, 0, new NativeMethods.POINT(0, max - this.DisplayRectangle.Height));
         }
-
         public new void AppendText(string text)
         {
 
@@ -369,23 +409,23 @@ namespace Kalman.Command
 
         }
 
-
         /// <summary>
         /// Invoked on the UserControl Thread to cleanup after the CMD.EXE process has exited,
         /// ms-help://MS.LHSMSSDK.1033/MS.LHSNETFX30SDK.1033/fxref_system/html/ebbb0d6a-b7dd-743d-b7a5-cdff7626d7f6.htm
         /// </summary>
         private void ProcessExited()
         {
-
             // RichTextBox
             this.ForeColor = Color.Gray;
             this.ReadOnly = true;
 
-
             // Tell anyone listening that CMD.EXE has exited
             if (Exit != null)
+            {
+                if (processCMD != null)
+                    processCMD.Close();
                 Exit(this, new EventArgs());
-
+            }
         }
 
         #endregion
