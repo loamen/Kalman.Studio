@@ -211,11 +211,12 @@ namespace Kalman.Command
                                 if (!string.IsNullOrWhiteSpace(name))
                                 {
                                     commands[commands.Length - 1] = name;
-                                    command = string.Join(" ", commands);
+                                    var newCommand = string.Join(" ", commands);
+                                    this.Text = this.Text.Substring(0, this.Text.Length - command.Length) + newCommand;
 
-                                    StandardInputWriter.WriteLine(command);
-                                    if (!scCommandLineHistory.Contains(command))
-                                        scCommandLineHistory.Add(command);
+                                    StandardInputWriter.WriteLine(newCommand);
+                                    if (!scCommandLineHistory.Contains(newCommand))
+                                        scCommandLineHistory.Add(newCommand);
                                 }
                             }
                         }
