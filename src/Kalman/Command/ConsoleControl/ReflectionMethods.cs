@@ -75,15 +75,10 @@ namespace Kalman.Command
 
 			public static bool ExecuteInternalCommand( string commandLine )
 			{
-
 				// 
 				Type t = typeof( InternalCommands );
-				
-
 				//
 				MethodInfo[] methods = t.GetMethods( BindingFlags.DeclaredOnly | BindingFlags.NonPublic | BindingFlags.Static );
-
-
 				//
 				foreach ( MethodInfo m in methods )
 				{
@@ -94,7 +89,6 @@ namespace Kalman.Command
 					}
 
 				}
-
 				//
 				return false;
 			}

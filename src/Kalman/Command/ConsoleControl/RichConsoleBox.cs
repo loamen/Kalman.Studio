@@ -230,6 +230,12 @@ namespace Kalman.Command
                 case Keys.Right:
                     e.SuppressKeyPress = true;
                     break;
+                case Keys.Home:
+                    e.SuppressKeyPress = true;
+                    break;
+                case Keys.End:
+                    e.SuppressKeyPress = true;
+                    break;
                 case Keys.Back:
                     if (this.Text.Length == this.commandTextLength)
                         e.SuppressKeyPress = true;
@@ -264,11 +270,17 @@ namespace Kalman.Command
                                 {
                                     commands[commands.Length - 1] = name;
                                     var newCommand = string.Join(" ", commands);
-                                    this.Text = this.Text.Substring(0, this.Text.Length - command.Length) + newCommand;
+                                    this.Text = this.Text.Substring(0, this.Text.Length - command.Length);
 
-                                    StandardInputWriter.WriteLine(newCommand);
-                                    if (!scCommandLineHistory.Contains(newCommand))
-                                        scCommandLineHistory.Add(newCommand);
+                                    if (commandLineStartIndex == -1)
+                                        commandLineStartIndex = this.Text.Length;
+
+                                    this.AppendText(newCommand);
+                                    
+                                    e.SuppressKeyPress = true;
+                                    //StandardInputWriter.WriteLine(newCommand);
+                                    //if (!scCommandLineHistory.Contains(newCommand))
+                                    //    scCommandLineHistory.Add(newCommand);
                                 }
                             }
                         }
@@ -302,6 +314,20 @@ namespace Kalman.Command
             base.OnKeyDown(e);
         }
 
+        private string GetCurrentLine()
+        {
+            this.WordWrap = false;
+            int cursorPosition = this.SelectionStart;
+            int lineIndex = this.GetLineFromCharIndex(cursorPosition);
+            string lineText = this.Lines[lineIndex];
+            if (!string.IsNullOrEmpty(lineText) && lineText.Length > cmdDirectory.Length)
+            {
+                lineText = lineText.Substring(cmdDirectory.Length + 1, lineText.Length - cmdDirectory.Length - 1);
+            }
+            this.WordWrap = true;
+            return lineText;
+        }
+
         private string GetCommandLine()
         {
             string commandLine = String.Empty;
@@ -309,6 +335,10 @@ namespace Kalman.Command
                 commandLine = this.Text.Substring(this.commandLineStartIndex);
             // Start index of the next command line is unknown
             commandLineStartIndex = -1;
+            if (string.IsNullOrEmpty(commandLine))
+            {
+                commandLine = GetCurrentLine();
+            }
             // Handle built-in commands
             if (ReflectionMethods.ExecuteInternalCommand(commandLine))
             {
@@ -354,17 +384,18 @@ namespace Kalman.Command
             // Allow events
             NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETEVENTMASK, 0, updatingEventMask);
         }
-
+        /// <summary>
+        /// Scroll to the bottom of the RichTextBox
+        /// </summary>
         public void ScrollToBottom()
         {
-            // Scroll to the bottom of the RichTextBox
             int min, max;
             NativeMethods.GetScrollRange(this.Handle, NativeMethods.SB_VERT, out min, out max);
             NativeMethods.SendMessage(this.Handle, NativeMethods.EM_SETSCROLLPOS, 0, new NativeMethods.POINT(0, max - this.DisplayRectangle.Height));
         }
 
         /// <summary>
-        /// 发送命令
+        /// send command
         /// </summary>
         /// <param name="appName"></param>
         /// <param name="workingDirectory"></param>
@@ -393,20 +424,28 @@ namespace Kalman.Command
             this.EndUpdate();
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="foreColor"></param>
         public void AppendFormattedText(string text, Color foreColor)
         {
-
             this.BeginUpdate();
             this.SelectionStart = this.TextLength;
             this.SelectionColor = foreColor;
             this.SelectedText = text;
             this.EndUpdate();
-
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="font"></param>
+        /// <param name="foreColor"></param>
+        /// <param name="background"></param>
         public void AppendFormattedText(string text, Font font, Color foreColor, Color background)
         {
-
             this.BeginUpdate();
             this.SelectionStart = this.TextLength;
             this.SelectionFont = font;
@@ -414,7 +453,6 @@ namespace Kalman.Command
             this.SelectionBackColor = background;
             this.SelectedText = text;
             this.EndUpdate();
-
         }
 
         #region Callbacks
@@ -470,7 +508,6 @@ namespace Kalman.Command
                 Exit(this, new EventArgs());
             }
         }
-
         #endregion
     }
 }

@@ -58,12 +58,19 @@ namespace Kalman.Studio
             AppendText(text + Environment.NewLine);
         }
 
-        /// <summary>
-        /// 清除所有输出文本
-        /// </summary>
-        public void ClearText()
+        private void Terminal_Load(object sender, EventArgs e)
         {
-            rtbCommand.Clear();
+            rtbCommand.Exit += new Command.RichConsoleBox.ExitEventHandler(rtbCommand_Exit);
+        }
+
+        private void rtbCommand_Exit(object sender, System.EventArgs e)
+        {
+            Config.MainForm.ShowTerminal(true);
+        }
+
+        private void menuItemPaste_Click(object sender, EventArgs e)
+        {
+            rtbCommand.Paste();
         }
 
         private void menuItemCopy_Click(object sender, EventArgs e)
@@ -79,16 +86,6 @@ namespace Kalman.Studio
         private void menuItemSelectAll_Click(object sender, EventArgs e)
         {
             rtbCommand.SelectAll();
-        }
-
-        private void Terminal_Load(object sender, EventArgs e)
-        {
-            rtbCommand.Exit += new Command.RichConsoleBox.ExitEventHandler(rtbCommand_Exit);
-        }
-
-        private void rtbCommand_Exit(object sender, System.EventArgs e)
-        {
-            Config.MainForm.ShowTerminal(true);
         }
     }
 }

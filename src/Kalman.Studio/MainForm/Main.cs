@@ -38,9 +38,9 @@ namespace Kalman.Studio
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             startForm.Show(dockPanel);
+            dbExplorer.Show(dockPanel);
             output.Show(dockPanel);
             terminal.Show(dockPanel);
-            dbExplorer.Show(dockPanel);
 
             Text = Text + @" v" + Application.ProductVersion;
         }

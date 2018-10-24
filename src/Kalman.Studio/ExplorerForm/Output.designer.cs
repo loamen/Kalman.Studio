@@ -55,13 +55,13 @@
             this.menuItemSelectAll,
             this.menuItemClear});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(154, 70);
+            this.cms.Size = new System.Drawing.Size(162, 70);
             // 
             // menuItemCopy
             // 
             this.menuItemCopy.Name = "menuItemCopy";
             this.menuItemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItemCopy.Size = new System.Drawing.Size(153, 22);
+            this.menuItemCopy.Size = new System.Drawing.Size(161, 22);
             this.menuItemCopy.Text = "复制(&C)";
             this.menuItemCopy.Click += new System.EventHandler(this.menuItemCopy_Click);
             // 
@@ -69,14 +69,14 @@
             // 
             this.menuItemSelectAll.Name = "menuItemSelectAll";
             this.menuItemSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.menuItemSelectAll.Size = new System.Drawing.Size(153, 22);
+            this.menuItemSelectAll.Size = new System.Drawing.Size(161, 22);
             this.menuItemSelectAll.Text = "全选(&A)";
             this.menuItemSelectAll.Click += new System.EventHandler(this.menuItemSelectAll_Click);
             // 
             // menuItemClear
             // 
             this.menuItemClear.Name = "menuItemClear";
-            this.menuItemClear.Size = new System.Drawing.Size(153, 22);
+            this.menuItemClear.Size = new System.Drawing.Size(161, 22);
             this.menuItemClear.Text = "全部清除";
             this.menuItemClear.Click += new System.EventHandler(this.menuItemClear_Click);
             // 
@@ -90,7 +90,7 @@
             this.HideOnClose = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Output";
-            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockBottomAutoHide;
+            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockBottom;
             this.Text = "输出";
             this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
