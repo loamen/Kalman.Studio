@@ -20,7 +20,7 @@ namespace Kalman.Command
         {
             if (System.IO.File.Exists(fileName))
                 System.IO.File.Delete(fileName);
-            File.WriteAllText(fileName, content, Encoding.GetEncoding("GBK"));   //将s字符串的内容写入v_filepath指定的bat文件中。
+            File.WriteAllText(fileName, content, Encoding.Default);   //将s字符串的内容写入v_filepath指定的bat文件中。
         }
 
         /// <summary>
