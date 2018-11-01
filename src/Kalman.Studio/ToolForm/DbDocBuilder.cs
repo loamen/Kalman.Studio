@@ -238,6 +238,24 @@ namespace Kalman.Studio
                     }
                 }
             }
+
+            if (rbtnHtml.Checked)
+            {
+                saveFileDialog1.Filter = "Html文件(*.html)|*.html|所有文件(*.*)|*.*";
+                saveFileDialog1.FileName = CurrentDatabase.Name;
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = saveFileDialog1.FileName;
+
+                    iTextExporter exporter = new iTextExporter(fileName);
+                    exporter.DbSchema2Html(currentSchema, CurrentDatabase, list);
+
+                    if (MsgBox.ShowQuestionMessage("数据库文档生成成功，是否打开文档", "提示信息") == DialogResult.Yes)
+                    {
+                        CmdHelper.Execute(fileName);
+                    }
+                }
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

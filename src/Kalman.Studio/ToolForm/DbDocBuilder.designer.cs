@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbConnectionStrings = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtnHtml = new System.Windows.Forms.RadioButton();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.rbtnPdf = new System.Windows.Forms.RadioButton();
@@ -106,6 +107,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rbtnHtml);
             this.groupBox2.Controls.Add(this.btnExit);
             this.groupBox2.Controls.Add(this.btnOK);
             this.groupBox2.Controls.Add(this.rbtnPdf);
@@ -117,6 +119,17 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "选择文档输出格式";
+            // 
+            // rbtnHtml
+            // 
+            this.rbtnHtml.AutoSize = true;
+            this.rbtnHtml.Location = new System.Drawing.Point(167, 23);
+            this.rbtnHtml.Name = "rbtnHtml";
+            this.rbtnHtml.Size = new System.Drawing.Size(71, 16);
+            this.rbtnHtml.TabIndex = 6;
+            this.rbtnHtml.TabStop = true;
+            this.rbtnHtml.Text = "Html格式";
+            this.rbtnHtml.UseVisualStyleBackColor = true;
             // 
             // btnExit
             // 
@@ -153,7 +166,7 @@
             // rbtnWord
             // 
             this.rbtnWord.AutoSize = true;
-            this.rbtnWord.Location = new System.Drawing.Point(104, 23);
+            this.rbtnWord.Location = new System.Drawing.Point(89, 23);
             this.rbtnWord.Name = "rbtnWord";
             this.rbtnWord.Size = new System.Drawing.Size(71, 16);
             this.rbtnWord.TabIndex = 0;
@@ -294,5 +307,6 @@
         private System.Windows.Forms.RadioButton rbtnPdf;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.RadioButton rbtnHtml;
     }
 }
